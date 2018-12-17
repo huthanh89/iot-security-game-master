@@ -2,7 +2,7 @@
 // Controller
 //-------------------------------------------------------------------------------//
 
-function Controller($scope, $uibModal){
+function Controller($scope, $uibModal, $rootScope){
 
   $scope.showSettings = function() {
     var template = $('.settings-modal-template').html();
@@ -12,12 +12,12 @@ function Controller($scope, $uibModal){
       scope:    $scope,
       controller: function($uibModalInstance) {
         $ctrl = this;
-        $ctrl.enableInternet = $scope.internetEnabled;
+        $ctrl.enableInternet = $rootScope.internetEnabled;
         $ctrl.ok = function() {
 
           $uibModalInstance.dismiss('ok');
           
-          if ($scope.internetEnabled != $ctrl.enableInternet) {
+          if ($rootScope.internetEnabled != $ctrl.enableInternet) {
             ws.send(JSON.stringify({
               type: 'internet',
               enable: ($ctrl.enableInternet == true)

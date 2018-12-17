@@ -5,12 +5,6 @@
 function Controller($scope, $rootScope){
 
   $scope.playerData = {};
-  /*
-  $scope.teamData = {
-    teams: [],
-    players: [],
-    teamPlayers: []
-  };*/
 
   /** Function to update the player data
     @param : player to update
@@ -21,14 +15,8 @@ function Controller($scope, $rootScope){
     if (oldPlayer) {
         for (var i in player)
             oldPlayer[i] = player[i];
-        angular.forEach(scope.teamData.players, function(t, i) {
-            if (t.id == player.id) {
-                t = player;
-            }
-        });
     } else {
         $scope.playerData[player.id] = player;
-    //   $scope.teamData.players.push(player);
     }
     $scope.$applyAsync();
   }

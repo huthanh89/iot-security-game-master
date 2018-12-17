@@ -33,26 +33,41 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
           var msg = JSON.parse(event.data);
 
           var type = msg['type'];
+
           if (type == 'player') {
               $rootScope.$broadcast('ws:player', msg);
-          } else if (type == 'device') {
+              $rootScope.$broadcast('ws:teamdata', msg);
+          } 
+          
+          else if (type == 'device') {
               $rootScope.$broadcast('ws:device', msg);
-          } else if (type == 'started') {
+          } 
+          
+          else if (type == 'started') {
               $rootScope.hideConfig = true;
               $rootScope.$applyAsync();
-          } else if (type == 'scores') {
+          } 
+          
+          else if (type == 'scores') {
               $rootScope.$broadcast('ws:scores', msg);
               $rootScope.$broadcast('ws:chatlist', msg);
               $rootScope.$applyAsync();
-          } else if (type == 'chat') {
+          } 
+          
+          else if (type == 'chat') {
               $rootScope.$broadcast('ws:chat', msg);
-          } else if (type == 'gameboard') {
+          } 
+          
+          else if (type == 'gameboard') {
               $rootScope.$broadcast('ws:gameboard', msg);
-          } else if (type == 'internet') {
+          } 
+          
+          else if (type == 'internet') {
               $rootScope.internetEnabled = msg.enabled;
               $rootScope.$applyAsync();
-
-          } else if (type == 'error') {
+          } 
+          
+          else if (type == 'error') {
               if (msg.code != 'not_instructor_vlan') {
                   alert(msg.msg);
               } else {
@@ -70,11 +85,15 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
                   });
               }
 
-          } else if (type == 'grid') {
+          } 
+          
+          else if (type == 'grid') {
               $rootScope.gridData = msg.grid;
               $rootScope.$applyAsync();
 
-          } else if (type == 'endgame') {
+          } 
+          
+          else if (type == 'endgame') {
               var winner = msg['winner'];
               if ($rootScope.loggedInUser.username == winner) {
                   $rootScope.missionCompleted = true;

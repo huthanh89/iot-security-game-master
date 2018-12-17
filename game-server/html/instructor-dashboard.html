@@ -23,6 +23,7 @@
     <script src="instructor/components/device.js"></script>
     <script src="instructor/components/setting.js"></script>
     <script src="instructor/components/players.js"></script>
+    <script src="instructor/components/teams.js"></script>
 
     <script type="text/javascript">
         mxBasePath = 'vendor/src';
@@ -118,73 +119,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row team-selection">
-                            <div class="col-sm-12 config-header board-header">
-                                <span>Assign Teams</span>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="row team-header">
-                                    <div class="col-sm-4 team-title">
-                                        <span style="width:70%; display: inline-block; text-align: center;">Teams</span>
-                                        <button type="button" class="btn btn-default btn-sm" ng-click="isAddTeam = true">
-                                                <span class="glyphicon glyphicon-plus plus-icon"></span>
-                                            </button>
-                                    </div>
-                                    <div class="col-sm-4 team-title player-title"><span>Team Players</span></div>
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm-3 team-title player-title"><span>Unassigned</span></div>
-                                </div>
-                                <div class="row team-content">
-                                    <div class="col-sm-4 team-info">
-                                        <span class="team-name" ng-class='{"selected" : team.isSelected}' ng-click='unselectAll(team)' ng-repeat='team in teamData.teams'>
-                                                <span class="added-team-name" ng-show='!team.isEdit'>{{team.name}}</span>
-                                        <input type="text" class="form-control" ng-model='team.name' ng-show='team.isEdit' ng-keyup="$event.keyCode == 13 ?updateTeam(team) : null">
-                                        <span class="edit-delete">
-                                                    <button type="button" class="btn btn-default btn-sm" ng-click='updateTeam(team);'>
-                                                        <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-sm" ng-click='removeTeam(team,$index)'>
-                                                        <span class="glyphicon glyphicon-remove"></span>
-                                                    </button>
-                                        </span>
-                                        </span>
-                                        <span class="team-name" ng-show='isAddTeam'>
-                                                <input type="text" class="form-control" ng-model='teamText' ng-keyup="$event.keyCode == 13 ?addTeam() : null" >
-                                                <span class="edit-delete">
-                                                    <button type="button" class="btn btn-default btn-sm" ng-click='addTeam();isAddTeam=false;'>
-                                                        <span class="glyphicon glyphicon-edit"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-sm" ng-click='teamText = "";isAddTeam = false'>
-                                                        <span class="glyphicon glyphicon-remove"></span>
-                                                    </button>
-                                        </span>
-                                        </span>
-                                    </div>
-                                    <div class="col-sm-4 team-info">
-                                        <span class="team-name player-info" ng-repeat="team in teamData.teamPlayers" ng-if='team.selectedTeam == selectedTeam' ng-class='{"selected" : team.isSelected}' ng-click='team.isSelected = !team.isSelected'>{{team.name}}
-                                            </span>
-                                    </div>
-                                    <div class="col-sm-1" style="padding-top: 80px;">
-                                        <span class="arrow-container">
-                                                <span class="glyphicon glyphicon-chevron-left" ng-click="moveRight()"></span>
-                                        </span>
-                                        <span class="arrow-container">
-                                                <span class="glyphicon glyphicon-chevron-right" ng-click="moveLeft()">
-                                                </span>
-                                        </span>
-                                    </div>
-                                    <div class="col-sm-3 team-info ">
-                                        <span class="team-name player-info" ng-repeat="team in teamData.players" ng-class='{"selected" : team.isSelected}' ng-click='selectPlayer(team)'>{{team.name}}
-                                            </span>
-                                    </div>
-                                </div>
-                                <div class="row text-right footer-button">
-                                    <div class="col-sm-12">
-                                        <button type="button" class="btn btn-success" style="margin-top: 5px;margin-bottom: 5px;" ng-click="start()">Start</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        <teams></teams>
+
                         <div class="row mission-container" style="display:none">
                             <div class="col-sm-12 config-header board-header">
                                 <span>Assign Missions</span>
