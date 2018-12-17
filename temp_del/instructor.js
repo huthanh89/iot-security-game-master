@@ -390,6 +390,23 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
                     $scope.hideConfig = true;
                     $scope.$applyAsync();
                 } 
+                /*
+                else if (type == 'scores') {
+
+                    if (JSON.stringify(getScores($scope.scoreBoard)) != JSON.stringify(getScores(msg.scores))) {
+                        $scope.playSound();
+                    }
+                    $scope.scoreBoard = msg.scores;
+                    $scope.updateChatToList();
+                    $scope.$applyAsync();
+
+                } 
+                else if (type == 'chat') {
+                  console.log('here');
+                  $scope.appendChat(msg.from, msg.to, msg.msg);
+                  $scope.playSound();
+                } 
+           */
                 
                 else if (type == 'gameboard') {
                     $scope.gameboards = msg.gameboard;
