@@ -20,7 +20,6 @@
     <script src="instructor/components/scoreboard.js"></script>
     <script src="instructor/components/chat.js"></script>
     <script src="instructor/components/chart.js"></script>
-    <script src="instructor/components/device.js"></script>
 
     <script type="text/javascript">
         mxBasePath = 'vendor/src';
@@ -267,6 +266,37 @@
 
                   <device></device>
 
+                  <div class="col-sm-12 board-header player-header text-center">Other Devices Info</div>
+                  <div class="col-sm-12">
+                      <div class="row data-table-row">
+                          <div class="row" style="margin: 0px">
+                              <div class="col-sm-4">
+                                  <div class="col-sm-12 data-title">ID</div>
+                              </div>
+                              <div class="col-sm-4">
+                                  <div class="col-sm-12 data-title">IP</div>
+                              </div>
+                              <div class="col-sm-4">
+                                  <div class="col-sm-12 data-title">Online</div>
+                              </div>
+                          </div>
+                          <div class="row" style="margin: 0px;" ng-repeat="device in deviceData">
+                              <div class="col-sm-4">
+                                  <div class="col-sm-12 data-value" ng-if="device.player == null">{{device.id}}</div>
+                              </div>
+                              <div class="col-sm-4">
+                                  <div class="col-sm-12 data-value" ng-if="device.player == null">{{device.ip}}</div>
+                              </div>
+                              <div class="col-sm-4">
+                                  <div class="col-sm-12 data-value" ng-if="device.player == null">
+                                      <span class="green-dot" ng-if="device.online"></span>
+                                      <span class="red-dot" ng-if="!device.online"></span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                    </div>
                 </div>
             </div>
         </div>

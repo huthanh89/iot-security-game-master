@@ -50,8 +50,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
               updatePlayerData(msg);
               $rootScope.playSound();
           } else if (type == 'device') {
-              updateDeviceData(msg);
-              $rootScope.playSound();
+              $rootScope.$broadcast('ws:device', msg);
           } else if (type == 'started') {
               $rootScope.hideConfig = true;
               $rootScope.$applyAsync();
@@ -63,16 +62,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
               $rootScope.$broadcast('ws:chat', msg);
               $rootScope.playSound();
           } else if (type == 'gameboard') {
-              $rootScope.gameboards = msg.gameboard;
-              $rootScope.chartData = [];
-              for (var teamName in $rootScope.gameboards) {
-                  var gameboard = $rootScope.gameboards[teamName];
-                  $rootScope.chartData.push({ name: gameboard.team, y: gameboard.progress });
-              }
-              $rootScope.chartData = $filter('orderBy')($rootScope.chartData, "name");
-              $rootScope.updateChart();
-              $rootScope.$applyAsync();
-
+              $rootScope.$broadcast('ws:gameboard', msg);
           } else if (type == 'internet') {
               $rootScope.internetEnabled = msg.enabled;
               $rootScope.$applyAsync();

@@ -20,54 +20,10 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
         teamPlayers: []
     };
 
-    $scope.gameboards = {};
     $scope.internetEnabled = false;
-
-    /** Function to update the game board chart based on chart data */
-    $scope.updateChart = function() {
-        // Create the chart
-        Highcharts.chart('container', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Team Progress'
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {
-                title: {
-                    text: 'Level'
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                series: {
-                    borderWidth: 0,
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.y:.1f}'
-                    }
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>Level {point.y:.2f}</b><br/>'
-            },
-            "series": [{
-                "name": "Teams",
-                "colorByPoint": true,
-                "data": $scope.chartData
-            }]
-        });
-    };
 
     /** Intialize scope variables to display this data in Arrange Mission and Player Block */
     $scope.playerData = {};
-    $scope.deviceData = {};
     $scope.arrangeList = [];
 
     /** Repeat the for loop for pushing the player data to arrange list */
@@ -100,24 +56,6 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
         }
         $scope.$applyAsync();
     }
-
-    /** Function to update the device data
-      @param : device to update
-    */
-    function updateDeviceData(device) {
-        var oldDevice = $scope.deviceData[device.ip];
-        if (oldDevice) {
-            for (var i in device)
-                oldDevice[i] = device[i];
-        } else {
-            $scope.deviceData[device.ip] = device;
-        }
-        $scope.$applyAsync();
-    }
-
-    /** Triggering the updateDeviceData for Updating the devices*/
-    updateDeviceData({ "id": "GameController", "ip": "10.1.1.5", "online": true, "isInfrastructure": true, "player": null });
-    updateDeviceData({ "id": "2960Switch", "ip": "10.1.1.1", "online": true, "isInfrastructure": true, "player": null });
 
     /** Function to update the mission
       @param : block is selected mission
@@ -383,26 +321,13 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
                 if (type == 'player') {
                     updatePlayerData(msg);
                     $scope.playSound();
-                } else if (type == 'device') {
-                    updateDeviceData(msg);
-                    $scope.playSound();
-                } else if (type == 'started') {
+                } 
+                else if (type == 'started') {
                     $scope.hideConfig = true;
                     $scope.$applyAsync();
                 } 
                 
-                else if (type == 'gameboard') {
-                    $scope.gameboards = msg.gameboard;
-                    $scope.chartData = [];
-                    for (var teamName in $scope.gameboards) {
-                        var gameboard = $scope.gameboards[teamName];
-                        $scope.chartData.push({ name: gameboard.team, y: gameboard.progress });
-                    }
-                    $scope.chartData = $filter('orderBy')($scope.chartData, "name");
-                    $scope.updateChart();
-                    $scope.$applyAsync();
-
-                } else if (type == 'internet') {
+                else if (type == 'internet') {
                     $scope.internetEnabled = msg.enabled;
                     $scope.$applyAsync();
 
