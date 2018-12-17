@@ -1,0 +1,25 @@
+<div class="row inst-score-board">
+    <div class="col-sm-12 board-header">
+        <span class="team">Team</span>
+        <span class="score">Score</span>
+    </div>
+    <div class="col-sm-12 inst-board-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol>
+                    <li class="team-text" ng-repeat="team in scoreBoard">
+                        <span class="team-cont" uib-tooltip="{{team.name}}" tooltip-append-to-body="true" tooltip-placement="top" tooltip-enable="team.name.length > 10" style="margin-right:20px;">{{team.name}}
+                            </span>
+                        <span class="score-cont score-cont-num">{{team.score |fixDecimal:2}}</span>
+                        <ol style="margin-top: -5px;">
+                            <li class="team-data" ng-repeat="player in team.players">
+                                <span class="team-cont" uib-tooltip="{{player.name}}" tooltip-append-to-body="true" tooltip-placement="top" tooltip-enable="player.name.length > 15">{{player.name}}</span>
+                                <span class="score-cont">{{player.score |fixDecimal:2}}</span>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
