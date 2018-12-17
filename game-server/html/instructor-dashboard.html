@@ -21,6 +21,7 @@
     <script src="instructor/components/chat.js"></script>
     <script src="instructor/components/chart.js"></script>
     <script src="instructor/components/device.js"></script>
+    <script src="instructor/components/setting.js"></script>
 
     <script type="text/javascript">
         mxBasePath = 'vendor/src';
@@ -37,7 +38,7 @@
         <div class="col-sm-12 ">
           <span class="inst-head text-center">
 				Instructor Dashboard
-				<button class="btn btn-xs" style="float:right" ng-click="showSettings()">Settings</button>
+        <setting></setting>
 			</span>
         </div>
     </div>
@@ -295,24 +296,7 @@
             <div>[[description]]</div>
         </div>
     </div>
-    <div class="settings-modal-template" style="display:none">
-        <div class="modal-header">
-            <h5 class="modal-title">Settings
-                <button type="button" class="close" ng-click='ctrl.cancel()' aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-            </h5>
-        </div>
-        <div class="modal-body">
-            <div>
-                <input type="checkbox" ng-model="ctrl.enableInternet"> Internet
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" ng-click='ctrl.cancel()'>Cancel</button>
-            <button type="button" class="btn btn-primary" ng-click='ctrl.ok()'>Confirm</button>
-        </div>
-    </div>
+
 </body>
 
 </html>

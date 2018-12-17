@@ -72,9 +72,8 @@ function Controller($scope, $rootScope, $filter){
 //------------------------------------------------------------------------------//
 
 angular.module('gameApp').component('chart', {
-  templateUrl:  'instructor/components/chart.html',
-  controller:    Controller,
-  controllerAs: 'ctrl'
+  templateUrl: 'instructor/components/chart.html',
+  controller:   Controller,
 });
 
 //------------------------------------------------------------------------------//

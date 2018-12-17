@@ -34,9 +34,8 @@ function Controller($scope, $rootScope){
 //------------------------------------------------------------------------------//
 
 angular.module('gameApp').component('scoreboard', {
-  templateUrl:  'instructor/components/scoreboard.html',
-  controller:    Controller,
-  controllerAs: 'ctrl'
+  templateUrl: 'instructor/components/scoreboard.html',
+  controller:   Controller
 });
 
 //------------------------------------------------------------------------------//

@@ -95,9 +95,8 @@ function Controller($scope, $rootScope){
 //------------------------------------------------------------------------------//
 
 angular.module('gameApp').component('chat', {
-  templateUrl:  'instructor/components/chat.html',
-  controller:    Controller,
-  controllerAs: 'ctrl'
+  templateUrl: 'instructor/components/chat.html',
+  controller:   Controller
 });
 
 //------------------------------------------------------------------------------//

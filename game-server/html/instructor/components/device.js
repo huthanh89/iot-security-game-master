@@ -39,9 +39,8 @@ function Controller($scope, $rootScope){
 //------------------------------------------------------------------------------//
 
 angular.module('gameApp').component('device', {
-  templateUrl:  'instructor/components/device.html',
-  controller:    Controller,
-  controllerAs: 'ctrl'
+  templateUrl: 'instructor/components/device.html',
+  controller:   Controller
 });
 
 //------------------------------------------------------------------------------//

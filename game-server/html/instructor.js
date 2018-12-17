@@ -2,7 +2,7 @@
 var app = angular.module('gameApp');
 
 /** Angular injections. */
-app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $rootScope, WebSocketService) {
+app.controller('instructorCtrl', function($scope, $location, $sce, $rootScope, WebSocketService) {
 
     /**
      * Dependency injectors:
@@ -28,10 +28,10 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $r
     /** Repeat the for loop for pushing the player data to arrange list */
     for (var i = 0; i < 9; i++) {
         $scope.arrangeList.push({
-            playerData: $scope.playerData,
+            playerData:  $scope.playerData,
             missionType: "Webcam",
-            device: "null",
-            playerType: "null"
+            device:      "null",
+            playerType:  "null"
         });
     }
 
@@ -71,7 +71,7 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $r
     }
 
     /** Function to update the player
-       @param : block is selected player
+      @param : block is selected player
      */
     $scope.updatePlayerList = function(block) {
         return;
@@ -89,7 +89,6 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $r
             }
         });
     }
-
 
     /** Function to move the selected players to right(Team Players)*/
     $scope.moveRight = function() {
@@ -251,43 +250,6 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $r
     $rootScope.playSound = function() {
       var sound = document.getElementById('play');
       sound.play();
-    }
-
-    $scope.showSettings = function() {
-        var template = $('.settings-modal-template').html();
-        var modalInstance = $uibModal.open({
-            animation: true,
-            template: template,
-            scope: $scope,
-            controller: function($uibModalInstance) {
-                $ctrl = this;
-                $ctrl.enableInternet = $scope.internetEnabled;
-                $ctrl.ok = function() {
-                    $uibModalInstance.dismiss('ok');
-
-                    if ($scope.internetEnabled != $ctrl.enableInternet) {
-                        ws.send(JSON.stringify({
-                            type: 'internet',
-                            enable: ($ctrl.enableInternet == true)
-                        }));
-                    }
-                };
-
-                $ctrl.cancel = function() {
-                    $uibModalInstance.dismiss('cancel');
-                };
-
-                $ctrl.close = function() {
-                    $uibModalInstance.close('saved');
-                }
-            },
-            controllerAs: 'ctrl',
-            windowClass: 'mission-modal-window',
-            size: 'md',
-            backdrop: false
-        });
-
-        modalInstance.result.then(function(response) {}, function() {});
     }
 
     /** web socket logic start here */
