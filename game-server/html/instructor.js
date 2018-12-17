@@ -2,7 +2,7 @@
 var app = angular.module('gameApp');
 
 /** Angular injections. */
-app.controller('instructorCtrl', function($scope, $sce, $rootScope, WebSocketService) {
+app.controller('instructorCtrl', function($rootScope, WebSocketService) {
 
     /** Initialize scope variables. */
     $rootScope.internetEnabled = false;
