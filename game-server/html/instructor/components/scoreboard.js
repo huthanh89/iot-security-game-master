@@ -4,6 +4,10 @@
 
 function Controller($scope, $rootScope){
 
+  // Initialize scope variables.
+
+  $scope.scoreBoard = [];
+
   /** Function to get scores from score board */
   function getScores(scoreboard) {
     var scores = [];
@@ -17,17 +21,10 @@ function Controller($scope, $rootScope){
   }
 
   $rootScope.$on('ws:scores', function(event, msg) {
-    $scope.scoreBoard = msg.scores;
-
-    /*
     if (JSON.stringify(getScores($scope.scoreBoard)) != JSON.stringify(getScores(msg.scores))) {
-      $scope.playSound();
+      $rootScope.playSound();
     }
     $scope.scoreBoard = msg.scores;
-    $scope.updateChatToList();
-    $scope.$applyAsync();
-*/
-
   });
 
 }
@@ -37,11 +34,9 @@ function Controller($scope, $rootScope){
 //------------------------------------------------------------------------------//
 
 angular.module('gameApp').component('scoreboard', {
-
   templateUrl:  'instructor/components/scoreboard.html',
   controller:    Controller,
   controllerAs: 'ctrl'
-
 });
 
 //------------------------------------------------------------------------------//

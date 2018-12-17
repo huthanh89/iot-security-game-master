@@ -7,7 +7,7 @@
 
 angular.module('gameApp').factory('WebSocketService', function($rootScope){
 
-  /** Intialize rootScope variables. */
+  /** Initialize rootScope variables. */
   
   window.rootScope = $rootScope;
   
@@ -58,10 +58,10 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
             } else if (type == 'scores') {
                 $rootScope.$broadcast('ws:scores', msg);
                 $rootScope.$broadcast('ws:chatlist', msg);
+                $rootScope.$applyAsync();
             } else if (type == 'chat') {
-                $rootScope.appendChat(msg.from, msg.to, msg.msg);
+                $rootScope.$broadcast('ws:chat', msg);
                 $rootScope.playSound();
-
             } else if (type == 'gameboard') {
                 $rootScope.gameboards = msg.gameboard;
                 $rootScope.chartData = [];

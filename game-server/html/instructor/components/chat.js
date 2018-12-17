@@ -14,10 +14,11 @@ function Controller($scope, $rootScope){
       id: 'notification',
       name: 'Notification'
   }];
+
   $scope.chatTo = $scope.chatToList[0];
 
   /** Function to update the chat to the list */
-  var updateChatList = function () {
+  $scope.updateChatToList = function() {
     if ($scope.chatToList.length == 2) {
         $scope.chatToList.push({ disabled: true, id: '__', name: '--' });
         for (var t in $scope.scoreBoard) {
@@ -33,10 +34,32 @@ function Controller($scope, $rootScope){
                 $scope.chatToList.push({ id: player.id, name: player.name });
             }
         }
-    }
+      }
   };
 
-  $rootScope.$on('ws:scores', function(event, msg) {
+  /** Function to send  the chat */
+  $scope.sendChat = function() {
+    var msg = $scope.chatMsg;
+    $scope.chatMsg = '';
+    if (!msg)
+        return;
+    $scope.appendChat('Me', $scope.chatTo.name, msg);
+    ws.send(JSON.stringify({
+        type: 'chat',
+        to: $scope.chatTo.id,
+        msg: msg
+    }));
+  };
+
+  /** Function to append chat to the chat view */
+  $scope.appendChat = function(from, to, msg) {
+    var chatDiv = $('#chathistory');
+    chatDiv.html(chatDiv.html() + '<br>' + from + ' to ' + to + ': ' + msg);
+    $('.chat-history').scrollTop(chatDiv[0].scrollHeight);
+  }
+
+  $rootScope.$on('ws:chat', function(event, msg) {
+    $scope.appendChat(msg.from, msg.to, msg.msg);
   });
   
 }
@@ -46,11 +69,9 @@ function Controller($scope, $rootScope){
 //------------------------------------------------------------------------------//
 
 angular.module('gameApp').component('chat', {
-
   templateUrl:  'instructor/components/chat.html',
   controller:    Controller,
   controllerAs: 'ctrl'
-
 });
 
 //------------------------------------------------------------------------------//

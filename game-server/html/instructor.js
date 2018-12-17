@@ -2,7 +2,7 @@
 var app = angular.module('gameApp');
 
 /** Angular injections. */
-app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $filter, WebSocketService) {
+app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $filter, $rootScope, WebSocketService) {
 
     /**
      * Dependency injectors:
@@ -19,7 +19,7 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
         players: [],
         teamPlayers: []
     };
-    $scope.scoreBoard = [];
+
     $scope.gameboards = {};
     $scope.internetEnabled = false;
 
@@ -309,60 +309,13 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
         ws.send(JSON.stringify(data));
     }
 
-    /** Intialize scope variable for chat view */
-    $scope.chatHistory = '';
-    $scope.chatMsg = '';
-    $scope.chatToList = [{
-        id: 'everyone',
-        name: 'Everyone'
-    }, {
-        id: 'notification',
-        name: 'Notification'
-    }];
-    $scope.chatTo = $scope.chatToList[0];
-
-    /** Function to update the chat to the list */
-    $scope.updateChatToList = function() {
-        if ($scope.chatToList.length == 2) {
-            $scope.chatToList.push({ disabled: true, id: '__', name: '--' });
-            for (var t in $scope.scoreBoard) {
-                var team = $scope.scoreBoard[t];
-                $scope.chatToList.push({ id: 'team:' + team.name, name: team.name });
-            }
-
-            $scope.chatToList.push({ disabled: true, id: '__', name: '--' });
-            for (var t in $scope.scoreBoard) {
-                var team = $scope.scoreBoard[t];
-                for (var p in team.players) {
-                    var player = team.players[p];
-                    $scope.chatToList.push({ id: player.id, name: player.name });
-                }
-            }
-        }
-    };
-
-    /** Function to append chat to the chat view */
-    $scope.appendChat = function(from, to, msg) {
-        var chatDiv = $('#chathistory');
-        chatDiv.html(chatDiv.html() + '<br>' + from + ' to ' + to + ': ' + msg);
-        $('.chat-history').scrollTop(chatDiv[0].scrollHeight);
+    /** Function to play beep sound */
+    
+    $rootScope.playSound = function() {
+      var sound = document.getElementById('play');
+      sound.play();
     }
 
-    /** Function to send  the chat */
-    $scope.sendChat = function() {
-        var msg = $scope.chatMsg;
-        $scope.chatMsg = '';
-        if (!msg)
-            return;
-        $scope.appendChat('Me', $scope.chatTo.name, msg);
-        ws.send(JSON.stringify({
-            type: 'chat',
-            to: $scope.chatTo.id,
-            msg: msg
-        }));
-    };
-
-    /** Function to play beep sound */
     $scope.playSound = function() {
         var sound = document.getElementById('play');
         sound.play();
@@ -405,26 +358,10 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
         modalInstance.result.then(function(response) {}, function() {});
     }
 
-    
-    /* 
-    function getScores(scoreboard) {
-        var scores = [];
-        for (var i in scoreboard) {
-            scores.push({
-                name: scoreboard[i].name,
-                score: scoreboard[i].score
-            });
-        }
-        return scores;
-    }*/
-
-
-
-
     /** web socket logic start here */
     // ws://game-server.local:8080/player
-    var url = 'ws://' + window.location.host + '/instructor'
-    var ws = null;
+    let url = 'ws://' + window.location.host + '/instructor'
+    let ws = null;
 
     function connectToWS() {
         var toReconnect = true;
@@ -452,7 +389,9 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
                 } else if (type == 'started') {
                     $scope.hideConfig = true;
                     $scope.$applyAsync();
-                } else if (type == 'scores') {
+                } 
+                /*
+                else if (type == 'scores') {
 
                     if (JSON.stringify(getScores($scope.scoreBoard)) != JSON.stringify(getScores(msg.scores))) {
                         $scope.playSound();
@@ -461,11 +400,15 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
                     $scope.updateChatToList();
                     $scope.$applyAsync();
 
-                } else if (type == 'chat') {
-                    $scope.appendChat(msg.from, msg.to, msg.msg);
-                    $scope.playSound();
-
-                } else if (type == 'gameboard') {
+                } 
+                else if (type == 'chat') {
+                  console.log('here');
+                  $scope.appendChat(msg.from, msg.to, msg.msg);
+                  $scope.playSound();
+                } 
+           */
+                
+                else if (type == 'gameboard') {
                     $scope.gameboards = msg.gameboard;
                     $scope.chartData = [];
                     for (var teamName in $scope.gameboards) {

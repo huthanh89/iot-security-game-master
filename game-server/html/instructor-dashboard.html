@@ -47,28 +47,6 @@
                 <chat></chat>
 
     
-                <div class="row chat-board">
-                    <div class="col-sm-12 chat-header">
-                        <span class="chat-title">Chat</span>
-                    </div>
-                    <div class="col-sm-12 chat-content chat-history">
-                        <div id='chathistory'>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 chat-content">
-                        <div class="form-group">
-                            <textarea class="form-control chat-msg" rows="1" id="comment" ng-model="chatMsg" ng-keyup="$event.keyCode == 13 ? sendChat() : null"></textarea>
-                            <span class="inst-chat-header">
-                                    <button class="btn btn-success" style="float:right; margin-top: 5px" ng-click="sendChat()">Send</button>
-                                    <span class="chat-to">To:
-                                        <select ng-model="chatTo">
-                                            <option ng-repeat="to in chatToList" ng-value="to" ng-disabled="to.disabled">{{to.name}}</option>
-                                        </select>
-                                    </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
 
             </div>
             
