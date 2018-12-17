@@ -7,19 +7,6 @@
 
 angular.module('gameApp').factory('WebSocketService', function($rootScope){
 
-  /** Initialize rootScope variables. */
-  
-  window.rootScope = $rootScope;
-  
-  $rootScope.teamData = {
-    teams:       [],
-    players:     [],
-    teamPlayers: []
-  };
-  $rootScope.scoreBoard = [];
-  $rootScope.gameboards = {};
-  $rootScope.internetEnabled = false;
-
   var url = 'ws://' + window.location.host + '/instructor'
   var ws = null;
   
@@ -47,8 +34,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
 
           var type = msg['type'];
           if (type == 'player') {
-              updatePlayerData(msg);
-              $rootScope.playSound();
+              $rootScope.$broadcast('ws:player', msg);
           } else if (type == 'device') {
               $rootScope.$broadcast('ws:device', msg);
           } else if (type == 'started') {

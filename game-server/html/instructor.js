@@ -263,11 +263,11 @@ app.controller('instructorCtrl', function($scope, $location, $sce, $rootScope, W
         window.ws = ws;
         ws.onopen = function() {};
         ws.onclose = function() {
-            if (toReconnect) {
-                setTimeout(function() {
-                    connectToWS();
-                }, 2000);
-            }
+          if (toReconnect) {
+            setTimeout(function() {
+              connectToWS();
+            }, 2000);
+          }
         };
         ws.onmessage = function(event) {
           try {
