@@ -1,191 +1,77 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Instructor Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="vendor/angular.min.js"></script>
-    <script src="vendor/ui-bootstrap-tpls-2.5.0.min.js"></script>
-    <script src="vendor/jquery.min.js"></script>
-    <link rel="stylesheet" href="vendor/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="api.js"></script>
-    <script src="app.js"></script>
-    <script src="instructor.js"></script>
+  <head>
+      <meta charset="utf-8" />
+      <title>Instructor Dashboard</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="vendor/angular.min.js"></script>
+      <script src="vendor/ui-bootstrap-tpls-2.5.0.min.js"></script>
+      <script src="vendor/jquery.min.js"></script>
+      <link rel="stylesheet" href="vendor/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="styles.css">
+      <script src="api.js"></script>
+      <script src="app.js"></script>
+      <script src="instructor.js"></script>
 
-    <!–– Application Scripts ––>
+      <!–– Application Scripts ––>
 
-    <script src="instructor/services/websocket.js"></script>
-    <script src="instructor/components/scoreboard.js"></script>
-    <script src="instructor/components/chat.js"></script>
-    <script src="instructor/components/chart.js"></script>
-    <script src="instructor/components/device.js"></script>
-    <script src="instructor/components/setting.js"></script>
-    <script src="instructor/components/players.js"></script>
-    <script src="instructor/components/teams.js"></script>
+      <script src="instructor/services/websocket.js"></script>
+      <script src="instructor/components/scoreboard.js"></script>
+      <script src="instructor/components/chat.js"></script>
+      <script src="instructor/components/chart.js"></script>
+      <script src="instructor/components/device.js"></script>
+      <script src="instructor/components/setting.js"></script>
+      <script src="instructor/components/players.js"></script>
+      <script src="instructor/components/teams.js"></script>
 
-    <script type="text/javascript">
-        mxBasePath = 'vendor/src';
-    </script>
-    <script src="vendor/mxClient.min.js"></script>
-    <script src="vendor/highcharts.js"></script>
-    <script src="vendor/data.js"></script>
-    <script src="vendor/drilldown.js"></script>
-</head>
+      <script type="text/javascript">
+          mxBasePath = 'vendor/src';
+      </script>
+      <script src="vendor/mxClient.min.js"></script>
+      <script src="vendor/highcharts.js"></script>
+      <script src="vendor/data.js"></script>
+      <script src="vendor/drilldown.js"></script>
+  </head>
 
-<body ng-app="gameApp" ng-controller="instructorCtrl" style="background-color:#444444; margin: 0 auto;overflow-x: hidden ">
-    <audio id="play" src="images/chatSound.wav" autostart="false"></audio>
-    <div class="row">
-        <div class="col-sm-12 ">
-          <span class="inst-head text-center">
-				Instructor Dashboard
-        <setting></setting>
-			</span>
-        </div>
-    </div>
-    <div class="inst-dash-container">
-        <div class="row">
-            <div class="col-sm-3">
+  <body ng-app="gameApp" ng-controller="instructorCtrl" style="background-color:#444444; margin: 0 auto;overflow-x: hidden ">
+      <audio id="play" src="images/chatSound.wav" autostart="false"></audio>
+      <div class="row">
+          <div class="col-sm-12 ">
+            <span class="inst-head text-center">
+          Instructor Dashboard
+          <setting></setting>
+        </span>
+          </div>
+      </div>
+      <div class="inst-dash-container">
+          <div class="row">
+              <div class="col-sm-3">
 
-                <chart></chart>
-                <scoreboard></scoreboard>
-                <chat></chat>
+                  <scoreboard></scoreboard>
+                  <chat></chat>
 
-            </div>
-            
-            <div class="col-sm-6 student-progress-bar" id="container" style="min-width: 310px; height: 400px;" ng-show="hideConfig"></div>
-            <div class="col-sm-6 config-cont" ng-show="!hideConfig">
-                <div class="config-center">
-                    <form>
-                        <div class="row top-level-container" style="display:none">
-                            <div class="col-sm-4">
-                                <span class="left-select-level">Select Level:</span>
-                            </div>
-                            <div class="col-sm-8">
-                                <div class="form-group right-select-level">
-                                    <select class="form-control">
-                                            <option>Level 1 - Tic Tac Toe</option>
-                                            <option>Level 2</option>
-                                            <option>Level 3</option>
-                                            <option>Level 4</option>
-                                            <option>Level 5</option>
-                                        </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row bottom-level-container" style="display:none">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <span class="config-level">Config</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <span class="choose-list">Number of Players:</span>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="form-group right-select-level">
-                                            <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option selected>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <span class="choose-list">Number of Pi:</span>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="form-group right-select-level">
-                                            <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option selected>9</option>
-                                                </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <teams></teams>
+              </div>
+              
+              <div class="col-sm-6">
+                  <chart></chart>
+              </div>
 
-                        <div class="row mission-container" style="display:none">
-                            <div class="col-sm-12 config-header board-header">
-                                <span>Assign Missions</span>
-                            </div>
-                            <div class="col-sm-12 team-container borderLess-cont">
-                                <div class="row  text-center inst-mission-player-cont" ng-repeat="i in [3] | makeRange">
-                                    <div class="col-sm-4 bodered-cont" ng-repeat="j in [3] | makeRange">
-                                        <span class="dropdown-cont">
-                                                <select ng-model="arrangeList[i*3+j].missionType" ng-change='updatePlayer(i*3+j)'>
-                                                    <option ng-repeat="mission in missionData">{{mission}}</option>
-                                                </select>
-                                            </span>
-                                        <span class="dropdown-cont">
-                                                <select ng-model="arrangeList[i*3+j].device">
-                                                    <option ng-repeat="device in deviceData" ng-if="!device.isInfrastructure" value="{{device.ip}}">{{device.name}}</option>
-                                                </select>
-                                            </span>
-                                        <span class="dropdown-cont">
-                                                <select ng-model="arrangeList[i*3+j].playerType" ng-change='updatePlayerList(i*3+j)'>
-                                                    <option value="null"></option>
-                                                    <option ng-repeat="player in arrangeList[i*3+j].playerData" value="{{player.id}}">{{player.name}}</option>
-                                                </select>
-                                            </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-sm-3">
+              <div class="col-sm-6 config-cont" ng-show="!hideConfig">
+                  <div class="config-center">
+                      <teams></teams>
+                  </div>
+              </div>
+              <div class="col-sm-3">
 
-                <players></players>
+                  <players></players>
 
-                <device></device>
+                  <device></device>
 
-            </div>
-        </div>
-    </div>
-    <div class="modal-template" style="display:none">
-        <div class="modal-header">
-            <h5 class="modal-title" id="missionModalLabel">[[name]]
-                <button type="button" class="close" ng-click='ctrl.cancel()' aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-            </h5>
-        </div>
-        <div class="modal-body" id='modalContent'>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" ng-click='ctrl.cancel()'>Cancel</button>
-            <button type="button" class="btn btn-primary" ng-click='ctrl.ok()'>Confirm</button>
-        </div>
-    </div>
-    <div class="blocking-modal-template" style="display:none">
-        <div class="modal-header">
-            <h5 class="modal-title" id="missionModalLabel">[[name]]
-            </h5>
-        </div>
-        <div class="modal-body">
-            <div>[[description]]</div>
-        </div>
-    </div>
+              </div>
+          </div>
+      </div>
 
-</body>
+  </body>
 
 </html>

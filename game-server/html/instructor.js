@@ -8,7 +8,7 @@ var app = angular.module('gameApp');
 // Main Controller
 //-------------------------------------------------------------------------------//
 
-app.controller('instructorCtrl', function($rootScope, WebSocketService) {
+app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) {
 
     /** Initialize scope variables. */
     $rootScope.internetEnabled = false;
@@ -32,11 +32,6 @@ app.controller('instructorCtrl', function($rootScope, WebSocketService) {
 //-------------------------------------------------------------------------------//
 
 app.controller('formCtrl', ['$scope', function($scope) {
-
-    /**
-     * Dependency injectors .
-     * @param $scope Angular scope     
-     */
 
     /** Initialize scope variables. */
     $scope.registerUser = false;

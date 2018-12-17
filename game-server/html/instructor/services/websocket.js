@@ -7,10 +7,10 @@
 
 angular.module('gameApp').factory('WebSocketService', function($rootScope){
 
-  var toReconnect = true;
-  var url         = 'ws://' + window.location.host + '/instructor'
-  var ws          = new WebSocket(url);
-  window.ws       = ws;
+  var reconnect = true;
+  var url       = 'ws://' + window.location.host + '/instructor'
+  var ws        = new WebSocket(url);
+  window.ws     = ws;
   
   return {
 
@@ -19,7 +19,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
       ws.onopen = function() {};
       
       ws.onclose = function() {
-          if (toReconnect) {
+          if (reconnect) {
               setTimeout(function() {
                   connectToWS();
               }, 2000);
