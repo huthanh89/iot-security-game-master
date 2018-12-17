@@ -7,16 +7,14 @@
 
 angular.module('gameApp').factory('WebSocketService', function($rootScope){
 
-  var url = 'ws://' + window.location.host + '/instructor'
-  var ws = null;
+  var toReconnect = true;
+  var url         = 'ws://' + window.location.host + '/instructor'
+  var ws          = new WebSocket(url);
+  window.ws       = ws;
   
-  service = {
+  return {
 
     connectToWS: function () {
-
-      var toReconnect = true;
-      ws = new WebSocket(url);
-      window.ws = ws;
 
       ws.onopen = function() {};
       
@@ -29,9 +27,10 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
       };
 
       ws.onmessage = function(event) {
-        try {
-          var msg = JSON.parse(event.data);
 
+        try {
+
+          var msg  = JSON.parse(event.data);
           var type = msg['type'];
 
           if (type == 'player') {
@@ -103,12 +102,14 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
                   $rootScope.$applyAsync();
               }
           }
-        } catch (e) {}
+        } 
+        
+        catch (e) {}
+
       };
     }
   }
 
-  return service;
 });
 
 //-------------------------------------------------------------------------------//
