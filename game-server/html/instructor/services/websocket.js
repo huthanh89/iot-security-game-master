@@ -60,7 +60,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
               $rootScope.$applyAsync();
           } else if (type == 'chat') {
               $rootScope.$broadcast('ws:chat', msg);
-              $rootScope.playSound();
           } else if (type == 'gameboard') {
               $rootScope.$broadcast('ws:gameboard', msg);
           } else if (type == 'internet') {

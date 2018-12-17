@@ -84,8 +84,10 @@ function Controller($scope, $rootScope){
 
   $rootScope.$on('ws:chat', function(event, msg) {
     $scope.appendChat(msg.from, msg.to, msg.msg);
+    $rootScope.playSound();
   });
   
+
 }
 
 //------------------------------------------------------------------------------//

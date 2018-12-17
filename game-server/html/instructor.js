@@ -2,14 +2,13 @@
 var app = angular.module('gameApp');
 
 /** Angular injections. */
-app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $filter, $rootScope, WebSocketService) {
+app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $rootScope, WebSocketService) {
 
     /**
      * Dependency injectors:
      * @param $scope    Angular scope
      * @param $uibModal Angular UI modal
      * @param $sce      Angular sce service
-     * @param $filter   Angular filter service      
      */
 
     /** Intialize scope variables. */
@@ -254,11 +253,6 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
       sound.play();
     }
 
-    $scope.playSound = function() {
-        var sound = document.getElementById('play');
-        sound.play();
-    }
-
     $scope.showSettings = function() {
         var template = $('.settings-modal-template').html();
         var modalInstance = $uibModal.open({
@@ -314,58 +308,60 @@ app.controller('instructorCtrl', function($scope, $uibModal, $location, $sce, $f
             }
         };
         ws.onmessage = function(event) {
-            try {
-                var msg = JSON.parse(event.data);
-                var type = msg['type'];
-                
-                if (type == 'player') {
-                    updatePlayerData(msg);
-                    $scope.playSound();
-                } 
-                else if (type == 'started') {
-                    $scope.hideConfig = true;
-                    $scope.$applyAsync();
-                } 
-                
-                else if (type == 'internet') {
-                    $scope.internetEnabled = msg.enabled;
-                    $scope.$applyAsync();
+          try {
+              var msg = JSON.parse(event.data);
+              var type = msg['type'];
+              
+              if (type == 'player') {
+                  updatePlayerData(msg);
+                  $rootScope.playSound();
+              } 
+              else if (type == 'started') {
+                  $scope.hideConfig = true;
+                  $scope.$applyAsync();
+              } 
+              
+              else if (type == 'internet') {
+                  $scope.internetEnabled = msg.enabled;
+                  $scope.$applyAsync();
 
-                } else if (type == 'error') {
-                    if (msg.code != 'not_instructor_vlan') {
-                        alert(msg.msg);
-                    } else {
-                        toReconnect = false;
-                        var template = $('.blocking-modal-template').html();
-                        template = template.replace('[[name]]', 'Error').replace('[[description]]', msg.msg);
-                        var modalInstance = $uibModal.open({
-                            animation: true,
-                            template: template,
-                            scope: $scope,
-                            controllerAs: 'ctrl',
-                            windowClass: 'alert-modal-window',
-                            size: 'sm',
-                            backdrop: 'static'
-                        });
-                    }
+              } else if (type == 'error') {
+                  if (msg.code != 'not_instructor_vlan') {
+                      alert(msg.msg);
+                  } else {
+                      toReconnect = false;
+                      var template = $('.blocking-modal-template').html();
+                      template = template.replace('[[name]]', 'Error').replace('[[description]]', msg.msg);
+                      var modalInstance = $uibModal.open({
+                          animation: true,
+                          template: template,
+                          scope: $scope,
+                          controllerAs: 'ctrl',
+                          windowClass: 'alert-modal-window',
+                          size: 'sm',
+                          backdrop: 'static'
+                      });
+                  }
 
-                } else if (type == 'grid') {
-                    $scope.gridData = msg.grid;
-                    $scope.$applyAsync();
+              } else if (type == 'grid') {
+                  $scope.gridData = msg.grid;
+                  $scope.$applyAsync();
 
-                } else if (type == 'endgame') {
-                    var winner = msg['winner'];
-                    if ($scope.loggedInUser.username == winner) {
-                        $scope.missionCompleted = true;
-                        $scope.$applyAsync();
-                    } else {
-                        $scope.otherMissionCompleted = true;
-                        $scope.$applyAsync();
-                    }
-                }
-            } catch (e) {}
+              } else if (type == 'endgame') {
+                  var winner = msg['winner'];
+                  if ($scope.loggedInUser.username == winner) {
+                      $scope.missionCompleted = true;
+                      $scope.$applyAsync();
+                  } else {
+                      $scope.otherMissionCompleted = true;
+                      $scope.$applyAsync();
+                  }
+              }
+          } catch (e) {}
         };
     }
+
+    // Connect to Web Socket.
 
     WebSocketService.connectToWS();
     connectToWS();
@@ -384,7 +380,7 @@ app.controller('formCtrl', ['$scope', function($scope) {
      * @param $scope Angular scope     
      */
 
-    /** Intialize scope variables. */
+    /** Initialize scope variables. */
     $scope.registerUser = false;
 
     /** Function to show register button */
