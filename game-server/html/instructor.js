@@ -1,7 +1,13 @@
-/** Get the module */
+//------------------------------------------------------------------------------//
+// Acquire application module
+//------------------------------------------------------------------------------//
+
 var app = angular.module('gameApp');
 
-/** Angular injections. */
+//-------------------------------------------------------------------------------//
+// Main Controller
+//-------------------------------------------------------------------------------//
+
 app.controller('instructorCtrl', function($rootScope, WebSocketService) {
 
     /** Initialize scope variables. */
@@ -16,19 +22,15 @@ app.controller('instructorCtrl', function($rootScope, WebSocketService) {
       sound.play();
     }
 
-    /** web socket logic start here */
-    // ws://game-server.local:8080/player
-    let url = 'ws://' + window.location.host + '/instructor'
-    let ws = null;
-
     // Connect to Web Socket.
-
     WebSocketService.connectToWS();
+
 });
 
-/** User Form logic goes here */
+//-------------------------------------------------------------------------------//
+// Form Controller; Used for user Form logic.
+//-------------------------------------------------------------------------------//
 
-/** Angular injections. */
 app.controller('formCtrl', ['$scope', function($scope) {
 
     /**
@@ -45,4 +47,4 @@ app.controller('formCtrl', ['$scope', function($scope) {
     }
 }])
 
-/** User Form logic ends here */
+//------------------------------------------------------------------------------//
