@@ -26,6 +26,36 @@ function Controller($scope, $rootScope){
     }
     $scope.scoreBoard = msg.scores;
   });
+  
+  // Initialize popover.
+
+  $scope.row = function(players){
+    
+    tableRows = [];
+
+    players.forEach(function(player){
+      tableRows.push(`<tr><td>${player.name}</td><td>${player.score}</td></tr>`);
+    });
+
+    $('[data-toggle="popover"]').popover({
+      html:       true,
+      title:     '',
+      content: 
+        `
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tableRows.toString()}
+            </tbody>
+          </table>
+        `
+    });
+  }
 
 }
 
