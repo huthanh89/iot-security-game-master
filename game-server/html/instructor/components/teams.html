@@ -19,7 +19,7 @@
             <div class="col-sm-4 team-title">
                 <span>Teams</span>
                 <button type="button" class="btn btn-default btn-sm" ng-click="isAddTeam = true">
-                        <span class="glyphicon glyphicon-plus plus-icon"></span>
+                        <span class="glyphicon glyphicon-plus plus-icon">plus</span>
                     </button>
             </div>
             <div class="col-sm-4 team-title player-title"><span>Team Players</span></div>
@@ -33,10 +33,10 @@
                 <input type="text" class="form-control" ng-model='team.name' ng-show='team.isEdit' ng-keyup="$event.keyCode == 13 ?updateTeam(team) : null">
                 <span class="edit-delete">
                             <button type="button" class="btn btn-default btn-sm" ng-click='updateTeam(team);'>
-                                <span class="glyphicon glyphicon-edit"></span>
+                                <span class="glyphicon glyphicon-edit">edit</span>
                 </button>
                 <button type="button" class="btn btn-default btn-sm" ng-click='removeTeam(team,$index)'>
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="glyphicon glyphicon-remove">remove</span>
                             </button>
                 </span>
                 </span>
@@ -44,10 +44,10 @@
                         <input type="text" class="form-control" ng-model='teamText' ng-keyup="$event.keyCode == 13 ?addTeam() : null" >
                         <span class="edit-delete">
                             <button type="button" class="btn btn-default btn-sm" ng-click='addTeam();isAddTeam=false;'>
-                                <span class="glyphicon glyphicon-edit"></span>
+                                <span class="glyphicon glyphicon-edit">edit</span>
                 </button>
                 <button type="button" class="btn btn-default btn-sm" ng-click='teamText = "";isAddTeam = false'>
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="glyphicon glyphicon-remove">remove</span>
                             </button>
                 </span>
                 </span>
@@ -58,10 +58,11 @@
             </div>
             <div class="col-sm-1">
                 <span class="arrow-container">
-                        <span class="glyphicon glyphicon-chevron-left" ng-click="moveRight()"></span>
+                        <span class="glyphicon glyphicon-chevron-left" ng-click="moveRight()">left</span>
                 </span>
                 <span class="arrow-container">
                         <span class="glyphicon glyphicon-chevron-right" ng-click="moveLeft()">
+                          right
                         </span>
                 </span>
             </div>

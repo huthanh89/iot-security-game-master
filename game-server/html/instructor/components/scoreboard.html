@@ -6,7 +6,38 @@
   </div>
 
   <div class="card-body">
-  
+
+  <a href="#" title="Header" data-toggle="popover" data-placement="top" data-content="Content">Top</a>
+  <a href="#" title="Header" data-toggle="popover" data-placement="bottom" data-content="Content">Bottom</a>
+  <a href="#" title="Header" data-toggle="popover" data-placement="left" data-content="Content">Left</a>
+  <a href="#" title="Header" data-toggle="popover" data-placement="right" data-content="Content">Right</a>
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Team</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="team in scoreBoard">
+          <td>  
+            <i class="text-info fas fa-search-plus fa-fw"></i>
+          </td>
+          <td>  
+            {{team.name}}
+          </td>
+          <td>
+            {{team.score |fixDecimal:2}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+
     <div class="row inst-score-board">
         <div class="col-sm-12 board-header">
             <span class="team">Team</span>
@@ -18,7 +49,7 @@
                     <ol>
                         <li class="team-text" ng-repeat="team in scoreBoard">
                             <span class="team-cont" uib-tooltip="{{team.name}}" tooltip-append-to-body="true" tooltip-placement="top" tooltip-enable="team.name.length > 10">{{team.name}}
-                                </span>
+                            </span>
                             <span class="score-cont score-cont-num">{{team.score |fixDecimal:2}}</span>
                             <ol>
                                 <li class="team-data" ng-repeat="player in team.players">
