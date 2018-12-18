@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('./vendor/fonts/glyphicons-halflings-regular.eot');
+  src: url('./vendor/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('./vendor/fonts/glyphicons-halflings-regular.woff') format('woff'), url('./vendor/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('.//glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+body{
+  background: #e9ebee;
+}
+
+.container {
+  background: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+nav{
+  background: #009edc;
+  color: white;
+}
+
+.row{
+  margin-bottom: 20px;
+}
+
+.card{
+  margin-bottom: 20px;
+}
+
+.card-header{
+  background: #009edc;
+  color: white;
+  font-weight: bold;
+}
+
+.card-body{
+  border: 2px #009edc solid;
+}
+
+#chathistory{
+  height: 200px;
+  width: 100%;
+  padding: 0 10px;
+  overflow-y: scroll;
+  border: 2px rgba(199, 198, 198, 0.24) solid;
+}
+
+#chat-to{
+  height: 40px;
+}

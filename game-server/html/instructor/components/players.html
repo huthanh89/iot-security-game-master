@@ -1,49 +1,44 @@
-<div class="row player-data-container">
-    <div class="col-sm-12 board-header player-header text-center">Player Info</div>
-    <div class="col-sm-12 inst-board-content">
-        <div class="row data-table-row1">
-            <div class="row" style="margin: 0px">
-                <div class="col-sm-3">
-                    <div class="col-sm-12 data-title">Name</div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="col-sm-12 data-title">Dashboard</div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="col-sm-12 data-title">Kali</div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="col-sm-12 data-title">Pi</div>
-                </div>
-            </div>
-            <div class="row" style="margin: 0px;" ng-repeat="player in playerData">
-                <div class="col-sm-3">
-                    <div class="col-sm-12 data-value">
-                        {{player.name}}
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="col-sm-12 data-value">
-                        <span class="green-dot" ng-if="player.viewOnline"></span>
-                        <span class="red-dot" ng-if="!player.viewOnline"></span>
-                        <span ng-if="player.viewOnline">{{player.ip}}</span>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="col-sm-12 data-value">
-                        <span class="green-dot" ng-if="player.kaliOnline"></span>
-                        <span class="red-dot" ng-if="!player.kaliOnline"></span>
-                        <span ng-if="player.kaliOnline">{{player.kaliIp}}</span>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="col-sm-12 data-value">
-                        <span class="green-dot" ng-if="player.pi.online"></span>
-                        <span class="red-dot" ng-if="!player.pi.online"></span>
-                        <span ng-if="player.pi.online">{{player.pi.ip}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="card">
+  <div class="card-header">
+    <i class="far fa-user fa-fw"></i>
+    Players
+  </div>
+  <div class="card-body">
+
+    <table class="table table-sm table-responsive-sm table-hover">
+      <thead>
+        <tr>
+          <th>Online</th>
+          <th>Name</th>
+          <th>IP</th>
+          <th>Kali</th>
+          <th>Pi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-class="{true:'table-danger'}[!player.viewOnline]" ng-repeat=" player in playerData">
+          <td>  
+            <i class="text-danger fas fa-exclamation-triangle" ng-if="!player.viewOnline"></i>
+            <i class="text-success fas fa-check" ng-if="player.viewOnline"></i>
+          </td>
+          <td>
+            {{ player.name }}
+          </td>
+          <td>
+            {{ player.ip }}
+          </td>
+          <td>
+            <i class="text-danger fas fa-exclamation-triangle" ng-if="!player.kaliOnline"></i>
+            <span ng-if="player.kaliOnline">{{player.kaliIp}}</span>
+          </td>
+          <td>
+            <i class="text-danger fas fa-exclamation-triangle" ng-if="!player.pi.viewOnline"></i>
+            <span ng-if="player.pi.viewOnline">{{player.pi.ip}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
 </div>
+

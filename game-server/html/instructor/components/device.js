@@ -8,10 +8,6 @@ function Controller($scope, $rootScope){
 
   $scope.deviceData = {};
 
-
-  /** Function to update the device data
-  @param : device to update
-  */
   function updateDeviceData(device) {
     var oldDevice = $scope.deviceData[device.ip];
     if (oldDevice) {

@@ -1,3 +1,15 @@
+
+<div class="card">
+  <div class="card-header">
+    <i class="fas fa-users fa-fw"></i>
+    Create Teams
+  </div>
+  <div class="card-body">
+
+
+  </div>
+</div>
+
 <div class="row team-selection">
     <div class="col-sm-12 config-header board-header">
         <span>Assign Teams</span>
@@ -5,7 +17,7 @@
     <div class="col-sm-12">
         <div class="row team-header">
             <div class="col-sm-4 team-title">
-                <span style="width:70%; display: inline-block; text-align: center;">Teams</span>
+                <span>Teams</span>
                 <button type="button" class="btn btn-default btn-sm" ng-click="isAddTeam = true">
                         <span class="glyphicon glyphicon-plus plus-icon"></span>
                     </button>
@@ -44,7 +56,7 @@
                 <span class="team-name player-info" ng-repeat="team in teamData.teamPlayers" ng-if='team.selectedTeam == selectedTeam' ng-class='{"selected" : team.isSelected}' ng-click='team.isSelected = !team.isSelected'>{{team.name}}
                     </span>
             </div>
-            <div class="col-sm-1" style="padding-top: 80px;">
+            <div class="col-sm-1">
                 <span class="arrow-container">
                         <span class="glyphicon glyphicon-chevron-left" ng-click="moveRight()"></span>
                 </span>
@@ -60,8 +72,11 @@
         </div>
         <div class="row text-right footer-button">
             <div class="col-sm-12">
-                <button type="button" class="btn btn-success" style="margin-top: 5px;margin-bottom: 5px;" ng-click="start()">Start</button>
+                <button type="button" class="btn btn-secondary" ng-click="start()">Start</button>
             </div>
         </div>
     </div>
 </div>
+
+
+

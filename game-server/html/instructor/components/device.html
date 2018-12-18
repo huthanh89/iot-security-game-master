@@ -1,39 +1,32 @@
-
-<div class="row player-data-container">
-
-  <div class="col-sm-12 board-header player-header text-center">
-    Other Devices Info
+<div class="card">
+  <div class="card-header">
+    <i class="fas fa-hdd fa-fw"></i>
+    Devices
   </div>
+  <div class="card-body">
+    <table class="table table-sm table-responsive-sm table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>IP</th>
+          <th>Online</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="device in deviceData">
+          <td>
+            <span>{{device.id}}</span>
+          </td>
+          <td>
+            <span>{{device.ip}}</span>
+          </td>
+          <td>
+            <i class="text-danger fas fa-exclamation-triangle" ng-if="!device.online"></i>
+            <i class="text-success fas fa-check" ng-if="device.online"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <div class="col-sm-12">
-    <div class="row data-table-row">
-      <div class="row" style="margin: 0px">
-        <div class="col-sm-4">
-          <div class="col-sm-12 data-title">ID</div>
-        </div>
-        <div class="col-sm-4">
-          <div class="col-sm-12 data-title">IP</div>
-        </div>
-        <div class="col-sm-4">
-          <div class="col-sm-12 data-title">Online</div>
-        </div>
-      </div>
-      <div class="row" style="margin: 0px;" ng-repeat="device in deviceData">
-        <div class="col-sm-4">
-          <div class="col-sm-12 data-value" ng-if="device.player == null">{{device.id}}</div>
-        </div>
-        <div class="col-sm-4">
-          <div class="col-sm-12 data-value" ng-if="device.player == null">{{device.ip}}</div>
-        </div>
-        <div class="col-sm-4">
-          <div class="col-sm-12 data-value" ng-if="device.player == null">
-            <span class="green-dot" ng-if="device.online"></span>
-            <span class="red-dot" ng-if="!device.online"></span>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-
-
 </div>

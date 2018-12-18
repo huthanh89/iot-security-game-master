@@ -8,15 +8,28 @@
       <script src="vendor/angular.min.js"></script>
       <script src="vendor/ui-bootstrap-tpls-2.5.0.min.js"></script>
       <script src="vendor/jquery.min.js"></script>
-      <link rel="stylesheet" href="vendor/bootstrap.min.css">
-      <link rel="stylesheet" type="text/css" href="styles.css">
+
+      <!–– 
+        Font Awesome CSS;
+        Bootstrap 4 Scripts; 
+        TODO: Download these scripts and add them to vendor folder.
+      ––>
+      
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
       <!–– Application Scripts ––>
 
+      <link rel="stylesheet" type="text/css" href="instructor.css">
       <script src="api.js"></script>
       <script src="app.js"></script>
       <script src="instructor.js"></script>
       <script src="instructor/services/websocket.js"></script>
+      <script src="instructor/components/navbar.js"></script>
       <script src="instructor/components/scoreboard.js"></script>
       <script src="instructor/components/chat.js"></script>
       <script src="instructor/components/chart.js"></script>
@@ -24,56 +37,63 @@
       <script src="instructor/components/setting.js"></script>
       <script src="instructor/components/players.js"></script>
       <script src="instructor/components/teams.js"></script>
+      <script src="instructor/components/start.js"></script>
 
       <script type="text/javascript">
           mxBasePath = 'vendor/src';
       </script>
 
       <!–– Vendor Scripts ––>
+
       <script src="vendor/mxClient.min.js"></script>
       <script src="vendor/highcharts.js"></script>
       <script src="vendor/data.js"></script>
       <script src="vendor/drilldown.js"></script>
   </head>
 
-  <body ng-app="gameApp" ng-controller="instructorCtrl" style="background-color:#444444; margin: 0 auto;overflow-x: hidden ">
+  <body ng-app="gameApp" ng-controller="instructorCtrl">
       <audio id="play" src="images/chatSound.wav" autostart="false"></audio>
-      <div class="row">
-          <div class="col-sm-12 ">
-            <span class="inst-head text-center">
-              Instructor Dashboard
-              <setting></setting>
-            </span>
-          </div>
-      </div>
-      <div class="inst-dash-container">
+
+      <navbar></navbar>
+
+      <div class="container">
+
           <div class="row">
-              <div class="col-sm-3">
-
-                  <scoreboard></scoreboard>
-                  <chat></chat>
-
-              </div>
-              
-              <div class="col-sm-6">
-                  <chart></chart>
-              </div>
-
-              <div class="col-sm-6 config-cont" ng-show="!hideConfig">
-                  <div class="config-center">
-                      <teams></teams>
-                  </div>
-              </div>
-              <div class="col-sm-3">
-
-                  <players></players>
-
-                  <device></device>
-
+              <div class="col-lg-12">
+                <setting></setting>
+                <start></start>
               </div>
           </div>
+
+          <div class="row">
+              <div class="col-lg-4">
+                  <scoreboard></scoreboard>
+              </div>
+
+              <div class="col-lg-4">
+                  <chat></chat>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4">
+              <chart></chart>
+            </div>
+            <div class="col-lg-4">
+              <teams></teams>
+            </div>
+          </div>
+          
+          <div class="row">
+              <div class="col-lg-5">
+                <device></device>
+              </div>
+              <div class="col-lg-7">
+                <players></players>
+              </div>
+          </div>
+
       </div>
 
   </body>
-
 </html>

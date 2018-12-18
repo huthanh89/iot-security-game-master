@@ -1,22 +1,38 @@
-<div class="row chat-board">
-    <div class="col-sm-12 chat-header">
-        <span class="chat-title">Chat</span>
+<div class="card">
+  <div class="card-header">
+    <i class="far fa-comments fa-fw"></i>
+    Chat
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <span class="chat-to">To:
+          <select ng-model="chatTo">
+            <option ng-repeat="to in chatToList" ng-value="to" ng-disabled="to.disabled">{{to.name}}</option>
+          </select>
+        </span>
+      </div>
     </div>
-    <div class="col-sm-12 chat-content chat-history">
+    <div class="row">
+      <div class="col-sm-12">
         <div id='chathistory'>
         </div>
-    </div>
-    <div class="col-sm-12 chat-content">
-        <div class="form-group">
-            <textarea class="form-control chat-msg" rows="1" id="comment" ng-model="chatMsg" ng-keyup="$event.keyCode == 13 ? sendChat() : null"></textarea>
-            <span class="inst-chat-header">
-              <button class="btn btn-success" style="float:right; margin-top: 5px" ng-click="sendChat()">Send</button>
-              <span class="chat-to">To:
-                  <select ng-model="chatTo">
-                      <option ng-repeat="to in chatToList" ng-value="to" ng-disabled="to.disabled">{{to.name}}</option>
-                  </select>
+        <div class="input-group input-group-sm">
+          <input type="text" class="form-control" placeholder="Type a message" id="comment" ng-model="chatMsg" ng-keyup="$event.keyCode == 13 ? sendChat() : null"></input>
+          <div class="input-group-append">
+            <button class="btn btn-primary" ng-click="sendChat()">
+              <i class="fas fa-paper-plane mr-1"></i>
+              <span>
+                Send
               </span>
-            </span>
+            </button>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
+
+
+
