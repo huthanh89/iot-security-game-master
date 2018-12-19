@@ -6,10 +6,10 @@
   <div class="card-body">
     <div class="row">
 
-      <div class="col-sm-4">
+      <div class="col-4">
         <button type="button" class="btn btn-sm btn-info mb-2" data-toggle="modal" data-target="#team-add-modal" ng-click='teamText = ""'>
           <i class="fas fa-plus fa-lg"></i>
-          Create Team
+          Add Team
         </button>
         
         <table class="table table-sm table-responsive-sm table-hover">
@@ -27,9 +27,9 @@
 
       </div>
 
-      <div class="col-sm-3">
+      <div class="col-3">
         <b>
-          Asssigned Players
+          Members
         </b>
         <ul class="list-group">
           <li class="list-group-item list-group-item-action py-1" ng-repeat="team in teamData.teamPlayers" ng-if='team.selectedTeam == selectedTeam' ng-class='{"selected" : team.isSelected}' ng-click='team.isSelected = !team.isSelected'>
@@ -37,7 +37,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-sm-2">
+      <div class="col-1">
         <button class="d-block mb-2" ng-click="moveLeft()">
           <i class="fa fa-chevron-left fa-lg" aria-hidden="true" ></i>
         </button>
@@ -47,10 +47,9 @@
         </button>
       </div>
 
-
-      <div class="col-sm-3">
+      <div class="col-3">
         <b>
-          Unassigned Players
+          Players
         </b>
         <ul class="list-group">
           <li class="list-group-item list-group-item-action py-1" ng-repeat="team in teamData.players" ng-class='{"selected" : team.isSelected}' ng-click='selectPlayer(team)'>
