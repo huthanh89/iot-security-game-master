@@ -34,11 +34,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, Playe
           var type = msg['type'];
 
           if (type == 'player') {
-
-
               PlayerData.updatePlayerData(msg);
-
-              //$rootScope.$broadcast('ws:teamdata', msg);
           } 
           
           else if (type == 'device') {
@@ -46,7 +42,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, Playe
           } 
           
           else if (type == 'started') {
-              $rootScope.hideConfig = true;
+              $rootScope.gameStarted = true;
               $rootScope.$applyAsync();
           } 
           

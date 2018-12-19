@@ -26,6 +26,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
   });
 
   /** Function to start the game .*/
+
   $scope.start = function() {
     var data = {
         'type': 'start',
@@ -35,17 +36,20 @@ function Controller($scope, $rootScope, $location, PlayerData){
             'cheat': ($location.search().cheat == true)
         }
     };
+
     let teams = {}
-    angular.forEach($scope.teamData.teamPlayers, function(t) {
-        if (teams[t.selectedTeam]) {
-            teams[t.selectedTeam].players.push(t.id);
+
+    angular.forEach($scope.teamData.teamPlayers, function(player) {
+        if (teams[player.selectedTeam]) {
+            teams[player.selectedTeam].players.push(player.id);
         } else {
-            teams[t.selectedTeam] = { name: t.selectedTeam, players: [t.id] }
+            teams[player.selectedTeam] = { name: player.selectedTeam, players: [player.id] }
         }
     });
 
-    for (var i in teams)
-        data.teams.push(teams[i]);
+    for (var team in teams)
+        data.teams.push(teams[team]);
+
     ws.send(JSON.stringify(data));
   }
 

@@ -53,6 +53,6 @@ nav{
 }
 
 .selected {
-  border: 2px rgba(235, 129, 129, 0.993) solid;
-  color: red;
+  border: 2px rgba(199, 101, 101, 0.993) solid;
+  color: rgb(182, 88, 88);
 }

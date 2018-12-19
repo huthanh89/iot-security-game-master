@@ -4,7 +4,7 @@
 
 function Controller($scope, $rootScope, $location, PlayerData){
 
-  // Initialize player and team data.
+  $scope.gameStarted = false;
 
   $scope.playerData = {}; // Data of individual player.
  
@@ -16,17 +16,20 @@ function Controller($scope, $rootScope, $location, PlayerData){
 
   $scope.$watch(function(){
     return PlayerData.playerData;
-  }, function(newVal){
-    $scope.playerData = newVal;
+  }, function(value){
+    $scope.playerData = value;
   });
 
   $scope.$watch(function(){
     return PlayerData.teamData;
-  }, function(newVal){
-    $scope.teamData = newVal;
-    console.log($scope.teamData)
+  }, function(value){
+    $scope.teamData = value;
   });
   
+  $scope.$parent.$watch('gameStarted', function(value){
+    $scope.gameStarted = value;
+  });
+
   // Move players to a team.
 
   $scope.moveLeft = function() {
@@ -165,39 +168,6 @@ function Controller($scope, $rootScope, $location, PlayerData){
       $scope.teamData.teamPlayers = unSelectedList;
       $scope.teamData.players     = $scope.teamData.players.concat(selectedList);
     }
-
-  /** Function to start the game .*/
-  $scope.start = function() {
-    
-    var data = {
-        'type':   'start',
-        'piCount': 9,
-        'teams':   [],
-        'otherConfig': {
-            'cheat': ($location.search().cheat == true)
-        }
-    };
-    let teams = {}
-    angular.forEach($scope.teamData.teamPlayers, function(t) {
-        if (teams[t.selectedTeam]) {
-            teams[t.selectedTeam].players.push(t.id);
-        } else {
-            teams[t.selectedTeam] = { name: t.selectedTeam, players: [t.id] }
-        }
-    });
-
-    for (var i in teams)
-        data.teams.push(teams[i]);
-    
-    console.log('ws data', data);
-    
-    //ws.send(JSON.stringify(data));
-  }
-
-  $scope.setTeamName = function(name) {
-    console.log('>>>>---', name);
-    $scope.teamText = name;
-  }
 
   //Triggered when modal is about to be shown
 
