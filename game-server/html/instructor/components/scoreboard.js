@@ -33,7 +33,7 @@ function Controller($scope, $rootScope){
 // Directive
 //------------------------------------------------------------------------------//
 
-angular.module('gameApp').directive('myRepeatDirective', function() {
+angular.module('gameApp').directive('scoreboardPopoverDirective', function() {
   return function(scope, element, attrs) {
     
     let tableRows = [];
