@@ -58,8 +58,6 @@ function Controller($scope, $rootScope, $filter){
     }
     $scope.chartData = $filter('orderBy')($scope.chartData, "name");
 
-    console.log($scope.chartData);
-
     $scope.updateChart();
     $scope.$applyAsync();
   });
