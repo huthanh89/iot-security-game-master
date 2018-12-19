@@ -38,8 +38,8 @@ function Controller($scope, $rootScope){
     });
 
     $('[data-toggle="popover"]').popover({
-      html:       true,
-      title:     '',
+      html: true,
+      title: '',
       content: 
         `
           <table class="table table-sm">
