@@ -33,6 +33,8 @@ function Controller($scope, $rootScope){
     
     tableRows = [];
 
+    console.log('players', players);
+
     players.forEach(function(player){
       tableRows.push(`<tr><td>${player.name}</td><td>${player.score}</td></tr>`);
     });
@@ -40,6 +42,7 @@ function Controller($scope, $rootScope){
     $('[data-toggle="popover"]').popover({
       html: true,
       title: '',
+      trigger: 'hover',
       content: 
         `
           <table class="table table-sm">

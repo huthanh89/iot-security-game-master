@@ -14,7 +14,7 @@ app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) 
     $rootScope.internetEnabled = false;
 
     /** Initialize scope variable for update view */
-    $rootScope.hideConfig = false;
+    $rootScope.gameStarted = false;
 
     /** Function to play beep sound */
     $rootScope.playSound = function() {

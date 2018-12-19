@@ -4,10 +4,8 @@
 
 function Controller($scope, $rootScope, $location, PlayerData){
 
-  $scope.gameStarted = false;
-
   $scope.playerData = {}; // Data of individual player.
- 
+
   $scope.teamData = {
     teams:       [], // List of team names.
     teamPlayers: [], // List of players with teams.
@@ -26,10 +24,6 @@ function Controller($scope, $rootScope, $location, PlayerData){
     $scope.teamData = value;
   });
   
-  $scope.$parent.$watch('gameStarted', function(value){
-    $scope.gameStarted = value;
-  });
-
   // Move players to a team.
 
   $scope.moveLeft = function() {
