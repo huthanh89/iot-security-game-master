@@ -5,7 +5,7 @@
 // ws://game-server.local:8080/player
 //-------------------------------------------------------------------------------//
 
-angular.module('gameApp').factory('WebSocketService', function($rootScope){
+angular.module('gameApp').factory('WebSocketService', function($rootScope, PlayerData){
 
   var reconnect = true;
   var url       = 'ws://' + window.location.host + '/instructor'
@@ -34,8 +34,11 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
           var type = msg['type'];
 
           if (type == 'player') {
-              $rootScope.$broadcast('ws:player', msg);
-              $rootScope.$broadcast('ws:teamdata', msg);
+
+
+              PlayerData.updatePlayerData(msg);
+
+              //$rootScope.$broadcast('ws:teamdata', msg);
           } 
           
           else if (type == 'device') {

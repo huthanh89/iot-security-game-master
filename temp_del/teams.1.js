@@ -6,12 +6,11 @@ function Controller($scope, $rootScope, $location, PlayerData){
 
   // Initialize player and team data.
 
-  $scope.playerData = {}; // Data of individual player.
- 
+  $scope.playerData = {};
   $scope.teamData = {
-    teams:       [], // List of team names.
-    teamPlayers: [], // List of players with teams.
-    players:     []  // List of players.
+    teams:       [],
+    players:     [],
+    teamPlayers: []
   };
 
   $scope.$watch(function(){
@@ -24,12 +23,15 @@ function Controller($scope, $rootScope, $location, PlayerData){
     return PlayerData.teamData;
   }, function(newVal){
     $scope.teamData = newVal;
-    console.log($scope.teamData)
   });
   
-  // Move players to a team.
+  $scope.$watch('teamData', function(newVal){
+    $scope.teamData = newVal;
+    console.log(newVal);
+  });
 
-  $scope.moveLeft = function() {
+  /** Function to move the selected players to right(Team Players)*/
+  $scope.moveRight = function() {
     var filterList = $scope.teamData.teams.filter(function(t, id) {
         return t.isSelected;
     });
@@ -51,9 +53,8 @@ function Controller($scope, $rootScope, $location, PlayerData){
     $scope.teamData.teamPlayers = $scope.teamData.teamPlayers.concat(selectedList);
   };
 
-  // Move assigned played to unassigned list.
-
-  $scope.moveRight = function() {
+  /** Function to move the selected team players toleft(Players) */
+  $scope.moveLeft = function() {
       var selectedList = [];
       var unSelectedList = [];
       angular.forEach($scope.teamData.teamPlayers, function(team) {
@@ -102,12 +103,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
 
   /** Function to add team*/
   $scope.addTeam = function() {
-
-      console.log('add team', $scope.teamData);
-
       if ($scope.teamText) {
-
-          // Check for duplicate name.
           var filterList = $scope.teamData.teams.filter(function(t) {
               return t.name == $scope.teamText;
           })
@@ -116,17 +112,14 @@ function Controller($scope, $rootScope, $location, PlayerData){
           } else {
               alert("This Name has already taken Please Enter new Name");
           }
-
           $scope.teamText = '';
-      } 
-      
-      else {
+      } else {
           alert("Enter Team Name");
       }
   }
 
-  /** Function to update team name*/
-  $scope.updateTeamName = function(team) {
+  /** Function to update team*/
+  $scope.updateTeam = function(team) {
       if (!team.isEdit) {
           team.isEdit = !team.isEdit;
           return;
@@ -136,7 +129,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
       })
       if (filterList.length > 1) {
           team.name = '';
-          alert("Duplicate Team name");
+          alert("Dulplicate Team name");
           return;
       }
       angular.forEach($scope.teamData.teamPlayers, function(tp) {
@@ -160,15 +153,13 @@ function Controller($scope, $rootScope, $location, PlayerData){
               unSelectedList.push(tp);
           }
       });
-
-      $scope.teamData.teams.splice(index, 1);
-      $scope.teamData.teamPlayers = unSelectedList;
       $scope.teamData.players     = $scope.teamData.players.concat(selectedList);
-    }
+      $scope.teamData.teamPlayers = unSelectedList;
+      $scope.teamData.teams.splice(index, 1);
+  }
 
   /** Function to start the game .*/
   $scope.start = function() {
-    
     var data = {
         'type':   'start',
         'piCount': 9,
@@ -189,21 +180,10 @@ function Controller($scope, $rootScope, $location, PlayerData){
     for (var i in teams)
         data.teams.push(teams[i]);
     
-    console.log('ws data', data);
+    console.log(data);
     
     //ws.send(JSON.stringify(data));
   }
-
-  $scope.setTeamName = function(name) {
-    console.log('>>>>---', name);
-    $scope.teamText = name;
-  }
-
-  //Triggered when modal is about to be shown
-
-  $('#myModal2').on('show.bs.modal', function(event) {
-    console.log('>>>>', $scope.teamText);
-  });
 
 }
 

@@ -1,25 +1,27 @@
-<button class="btn btn-info" ng-click="showSettings()">
+
+<button type="button" class="btn btn-info mb-2" data-toggle="modal" data-target="#setting-modal">
   <i class="fas fa-cog mr-1"></i>
   <b>
     Settings
   </b>
 </button>
 
-<div class="settings-modal-template" style="display:none">
-    <div class="modal-header">
-        <h5 class="modal-title">Settings
-            <button type="button" class="close" ng-click='ctrl.cancel()' aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </h5>
+<!-- Modal to edit team -->
+
+<div class="modal fade" id="setting-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Game Settings</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="checkbox" ng-model="enableInternet"> Enable Internet
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="ok()">Change</button>
+      </div>
     </div>
-    <div class="modal-body">
-        <div>
-            <input type="checkbox" ng-model="ctrl.enableInternet"> Internet
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" ng-click='ctrl.cancel()'>Cancel</button>
-        <button type="button" class="btn btn-primary" ng-click='ctrl.ok()'>Confirm</button>
-    </div>
+  </div>
 </div>

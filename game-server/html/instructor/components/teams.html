@@ -1,83 +1,103 @@
-
 <div class="card">
   <div class="card-header">
     <i class="fas fa-users fa-fw"></i>
-    Create Teams
+    Teams
   </div>
   <div class="card-body">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-sm btn-info mb-2" data-toggle="modal" data-target="#team-add-modal" ng-click='teamText = ""'>
+          <i class="fas fa-plus fa-lg"></i>
+          Create Team
+        </button>
+        
+        <table class="table table-sm table-responsive-sm table-hover">
+          <tbody>
+            <tr ng-class='{"selected" : team.isSelected}' ng-click='unselectAll(team)' ng-repeat='team in teamData.teams'>
+              <td>
+                {{ team.name }}
+              </td>
+              <td>
+                <i class="fas fa-pencil-alt" data-toggle="modal" data-target="#team-edit-modal" ng-click="setTeamName(team.name)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="col-sm-4">
+        <b>
+          Asssigned Players
+        </b>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action py-1" ng-repeat="team in teamData.teamPlayers" ng-if='team.selectedTeam == selectedTeam' ng-class='{"selected" : team.isSelected}' ng-click='team.isSelected = !team.isSelected'>
+              {{team.name}}
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-1">
+        <i class="fa fa-chevron-left fa-2x" aria-hidden="true" ng-click="moveLeft()"></i>
+        <i class="fa fa-chevron-right fa-2x" aria-hidden="true" ng-click="moveRight()"></i>
+      </div>
 
 
+      <div class="col-sm-3">
+        <b>
+          Unassigned Players
+        </b>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action py-1" ng-repeat="team in teamData.players" ng-class='{"selected" : team.isSelected}' ng-click='selectPlayer(team)'>
+            {{team.name}}
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
   </div>
 </div>
 
-<div class="row team-selection">
-    <div class="col-sm-12 config-header board-header">
-        <span>Assign Teams</span>
+<!-- Modal to add team -->
+
+<div class="modal fade" id="team-add-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Team</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" ng-model="teamText">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal" ng-click='teamText = ""'>Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addTeam()">Add</button>
+      </div>
     </div>
-    <div class="col-sm-12">
-        <div class="row team-header">
-            <div class="col-sm-4 team-title">
-                <span>Teams</span>
-                <button type="button" class="btn btn-default btn-sm" ng-click="isAddTeam = true">
-                        <span class="glyphicon glyphicon-plus plus-icon">plus</span>
-                    </button>
-            </div>
-            <div class="col-sm-4 team-title player-title"><span>Team Players</span></div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-3 team-title player-title"><span>Unassigned</span></div>
-        </div>
-        <div class="row team-content">
-            <div class="col-sm-4 team-info">
-                <span class="team-name" ng-class='{"selected" : team.isSelected}' ng-click='unselectAll(team)' ng-repeat='team in teamData.teams'>
-                        <span class="added-team-name" ng-show='!team.isEdit'>{{team.name}}</span>
-                <input type="text" class="form-control" ng-model='team.name' ng-show='team.isEdit' ng-keyup="$event.keyCode == 13 ?updateTeam(team) : null">
-                <span class="edit-delete">
-                            <button type="button" class="btn btn-default btn-sm" ng-click='updateTeam(team);'>
-                                <span class="glyphicon glyphicon-edit">edit</span>
-                </button>
-                <button type="button" class="btn btn-default btn-sm" ng-click='removeTeam(team,$index)'>
-                                <span class="glyphicon glyphicon-remove">remove</span>
-                            </button>
-                </span>
-                </span>
-                <span class="team-name" ng-show='isAddTeam'>
-                        <input type="text" class="form-control" ng-model='teamText' ng-keyup="$event.keyCode == 13 ?addTeam() : null" >
-                        <span class="edit-delete">
-                            <button type="button" class="btn btn-default btn-sm" ng-click='addTeam();isAddTeam=false;'>
-                                <span class="glyphicon glyphicon-edit">edit</span>
-                </button>
-                <button type="button" class="btn btn-default btn-sm" ng-click='teamText = "";isAddTeam = false'>
-                                <span class="glyphicon glyphicon-remove">remove</span>
-                            </button>
-                </span>
-                </span>
-            </div>
-            <div class="col-sm-4 team-info">
-                <span class="team-name player-info" ng-repeat="team in teamData.teamPlayers" ng-if='team.selectedTeam == selectedTeam' ng-class='{"selected" : team.isSelected}' ng-click='team.isSelected = !team.isSelected'>{{team.name}}
-                    </span>
-            </div>
-            <div class="col-sm-1">
-                <span class="arrow-container">
-                        <span class="glyphicon glyphicon-chevron-left" ng-click="moveRight()">left</span>
-                </span>
-                <span class="arrow-container">
-                        <span class="glyphicon glyphicon-chevron-right" ng-click="moveLeft()">
-                          right
-                        </span>
-                </span>
-            </div>
-            <div class="col-sm-3 team-info ">
-                <span class="team-name player-info" ng-repeat="team in teamData.players" ng-class='{"selected" : team.isSelected}' ng-click='selectPlayer(team)'>{{team.name}}
-                    </span>
-            </div>
-        </div>
-        <div class="row text-right footer-button">
-            <div class="col-sm-12">
-                <button type="button" class="btn btn-secondary" ng-click="start()">Start</button>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 
 
+<!-- Modal to edit team -->
+
+<div class="modal fade" id="team-edit-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Team</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" ng-model="teamText" >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger float-left" data-dismiss="modal" ng-click='removeTeam(team, $index)'>Delete</button>
+        <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal" ng-click='teamText = ""'>Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateTeamName(teamName)">Change</button>
+      </div>
+    </div>
+  </div>
+</div>
 

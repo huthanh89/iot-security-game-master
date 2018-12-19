@@ -2,44 +2,15 @@
 // Controller
 //-------------------------------------------------------------------------------//
 
-function Controller($scope, $uibModal, $rootScope){
+function Controller($scope, $rootScope){
+  
+  $scope.enableInternet = $rootScope.internetEnabled;
 
-  $scope.showSettings = function() {
-    var template = $('.settings-modal-template').html();
-    var modalInstance = $uibModal.open({
-      animation: true,
-      template:  template,
-      scope:    $scope,
-      controller: function($uibModalInstance) {
-        $ctrl = this;
-        $ctrl.enableInternet = $rootScope.internetEnabled;
-        $ctrl.ok = function() {
-
-          $uibModalInstance.dismiss('ok');
-          
-          if ($rootScope.internetEnabled != $ctrl.enableInternet) {
-            ws.send(JSON.stringify({
-              type: 'internet',
-              enable: ($ctrl.enableInternet == true)
-            }));
-          }
-        };
-
-        $ctrl.cancel = function() {
-          $uibModalInstance.dismiss('cancel');
-        };
-
-        $ctrl.close = function() {
-          $uibModalInstance.close('saved');
-        }
-      },
-      controllerAs: 'ctrl',
-      windowClass: 'mission-modal-window',
-      size: 'md',
-      backdrop: false
-    });
-
-    modalInstance.result.then(function(response) {}, function() {});
+  $scope.ok = function() {
+    ws.send(JSON.stringify({
+      type: 'internet',
+      enable: $scope.enableInternet
+    }));
   }
 
 }

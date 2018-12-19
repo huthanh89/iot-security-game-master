@@ -1,26 +1,48 @@
 //-------------------------------------------------------------------------------//
 // Service
 //
-// Contain Player Data
+// Contains Player and Team Data
 //-------------------------------------------------------------------------------//
 
 angular.module('gameApp').factory('PlayerData', function($rootScope){
 
-  return {
-    playerData = {},
-    updatePlayerData: updatePlayerData(player) {
+  let service = {
 
-      var oldPlayer = $scope.playerData[player.id];
+    playerData: {},
+    
+    teamData: {
+      teams: [
+        { name: 'Team A' },
+        { name: 'Team B' }
+      ],
+      players:     [],
+      teamPlayers: []
+    },
+
+    updatePlayerData: function(player) {
+
+      let oldPlayer = service.playerData[player.id];
   
       if (oldPlayer) {
-          for (var i in player)
-              oldPlayer[i] = player[i];
-      } else {
-          $scope.playerData[player.id] = player;
+        for (var i in player)
+          oldPlayer[i] = player[i];
+        
+        angular.forEach(service.teamData.players, function(t, i) { 
+          if (t.id == player.id) {
+            t = player;
+          }
+        });
       }
-      $scope.$applyAsync();
+
+      else {
+        service.playerData[player.id] = player;
+        service.teamData.players.push(player);
+      }
+
     }
   }
+  
+  return service;
 
 });
 

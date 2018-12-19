@@ -51,3 +51,8 @@ nav{
 #chat-to{
   height: 40px;
 }
+
+.selected {
+  border: 2px rgba(235, 129, 129, 0.993) solid;
+  color: red;
+}
