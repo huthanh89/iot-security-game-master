@@ -29,8 +29,11 @@ function Controller($scope, $rootScope){
   
 }
 
-angular.module('gameApp')
-.directive('myRepeatDirective', function() {
+//------------------------------------------------------------------------------//
+// Directive
+//------------------------------------------------------------------------------//
+
+angular.module('gameApp').directive('myRepeatDirective', function() {
   return function(scope, element, attrs) {
     
     let tableRows = [];
