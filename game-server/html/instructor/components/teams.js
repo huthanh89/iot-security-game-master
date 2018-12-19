@@ -4,6 +4,9 @@
 
 function Controller($scope, $rootScope, $location, PlayerData){
 
+  $scope.teamText = '';
+  $scope.editTeam = {};
+
   $scope.playerData = {}; // Data of individual player.
 
   $scope.teamData = {
@@ -23,7 +26,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
   }, function(value){
     $scope.teamData = value;
   });
-  
+
   // Move players to a team.
 
   $scope.moveLeft = function() {
@@ -123,26 +126,29 @@ function Controller($scope, $rootScope, $location, PlayerData){
   }
 
   /** Function to update team name*/
-  $scope.updateTeamName = function(team) {
-      if (!team.isEdit) {
-          team.isEdit = !team.isEdit;
-          return;
-      }
-      var filterList = $scope.teamData.teams.filter(function(player) {
-          return player.name == team.name;
-      })
-      if (filterList.length > 1) {
-          team.name = '';
-          alert("Duplicate Team name");
-          return;
-      }
-      angular.forEach($scope.teamData.teamPlayers, function(player) {
-          if (player.selectedTeam == team.id) {
-            player.selectedTeam = team.name;
-          }
-      });
-      team.id = team.name;
-      team.isEdit = !team.isEdit
+  $scope.updateTeamName = function(team, newName) {
+
+    // Check for duplicate team name.
+    // Exit function if true.
+
+    let filterList = $scope.teamData.teams.filter(function(team) {
+      return team.name == newName;
+    })
+    if (filterList.length > 0) {
+      alert("Duplicate Team name");
+      return;
+    }
+
+    // Update team name in each player data.
+
+    team.id   = newName;
+    team.name = newName;
+
+    angular.forEach($scope.teamData.teamPlayers, function(player) {
+        if (player.selectedTeam == team.id) {
+          player.selectedTeam = team.name;
+        }
+    });
   }
 
   /** Function to remove team */
@@ -163,12 +169,10 @@ function Controller($scope, $rootScope, $location, PlayerData){
       $scope.teamData.players     = $scope.teamData.players.concat(selectedList);
     }
 
-  //Triggered when modal is about to be shown
-
-  $('#team-edit-modal').on('show.bs.modal', function(event) {
-    console.log('>>>>', $scope.teamText);
-    $scope.teamText = 'Team A';
-  });
+  $scope.clickEdit = function(team) {
+    $scope.teamText = team.name;
+    $scope.team = team;
+  }
 
 }
 

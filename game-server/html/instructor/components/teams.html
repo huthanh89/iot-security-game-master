@@ -18,7 +18,7 @@
                 {{ team.name }}
               </td>
               <td>
-                <i class="fas fa-pencil-alt float-right" data-toggle="modal" data-target="#team-edit-modal" ng-click="teamText = false"></i>
+                <i class="fas fa-pencil-alt float-right" data-toggle="modal" data-target="#team-edit-modal" ng-click='clickEdit(team)'></i>
               </td>
             </tr>
           </tbody>
@@ -91,7 +91,6 @@
       </div>
       <div class="modal-body">
         <input type="text" class="form-control" ng-model="teamText" >
-        <hr></hr>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" ng-click='removeTeam(team, $index)'>
@@ -99,7 +98,7 @@
           Delete
         </button>
         <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal" ng-click='teamText = ""'>Cancel</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateTeamName(teamText)">Save</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateTeamName(team, teamText)">Save</button>
       </div>
     </div>
   </div>
