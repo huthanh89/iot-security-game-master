@@ -128,17 +128,17 @@ function Controller($scope, $rootScope, $location, PlayerData){
           team.isEdit = !team.isEdit;
           return;
       }
-      var filterList = $scope.teamData.teams.filter(function(t) {
-          return t.name == team.name;
+      var filterList = $scope.teamData.teams.filter(function(player) {
+          return player.name == team.name;
       })
       if (filterList.length > 1) {
           team.name = '';
           alert("Duplicate Team name");
           return;
       }
-      angular.forEach($scope.teamData.teamPlayers, function(tp) {
-          if (tp.selectedTeam == team.id) {
-              tp.selectedTeam = team.name;
+      angular.forEach($scope.teamData.teamPlayers, function(player) {
+          if (player.selectedTeam == team.id) {
+            player.selectedTeam = team.name;
           }
       });
       team.id = team.name;
@@ -165,8 +165,9 @@ function Controller($scope, $rootScope, $location, PlayerData){
 
   //Triggered when modal is about to be shown
 
-  $('#myModal2').on('show.bs.modal', function(event) {
+  $('#team-edit-modal').on('show.bs.modal', function(event) {
     console.log('>>>>', $scope.teamText);
+    $scope.teamText = 'Team A';
   });
 
 }
