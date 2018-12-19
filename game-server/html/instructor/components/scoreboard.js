@@ -27,17 +27,20 @@ function Controller($scope, $rootScope){
     $scope.scoreBoard = msg.scores;
   });
   
-  // Initialize popover.
+}
 
-  $scope.row = function(players){
+angular.module('gameApp')
+.directive('myRepeatDirective', function() {
+  return function(scope, element, attrs) {
     
-    tableRows = [];
+    let tableRows = [];
+    let players = scope.team.players;
 
     players.forEach(function(player){
       tableRows.push(`<tr><td>${player.name}</td><td>${player.score}</td></tr>`);
     });
 
-    $('[data-toggle="popover"]').popover({
+    $(element).popover({
       html: true,
       title: '',
       trigger: 'hover',
@@ -56,9 +59,8 @@ function Controller($scope, $rootScope){
           </table>
         `
     });
-  }
-
-}
+  };
+});
 
 //------------------------------------------------------------------------------//
 // Component

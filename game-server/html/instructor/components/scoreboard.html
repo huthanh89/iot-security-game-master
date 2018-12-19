@@ -24,8 +24,8 @@
             {{team.score |fixDecimal:2}}
           </td>
           <td>  
-            <a href="#" data-toggle="popover">
-              <i class="text-info fas fa-search-plus fa-fw">{{row(team.players)}}</i>
+            <a href="#" data-toggle="popover" my-repeat-directive>
+              <i class="fas fa-search-plus fa-fw" ng-init="createPopover(team.players, 'test-' + $index)"></i>
             </a>
           </td>
         </tr>
