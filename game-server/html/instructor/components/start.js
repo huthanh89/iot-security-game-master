@@ -37,6 +37,16 @@ function Controller($scope, $rootScope, $location, PlayerData){
         }
     };
 
+    // If no players have been assigned a team,
+    // then escape the function and warn the user.
+    
+    if($scope.teamData.teamPlayers.length == 0){
+      alert('Players have not been assigned a team yet.')
+      return;
+    }
+    
+    // Send out Websocket request to start game.
+
     let teams = {}
 
     angular.forEach($scope.teamData.teamPlayers, function(player) {
