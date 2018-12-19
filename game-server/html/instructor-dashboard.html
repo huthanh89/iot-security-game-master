@@ -64,27 +64,34 @@
           <div class="row">
               <div class="col-lg-12">
                 <setting></setting>
-                <start></start>
+                <start ng-if="!$root.gameStarted"></start>
               </div>
           </div>
 
           <div class="row">
-            <div class="col-lg-12">
-              <teams></teams>
+            <div class="col-lg-8">
+              
+              <div class="row" ng-if="!$root.gameStarted">
+                  <div class="col-lg-12">
+                      <teams></teams>
+                  </div>
+              </div>
+
+              <div class="row" ng-if="$root.gameStarted">
+                  <div class="col-lg-6">
+                      <scoreboard></scoreboard>
+                  </div>
+                  <div class="col-lg-6">
+                    <chart></chart>
+                  </div>
+              </div>
+
+            </div>
+            <div class="col-lg-4">
+              <chat></chat>
             </div>
           </div>
 
-          <div class="row">
-              <div class="col-lg-4">
-                  <scoreboard></scoreboard>
-              </div>
-              <div class="col-lg-4">
-                <chart></chart>
-              </div>
-              <div class="col-lg-4">
-                  <chat></chat>
-              </div>
-          </div>
           
           <div class="row">
               <div class="col-lg-5">
