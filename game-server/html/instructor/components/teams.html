@@ -92,9 +92,13 @@
       </div>
       <div class="modal-body">
         <input type="text" class="form-control" ng-model="teamText" >
+        <hr></hr>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger float-left" data-dismiss="modal" ng-click='removeTeam(team, $index)'>Delete</button>
+        <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal" ng-click='removeTeam(team, $index)'>
+          <i class="fa fa-trash"></i>
+          Delete
+        </button>
         <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal" ng-click='teamText = ""'>Cancel</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateTeamName(teamName)">Change</button>
       </div>
