@@ -4,8 +4,11 @@
 
 function Controller($scope, $rootScope, $location, PlayerData){
 
-  $scope.teamText = '';
-  $scope.editTeam = {};
+  // Initialize scopes.
+
+  $scope.teamText      = '';
+  //$scope.editTeam      = {};
+  $scope.editTeamIndex = {};
 
   $scope.playerData = {}; // Data of individual player.
 
@@ -103,8 +106,6 @@ function Controller($scope, $rootScope, $location, PlayerData){
   /** Function to add team*/
   $scope.addTeam = function() {
 
-      console.log('add team', $scope.teamData);
-
       if ($scope.teamText) {
 
           // Check for duplicate name.
@@ -152,26 +153,29 @@ function Controller($scope, $rootScope, $location, PlayerData){
   }
 
   /** Function to remove team */
-  $scope.removeTeam = function(team, index) {
-      var selectedList = [];
-      var unSelectedList = [];
-      angular.forEach($scope.teamData.teamPlayers, function(tp) {
-          if (team.name == tp.selectedTeam) {
-              tp.selectedTeam = '';
-              selectedList.push(tp);
-          } else {
-              unSelectedList.push(tp);
-          }
-      });
+  $scope.removeTeam = function(team) {
 
-      $scope.teamData.teams.splice(index, 1);
-      $scope.teamData.teamPlayers = unSelectedList;
-      $scope.teamData.players     = $scope.teamData.players.concat(selectedList);
-    }
+    let index = $scope.editTeamIndex;
+    var selectedList = [];
+    var unSelectedList = [];
+    angular.forEach($scope.teamData.teamPlayers, function(tp) {
+        if (team.name == tp.selectedTeam) {
+            tp.selectedTeam = '';
+            selectedList.push(tp);
+        } else {
+            unSelectedList.push(tp);
+        }
+    });
 
-  $scope.clickEdit = function(team) {
-    $scope.teamText = team.name;
-    $scope.team = team;
+    $scope.teamData.teams.splice(index, 1);
+    $scope.teamData.teamPlayers = unSelectedList;
+    $scope.teamData.players     = $scope.teamData.players.concat(selectedList);
+  }
+
+  $scope.clickEdit = function(team, index) {
+    $scope.teamText      = team.name;
+    $scope.team          = team;
+    $scope.editTeamIndex = index;
   }
 
 }
