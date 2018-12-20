@@ -63,8 +63,8 @@ nav{
 
 .item {
   position: absolute;
-  margin: 0 10px;
-  min-width: 300px;
+  min-width: 50%;
+  padding: 0 10px;
 }
 
 @media only screen and (max-width: 768px) {
