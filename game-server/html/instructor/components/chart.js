@@ -65,6 +65,7 @@ function Controller($scope, $rootScope, $filter){
 
     $scope.updateChart();
     $scope.$applyAsync();
+    
   });
   
 

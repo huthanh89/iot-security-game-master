@@ -25,12 +25,15 @@ function Controller($scope, $rootScope){
       $rootScope.playSound();
     }
     $scope.scoreBoard = msg.scores;
+
   });
   
 }
 
 //------------------------------------------------------------------------------//
 // Directive
+//
+// This directive gets called when component fully renders.
 //------------------------------------------------------------------------------//
 
 angular.module('gameApp').directive('scoreboardPopoverDirective', function() {
@@ -62,6 +65,7 @@ angular.module('gameApp').directive('scoreboardPopoverDirective', function() {
           </table>
         `
     });
+
   };
 });
 

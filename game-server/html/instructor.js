@@ -53,6 +53,18 @@ app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) 
       $rootScope.grid.refreshItems().layout();
     });
 
+    // When game starts, refresh grid system layout.
+    // Since angular1 does not offer a callback for when all component are
+    // fully loaded, we make due with window's delay function.
+
+    $rootScope.$on('ws:start', function() {
+      if($rootScope.grid){
+        setTimeout(function(){ 
+          $rootScope.grid.refreshItems().layout();
+      }, 2000);
+      }
+    });
+
 });
 
 //-------------------------------------------------------------------------------//
