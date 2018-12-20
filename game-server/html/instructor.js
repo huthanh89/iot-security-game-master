@@ -23,6 +23,7 @@ app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) 
     }
 
     // Connect to Web Socket.
+    
     WebSocketService.connectToWS();
     
     // Initialize grid when angular has fully loaded.

@@ -1,22 +1,19 @@
-/** Get The Module */
+//------------------------------------------------------------------------------//
+// Acquire application module
+//------------------------------------------------------------------------------//
+
 var app = angular.module('gameApp');
 
-/** Angular Injections. */
-app.controller('studentCtrl', ['$scope', '$window', '$uibModal', '$location', '$sce', '$timeout', function($scope, $window, $uibModal, $location, $sce, $timeout) {
-    /**
-        * Dependency injectors .
-        * @param $scope Angular scope
-        * @param $window angular window   
-        * @param $uibModal Angular UI modal
-        * @param $location angular location service  
-        * @param $sce Angular sce service
-        * @param $timeout angular timeout 
-    */
-      
- /** Intialize variables */
-    var LOCKED_COLOR = '#d3d3d3';
-    var UNLOCKED_COLOR = '#ffff00';
-    var COMPLETED_COLOR = '#005073';
+//-------------------------------------------------------------------------------//
+// Main Controller
+//-------------------------------------------------------------------------------//
+
+app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $sce, $timeout, WebSocketService) {
+
+     /** Intialize variables */
+    var LOCKED_COLOR      = '#d3d3d3';
+    var UNLOCKED_COLOR    = '#ffff00';
+    var COMPLETED_COLOR   = '#005073';
     var IN_PROGRESS_COLOR = '#5cb85c';
     
     /** Function to intialize the game board chart(mx client chart) */
@@ -469,6 +466,10 @@ app.controller('studentCtrl', ['$scope', '$window', '$uibModal', '$location', '$
         ws = new WebSocket(url);
         $scope.ws = ws;
         ws.onopen = function() {
+
+            // TODO: remove debug
+            $scope.playerName = 'sally';
+
             var name = $scope.playerName;
             while (name == null || name == "") {
                 name = prompt("Name:");
@@ -616,7 +617,12 @@ app.controller('studentCtrl', ['$scope', '$window', '$uibModal', '$location', '$
             }
         };
     }
-    connectToWS();
     
-     /** web socket logic ends here */
-}]);
+    // Connect to Web Socket.
+    
+    connectToWS();
+    WebSocketService.connectToWS();
+
+});
+
+//-------------------------------------------------------------------------------//
