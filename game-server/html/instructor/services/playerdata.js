@@ -11,14 +11,7 @@ angular.module('gameApp').factory('PlayerData', function($rootScope){
     playerData: {},
     
     teamData: {
-      teams: [
-        { name: 'Team A' },
-        { name: 'Team B' },
-        { name: 'Team C' },
-        { name: 'Team D' },
-        { name: 'Team E' },
-        { name: 'Team F' }
-      ],
+      teams: [],
       players:     [],
       teamPlayers: []
     },
