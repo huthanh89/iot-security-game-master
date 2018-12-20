@@ -36,7 +36,7 @@ app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) 
     // Initialize grid when angular has fully loaded.
 
     angular.element(function () {
-      var grid = new Muuri('.grid', {
+      $rootScope.grid = new Muuri('.grid', {
         items: '.item',
         dragEnabled: true,
         dragSortPredicate: {
@@ -50,7 +50,7 @@ app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) 
           rounding: false
         },
       });
-      grid.refreshItems().layout();
+      $rootScope.grid.refreshItems().layout();
     });
 
 });
