@@ -106,24 +106,24 @@ function Controller($scope, $rootScope, $location, PlayerData){
   /** Function to add team*/
   $scope.addTeam = function() {
 
-      if ($scope.teamText) {
+    if ($scope.teamText) {
 
-          // Check for duplicate name.
-          var filterList = $scope.teamData.teams.filter(function(t) {
-              return t.name == $scope.teamText;
-          })
-          if (filterList.length == 0) {
-              $scope.teamData.teams.push({ name: $scope.teamText, id: $scope.teamText });
-          } else {
-              alert("This Name has already taken Please Enter new Name");
-          }
+        // Check for duplicate name.
+        var filterList = $scope.teamData.teams.filter(function(t) {
+            return t.name == $scope.teamText;
+        })
+        if (filterList.length == 0) {
+            $scope.teamData.teams.push({ name: $scope.teamText, id: $scope.teamText });
+        } else {
+            alert("This Name has already taken Please Enter new Name");
+        }
 
-          $scope.teamText = '';
-      } 
-      
-      else {
-          alert("Enter Team Name");
-      }
+        $scope.teamText = '';
+    } 
+    
+    else {
+        alert("Enter Team Name");
+    }
   }
 
   /** Function to update team name*/
@@ -176,6 +176,12 @@ function Controller($scope, $rootScope, $location, PlayerData){
     $scope.teamText      = team.name;
     $scope.team          = team;
     $scope.editTeamIndex = index;
+  }
+
+  // Append modal to body to fix backdrop issue.
+
+  $scope.showModal = function(type){
+    $(`#team-${type}-modal`).appendTo("body");
   }
 
 }
