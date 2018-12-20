@@ -53,7 +53,14 @@ nav{
   color: rgb(182, 88, 88);
 }
 
+.fa-grip-lines{
+  color: rgba(255, 255, 255, 0.705);
+  cursor: grab;
+}
 
+.fa-grip-lines:active{
+  cursor: grabbing;
+}
 
 /* Dashboard drag and drop */
 
