@@ -7,7 +7,6 @@ function Controller($scope, $rootScope, $location, PlayerData){
   // Initialize scopes.
 
   $scope.teamText      = '';
-  //$scope.editTeam      = {};
   $scope.editTeamIndex = {};
 
   $scope.playerData = {}; // Data of individual player.
