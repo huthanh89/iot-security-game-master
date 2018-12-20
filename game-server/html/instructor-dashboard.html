@@ -24,6 +24,13 @@
       
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.core.js"></script>
       
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
+      <script src="https://unpkg.com/web-animations-js@2.3.1/web-animations.min.js"></script>
+      <script src="https://unpkg.com/hammerjs@2.0.8/hammer.min.js"></script>
+      <script src="https://unpkg.com/muuri@0.7.1/dist/muuri.min.js"></script>
+      
       <!–– Application Scripts ––>
 
       <link rel="stylesheet" type="text/css" href="instructor.css">
@@ -59,48 +66,35 @@
 
       <navbar></navbar>
 
-      <div class="container">
-
-          <div class="row">
-              <div class="col-lg-12">
-                <setting></setting>
-                <start></start>
-              </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-8">
-              
-              <div class="row">
-                  <div class="col-lg-12">
-                      <teams></teams>
-                  </div>
-              </div>
-
-              <div class="row">
-                  <div class="col-lg-6">
-                      <scoreboard></scoreboard>
-                  </div>
-                  <div class="col-lg-6">
-                    <chart></chart>
-                  </div>
-              </div>
-
+      <div class="container" ng-init='sort()'>
+        
+        <div class="row ">
+            <div class="col-lg-12">
+              <setting></setting>
+              <start></start>
             </div>
-            <div class="col-lg-4">
-              <chat></chat>
-            </div>
-          </div>
+        </div>
 
-          
-          <div class="row">
-              <div class="col-lg-8">
-                <players></players>
-              </div>
-              <div class="col-lg-4">
-                <device></device>
-              </div>
+        <div class="grid">
+          <div class="item">
+            <teams></teams>
           </div>
+          <div class="item">
+            <players></players>
+          </div>
+          <div class="item">
+            <chat></chat>
+          </div>
+          <div class="item">
+            <devices></devices>
+          </div>
+          <div class="item">
+            <scoreboard></scoreboard>
+          </div>
+          <div class="item">
+            <chart></chart>
+          </div>
+        </div>
 
       </div>
 

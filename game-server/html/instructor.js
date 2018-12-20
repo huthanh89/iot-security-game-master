@@ -24,6 +24,34 @@ app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) 
 
     // Connect to Web Socket.
     WebSocketService.connectToWS();
+    
+    $scope.sort123 = function(){
+      var grid = new Muuri('.grid', {
+        items: '*',
+        dragEnabled: true,
+      });
+      grid.refreshItems().layout();
+    };
+
+    // Initialize grid when angular has fully loaded.
+
+    angular.element(function () {
+      var grid = new Muuri('.grid', {
+        items: '.item',
+        dragEnabled: true,
+        dragSortPredicate: {
+          action: 'swap'
+        },
+        layout: {
+          fillGaps: true,
+          horizontal: false,
+          alignRight: false,
+          alignBottom: false,
+          rounding: false
+        },
+      });
+      grid.refreshItems().layout();
+    });
 
 });
 

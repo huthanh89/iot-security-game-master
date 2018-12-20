@@ -52,3 +52,35 @@ nav{
   border: 2px rgba(199, 101, 101, 0.993) solid;
   color: rgb(182, 88, 88);
 }
+
+
+
+/* Dashboard drag and drop */
+
+.grid {
+  position: relative;
+}
+
+.item {
+  position: absolute;
+  margin: 0 10px;
+  min-width: 300px;
+}
+
+@media only screen and (max-width: 768px) {
+  .item {
+    width: 100%;
+  }
+}
+
+.item.muuri-item-dragging {
+  z-index: 3;
+}
+.item.muuri-item-releasing {
+  z-index: 2;
+}
+.item.muuri-item-hidden {
+  z-index: 0;
+}
+
+/* Dashboard drag and drop END */
