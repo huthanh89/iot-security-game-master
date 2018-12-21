@@ -1,13 +1,31 @@
-<div class="col-sm-12 chat-content">
-  <div class="form-group">
-      <textarea class="form-control" rows="1" id="comment" ng-model="chatMsg" ng-keyup="$event.keyCode == 13 ? sendChat() : null"></textarea>
-      <span class="inst-chat-header">
-              <span class="chat-to">To:
-                  <select ng-model="chatTo">
-                      <option ng-repeat="to in chatToList" ng-value="to" ng-disabled="to.disabled">{{to.name}}</option>
-                  </select>
-              </span>
-      <button class="btn btn-success" style="float:right; margin-top: 5px" ng-click="sendChat()">Send</button>
-      </span>
-  </div>
+<div class="row chat-board st-chat-board" data-step="2" data-intro="In the Chat panel, you can send messages to other players. Several channels are available, such as a global chat and team chat.  You can also send messages directly to specific players or your instructor. Remember to keep your communications civil!"
+
+    data-position='right'>
+
+    <div class="col-sm-12 chat-header">
+        <span class="chat-title">Chat</span>
+    </div>
+    <div class="col-sm-12 chat-content chat-history">
+        <div id='chathistory'>
+        </div>
+    </div>
+
+    <div class="col-sm-12 chat-content">
+      <div class="form-group">
+          <textarea class="form-control" rows="1" id="comment" ng-model="chatMsg" ng-keyup="$event.keyCode == 13 ? sendChat() : null"></textarea>
+          <span class="inst-chat-header">
+                  <span class="chat-to">To:
+                      <select ng-model="chatTo">
+                          <option ng-repeat="to in chatToList" ng-value="to" ng-disabled="to.disabled">{{to.name}}</option>
+                      </select>
+                  </span>
+          <button class="btn btn-success" style="float:right; margin-top: 5px" ng-click="sendChat()">Send</button>
+          </span>
+      </div>
+    </div>
+
+
 </div>
+
+
+

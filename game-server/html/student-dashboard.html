@@ -39,6 +39,7 @@
     <script src="student.js"></script>
     <script src="student/services/websocket.js"></script>
     <script src="student/components/chat/chat.js"></script>
+    <script src="student/components/scoreboard/.js"></script>
     
     <script type="text/javascript">
         mxBasePath = 'vendor/src';
@@ -102,24 +103,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="row chat-board st-chat-board" data-step="2" data-intro="In the Chat panel, you can send messages to other players. Several channels are available, such as a global chat and team chat.  You can also send messages directly to specific players or your instructor. Remember to keep your communications civil!"
 
-                    data-position='right'>
-                    <div class="col-sm-12 chat-header">
-                        <span class="chat-title">Chat</span>
-                    </div>
-                    <div class="col-sm-12 chat-content chat-history">
-                        <div id='chathistory'>
-                        </div>
-                    </div>
+                <chat></chat>
 
 
 
-                    <chat></chat>
-
-
-
-                </div>
             </div>
             <div class="col-sm-6 middle-cont" ng-show="!waiting">
                 <div id="gameboardContainer" style="overflow:hidden;" ng-init="initGameboard()" data-step="5" data-intro="This is the main GameBoard. This is where your missions, which are indicated by Circles, will be displayed. To start a mission, click on an unlocked Circle. Unlocked Circles are yellow, locked Circles are gray, and completed Circles are blue. And that's it! Click on the center circle of the rings to begin the game. Good luck and have fun!">
