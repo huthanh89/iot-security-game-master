@@ -54,7 +54,13 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               } 
               
               else if (type == 'chat') {
-                $rootScope.$broadcast('ws:chat', msg);
+                if (msg.to == '__notification__') {
+                  $rootScope.$broadcast('ws:notification', msg); 
+                }
+                
+                else {
+                  $rootScope.$broadcast('ws:chat', msg);
+                }          
               } 
               
               else if (type == 'started') {
@@ -65,13 +71,9 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               } 
               
               else if (type == 'scores') {
-                  if (JSON.stringify(getScores($rootScope.scoreBoard)) != JSON.stringify(getScores(msg.scores))) {
-                      $rootScope.playSound();
-                  }
-
-                  $rootScope.scoreBoard = msg.scores;
-                  $rootScope.updateChatToList();
-                  $rootScope.$applyAsync();
+                $rootScope.$broadcast('ws:scores', msg);
+                $rootScope.$broadcast('ws:chatlist', msg);
+                $rootScope.$applyAsync();
               } 
               
               else if (type == 'gameboard') {

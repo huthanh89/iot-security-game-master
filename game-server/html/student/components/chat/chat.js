@@ -75,14 +75,7 @@ function Controller($scope, $rootScope){
   };
 
   $rootScope.$on('ws:chat', function(event, msg) {
-
-    console.log(msg);
-
-    if (msg.to == '__notification__') {
-      $rootScope.appendNotification(msg.from, msg.msg);
-    } else {
-        $rootScope.appendChat(msg.from, msg.to, msg.msg);
-    }
+    $scope.appendChat(msg.from, msg.to, msg.msg);
     $rootScope.playSound();
   });
   

@@ -8,7 +8,7 @@ var app = angular.module('gameApp');
 // Main Controller
 //-------------------------------------------------------------------------------//
 
-app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $sce, $timeout, WebSocketService) {
+app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $location, $sce, $timeout, WebSocketService) {
 
      /** Intialize variables */
     var LOCKED_COLOR      = '#d3d3d3';
@@ -214,9 +214,11 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
     };
     $scope.currentTools = [];
     $scope.gameboard = {};
-    $scope.scoreBoard = [];
     $scope.waiting = true;
     $scope.missionContentShown = false;
+
+    // TODO: Remove.
+    $scope.waiting = false;
     
     /** Function to select mission */
     $scope.selectMission = function(missionId) {
@@ -326,14 +328,6 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
             $window.open(url, "_blank");
     };
 
-
-    /** Function to append notification to the notification view*/
-    $scope.appendNotification = function(from, msg) {
-        var notiDiv = $('#notificationhistory');
-        notiDiv.html(notiDiv.html() + from + ': ' + msg + '<br>');
-        $('.notification-history').scrollTop(notiDiv[0].scrollHeight);
-    }
-
      /** Clear the mission content */ 
     $scope.missionContent = '';
     
@@ -375,17 +369,9 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
         var sound = document.getElementById('play');
         sound.play();
     }
-
-     /** Function to get scores from score board*/ 
-    function getScores(scoreboard) {
-        var scores = [];
-        for (var i in scoreboard) {
-            scores.push({
-                name: scoreboard[i].name,
-                score: scoreboard[i].score
-            });
-        }
-        return scores;
+    $rootScope.playSound = function() {
+      var sound = document.getElementById('play');
+      sound.play();
     }
 
      /** web socket logic start here */
@@ -419,16 +405,6 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
                     $scope.$applyAsync();
                     $scope.playSound();
                     introJs().start()
-                } 
-                
-                else if (type == 'scores') {
-                    if (JSON.stringify(getScores($scope.scoreBoard)) != JSON.stringify(getScores(msg.scores))) {
-                        $scope.playSound();
-                    }
-
-                    $scope.scoreBoard = msg.scores;
-                    $scope.updateChatToList();
-                    $scope.$applyAsync();
                 } 
                 
                 else if (type == 'gameboard') {
