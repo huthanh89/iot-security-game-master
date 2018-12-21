@@ -8,14 +8,8 @@ function Controller($scope, $rootScope, $location, PlayerData){
 
   $scope.teamText      = '';
   $scope.editTeamIndex = {};
-
-  $scope.playerData = {}; // Data of individual player.
-
-  $scope.teamData = {
-    teams:       [], // List of team names.
-    teamPlayers: [], // List of players with teams.
-    players:     []  // List of players.
-  };
+  $scope.playerData    = PlayerData.playerData; // Data of individual player.
+  $scope.teamData      = PlayerData.teamData;   // Teams information.
 
   $scope.$watch(function(){
     return PlayerData.playerData;
@@ -28,6 +22,21 @@ function Controller($scope, $rootScope, $location, PlayerData){
   }, function(value){
     $scope.teamData = value;
   });
+  
+  $rootScope.$on('players', function(event, service) {
+    $scope.playerData = service.playerData;
+    $scope.teamData   = service.teamData;
+
+    // Call scope apply to ensure angular process the new model change.
+
+    $scope.$apply();
+
+    $rootScope.refreshGrid();
+  });
+
+  $scope.$watch('playerData', function(){
+    $rootScope.refreshGrid();
+  }, true);
 
   $scope.$watch('teamData', function(){
     $rootScope.refreshGrid();
@@ -55,6 +64,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
     });
     $scope.teamData.players     = unSelectedList;
     $scope.teamData.teamPlayers = $scope.teamData.teamPlayers.concat(selectedList);
+
   };
 
   // Move assigned played to unassigned list.
@@ -74,6 +84,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
       });
       $scope.teamData.teamPlayers = unSelectedList;
       $scope.teamData.players = $scope.teamData.players.concat(selectedList);
+
   }
 
   /** Function to select a player for moving team player list */
@@ -103,7 +114,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
           team.isSelected = false;
           $scope.selectedTeam = '';
       }
-
+      $rootScope.refreshGrid();
   }
 
   /** Function to add team*/
@@ -132,6 +143,11 @@ function Controller($scope, $rootScope, $location, PlayerData){
 
   /** Function to update team name*/
   $scope.updateTeamName = function(team, newName) {
+    
+    if (newName.length < 1) {
+      alert("Name cannot be empty.");
+      return;
+    }
 
     // Check for duplicate team name.
     // Exit function if true.
@@ -139,8 +155,9 @@ function Controller($scope, $rootScope, $location, PlayerData){
     let filterList = $scope.teamData.teams.filter(function(team) {
       return team.name == newName;
     })
+
     if (filterList.length > 0) {
-      alert("Duplicate Team name");
+      alert("Duplicate Team name.");
       return;
     }
 
@@ -160,9 +177,10 @@ function Controller($scope, $rootScope, $location, PlayerData){
   /** Function to remove team */
   $scope.removeTeam = function(team) {
 
-    let index = $scope.editTeamIndex;
-    var selectedList = [];
+    let index          = $scope.editTeamIndex;
+    var selectedList   = [];
     var unSelectedList = [];
+
     angular.forEach($scope.teamData.teamPlayers, function(tp) {
         if (team.name == tp.selectedTeam) {
             tp.selectedTeam = '';
@@ -177,7 +195,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
     $scope.teamData.players     = $scope.teamData.players.concat(selectedList);
   }
 
-  $scope.clickEdit = function(team, index) {
+  $scope.clickEditIcon = function(team, index) {
     $scope.teamText      = team.name;
     $scope.team          = team;
     $scope.editTeamIndex = index;

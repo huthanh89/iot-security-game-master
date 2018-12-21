@@ -36,8 +36,7 @@ angular.module('gameApp').factory('PlayerData', function($rootScope){
         service.teamData.players.push(player);
       }
 
-      $rootScope.$broadcast('players', service.playerData);
-
+      $rootScope.$broadcast('players', service);
     }
   }
   
