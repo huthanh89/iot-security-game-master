@@ -16,28 +16,46 @@ function Controller($scope, $rootScope){
   }];
   $scope.chatTo = $scope.chatToList[0];
 
+  /** Function to get scores from score board */
+  function getScores(scoreboard) {
+    var scores = [];
+    for (var i in scoreboard) {
+        scores.push({
+            name: scoreboard[i].name,
+            score: scoreboard[i].score
+        });
+    }
+    return scores;
+  }
+
   /** Function to update the chat to the list .*/
   $scope.updateChatToList = function() {
     if ($scope.chatToList.length == 2) {
         for (var t in $scope.scoreBoard) {
+
             var team = $scope.scoreBoard[t];
+
             for (var p in team.players) {
                 var player = team.players[p];
-                if (player.id == $scope.playerId) {
-                    $scope.teamName = team.name;
+                if (player.id == $rootScope.playerId) {
+                    $rootScope.teamName = team.name;
                     break;
                 }
             }
         }
 
+        // Append team members.
+
         $scope.chatToList.push({ disabled: true, id: '__', name: '--' });
         $scope.chatToList.push({ id: 'team', name: 'My Team' });
         for (var t in $scope.scoreBoard) {
             var team = $scope.scoreBoard[t];
-            if (team.name != $scope.teamName) {
+            if (team.name != $rootScope.teamName) {
                 $scope.chatToList.push({ id: 'team:' + team.name, name: team.name });
             }
         }
+
+        // Append other team members.
 
         $scope.chatToList.push({ disabled: true, id: '__', name: '--' });
         for (var t in $scope.scoreBoard) {
@@ -78,7 +96,11 @@ function Controller($scope, $rootScope){
     $scope.appendChat(msg.from, msg.to, msg.msg);
     $rootScope.playSound();
   });
-  
+
+  $rootScope.$on('ws:chatlist', function(event, msg) {
+    $scope.scoreBoard = msg.scores;
+    $scope.updateChatToList();
+  });
 }
 
 //------------------------------------------------------------------------------//

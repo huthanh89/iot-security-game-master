@@ -1,0 +1,19 @@
+<div class="row tools-container" data-step="4" data-intro="The Tools panel will display the necessary tools to complete the mission. If you are stuck on a particular mission, be sure to check here for hints. It may just lead you to the right path!" data-position='left'>
+    <div class="col-sm-12 tools-header">
+        <span class="chat-title">Tools</span>
+    </div>
+    <div class="row tools-content">
+        <div class="col-sm-4" ng-repeat="tool in currentTools" ng-click="goToUrl(tool.url);">
+            <span class="image-container">
+                    <img class="tools-image" ng-src="{{tool.img}}" />
+                    <span class="image-tooltip">
+                        <img class="tooltip-image" ng-src="{{tool.img}}"  href="#"  />
+                        <span class="tt-image-desc"><span class="desc-tag">{{tool.name}}</span>{{tool.desc}} </span>
+            </span>
+            </span>
+            <span class="image-action">
+                    {{tool.name}}
+                </span>
+        </div>
+    </div>
+</div>

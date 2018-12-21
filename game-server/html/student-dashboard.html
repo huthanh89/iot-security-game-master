@@ -41,7 +41,9 @@
     <script src="student/components/chat/chat.js"></script>
     <script src="student/components/notification/notification.js"></script>
     <script src="student/components/scoreboard/scoreboard.js"></script>
+    <script src="student/components/tools/tools.js"></script>
     <script src="student/components/navbar/navbar.js"></script>
+    <script src="student/components/gameboard/gameboard.js"></script>
 
     <script type="text/javascript">
         mxBasePath = 'vendor/src';
@@ -76,37 +78,15 @@
     <div class="st-dash-container">
         <div class="row">
             <div class="col-sm-3 left-cont">
-   
                 <scoreboard></scoreboard>
-                
                 <chat></chat>
-
             </div>
             <div class="col-sm-6 middle-cont" ng-show="!waiting">
-                <div id="gameboardContainer" style="overflow:hidden;" ng-init="initGameboard()" data-step="5" data-intro="This is the main GameBoard. This is where your missions, which are indicated by Circles, will be displayed. To start a mission, click on an unlocked Circle. Unlocked Circles are yellow, locked Circles are gray, and completed Circles are blue. And that's it! Click on the center circle of the rings to begin the game. Good luck and have fun!">
-                </div>
+                <gameboard></gameb>
             </div>
             <div class="col-sm-3" ng-show="!waiting">
                 <notification></notification>
-                <div class="row tools-container" data-step="4" data-intro="The Tools panel will display the necessary tools to complete the mission. If you are stuck on a particular mission, be sure to check here for hints. It may just lead you to the right path!" data-position='left'>
-                    <div class="col-sm-12 tools-header">
-                        <span class="chat-title">Tools</span>
-                    </div>
-                    <div class="row tools-content">
-                        <div class="col-sm-4" ng-repeat="tool in currentTools" ng-click="goToUrl(tool.url);">
-                            <span class="image-container">
-                                    <img class="tools-image" ng-src="{{tool.img}}" />
-                                    <span class="image-tooltip">
-                                        <img class="tooltip-image" ng-src="{{tool.img}}"  href="#"  />
-                                        <span class="tt-image-desc"><span class="desc-tag">{{tool.name}}</span>{{tool.desc}} </span>
-                            </span>
-                            </span>
-                            <span class="image-action">
-                                    {{tool.name}}
-                                </span>
-                        </div>
-                    </div>
-                </div>
+                <tools></tools>
             </div>
             <div class="col-sm-9" ng-show="waiting">
                 <div class="row">

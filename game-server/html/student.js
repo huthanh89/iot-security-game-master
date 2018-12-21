@@ -9,211 +9,9 @@ var app = angular.module('gameApp');
 //-------------------------------------------------------------------------------//
 
 app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $location, $sce, $timeout, WebSocketService) {
-
-     /** Intialize variables */
-    var LOCKED_COLOR      = '#d3d3d3';
-    var UNLOCKED_COLOR    = '#ffff00';
-    var COMPLETED_COLOR   = '#005073';
-    var IN_PROGRESS_COLOR = '#5cb85c';
-    
-    /** Function to intialize the game board chart(mx client chart) */
-    $scope.initGameboard = function() {
-        var container = document.getElementById('gameboardContainer');
-        // Checks if the browser is supported
-        if (!mxClient.isBrowserSupported()) {
-            // Displays an error message if the browser is not supported.
-            mxUtils.error('Browser is not supported!', 200, false);
-        } else {
-            // don't load other languages
-            mxResources.loadSpecialBundle = false;
-
-            var graph = new mxGraph(container);
-            $scope.gameboardView = graph;
-            $scope.gameboardView.data = { missions: {}, levels: {} };
-            graph.setEnabled(false);
-            graph.setCellsEditable(false);
-            graph.setAllowDanglingEdges(false);
-            graph.setAllowLoops(false);
-            graph.setCellsDeletable(false);
-            graph.setCellsCloneable(false);
-            graph.setCellsDisconnectable(false);
-            graph.setDropEnabled(false);
-            graph.setSplitEnabled(false);
-            graph.setCellsBendable(false);
-            graph.setConnectable(false);
-            graph.setPanning(false);
-            graph.setHtmlLabels(true);
-            graph.convertValueToString = function(cell) {
-                if (mxUtils.isNode(cell.value)) {
-                    return cell.getAttribute('label', '')
-                }
-                return cell.value;
-            };
-            graph.setTooltips(true);
-            graph.getTooltipForCell = function(cell) {
-                if (cell.getAttribute('mission')) {
-                    var missionId = cell.getAttribute('mission');
-                    var mission = $scope.gameboard.missions[missionId];
-                    if (!mission)
-                        return '';
-                    var text = 'Mission ' + missionId + ': ' + mission.name + '<br>';
-                    if (!mission.unlocked) {
-                        text += 'Locked';
-                    } else if (mission.done) {
-                        text += 'Completed by ' + mission.playerName;
-                    } else if (mission.playerName) {
-                        text += 'In progress by ' + mission.playerName;
-                    } else {
-                        text += 'Unlocked';
-                    }
-                    return text;
-                } else if (cell.getAttribute('level')) {
-                    return 'Level ' + cell.getAttribute('level');
-                }
-                return '';
-            }
-            // Needs to set a flag to check for dynamic style changes,
-            // that is, changes to styles on cells where the style was
-            // not explicitely changed using mxStyleChange
-            graph.getView().updateStyle = true;
-            // Overrides mxGraphModel.getStyle to return a specific style
-            // for edges that reflects their target terminal (in this case
-            // the strokeColor will be equal to the target's fillColor).
-            var previous = graph.model.getStyle;
-            graph.model.getStyle = function(cell) {
-                if (cell != null) {
-                    var style = previous.apply(this, arguments);
-                    if (cell.extraStyle)
-                        style += ';' + cell.extraStyle;
-                    return style;
-                }
-                return null;
-            };
-            new mxRubberband(graph);
-            var parent = graph.getDefaultParent();
-            var style = graph.getStylesheet().getDefaultVertexStyle();
-            style[mxConstants.STYLE_SHAPE] = mxConstants.SHAPE_ELLIPSE;
-            style[mxConstants.STYLE_PERIMETER] = mxPerimeter.EllipsePerimeter;
-            graph.addListener(mxEvent.CLICK, function(sender, evt) {
-                var e = evt.getProperty('event');
-                var cell = evt.getProperty('cell');
-                if (cell != null) {
-                    var missionId = cell.getAttribute('mission');
-                    if (missionId) {
-                        $scope.selectMission(missionId);
-                    }
-                    evt.consume();
-                }
-            });
-            graph.getModel().beginUpdate();
-            var xmlFile = "./gameBoard.xml";
-            try {
-                var doc = mxUtils.load(xmlFile);
-                var codec = new mxCodec(doc);
-                codec.decode(doc.getDocumentElement(), graph.getModel());
-                var cells = graph.getChildVertices();
-                for (var i in cells) {
-                    var cell = cells[i];
-                    if (cell.getAttribute('mission')) {
-                        cell.extraStyle = 'fillColor=' + LOCKED_COLOR;
-                        graph.data.missions[cell.getAttribute('mission')] = cell;
-                    } else if (cell.getAttribute('level')) {
-                        cell.extraStyle = 'strokeColor=' + LOCKED_COLOR;
-                        graph.data.levels[cell.getAttribute('level')] = cell;
-                    }
-                }
-            } finally {
-                graph.getModel().endUpdate();
-                $('#gameboardContainer > svg').css('width', '');
-                $('#gameboardContainer > svg').css('margin', 'auto');
-            }
-        }
-    }
     
     /** Intialize scope variables */
     window.scope = $scope;
-    $scope.tools = {
-        "nmap": {
-            "name": "Nmap",
-            "img": "images/nmap.png",
-            "url": "https://nmap.org",
-            "desc": "Nmap is a security tool used to scan and discover hosts and services on a computer network."
-        },
-        "wireshark": {
-            "name": "Wireshark",
-            "img": "images/2000px-Wireshark_icon.svg.png",
-            "url": "https://www.wireshark.org",
-            "desc": "Wireshark is the world's foremost and widely-used network protocol analyzer."
-        },
-        "usb2serial": {
-            "name": "USB to TTL Serial Cable",
-            "img": "images/usb2ttl.jpg",
-            "url": "https://www.adafruit.com/product/954",
-            "desc": "A USB to TTL serial converter cable to provide connectivity between USB and serial UART interfaces on your Pi."
-        },
-        "uart_gpio": {
-            "name": "UART GPIO pins",
-            "img": "images/UART GPIO pins.png",
-            "url": "images/UART GPIO pins.png",
-            "desc": "A USB to TTL serial cable to connect to your Raspberry Pi's serial console port."
-        },
-        "putty": {
-            "name": "PuTTY",
-            "img": "images/Putty.png",
-            "url": "https://www.putty.org/",
-            "desc": "PuTTY is a free and open-source terminal emulator, serial console and network file transfer application."
-        },
-        "kali": {
-            "name": "Kali Linux VM",
-            "img": "images/kali-icon.png",
-            "url": "https://www.kali.org/",
-            "desc": "An open source Debian-derived Linux distribution designed for digital forensics and penetration testing."
-        },
-        "wget": {
-            "name": "Wget Command",
-            "img": "images/wget.png",
-            "url": "https://www.gnu.org/software/wget/",
-            "desc": "A software package used to retrieve contents from web servers using HTTP, HTTPS, FTP, and FTPS."
-        },
-        "binwalk": {
-            "name": "Binwalk",
-            "img": "images/binwalk.png",
-            "url": "https://tools.kali.org/forensics/binwalk",
-            "desc": "A tool for searching a given binary image for embedded files and executable code. Designed for identifying files and code embedded inside of firmware images."
-        },
-        "sudo": {
-            "name": "Sudo",
-            "img": "images/sudo.png",
-            "url": "https://www.sudo.ws/",
-            "desc": "Allows a user to run commands with the security privileges of another user, by default the superuser."
-        },
-        "john": {
-            "name": "John the Ripper",
-            "img": "images/johntheripper1_design.png",
-            "url": "https://www.openwall.com/john/",
-            "desc": "A password cracking tool designed to detect weak passwords."
-        },
-        "ettercap": {
-            "name": "Ettercap",
-            "img": "images/ettercap.PNG",
-            "url": "http://www.ettercap-project.org/",
-            "desc": "A security tool used for man-in-the-middle attacks on a LAN."
-        },
-        "webbrowser": {
-            "name": "webbrowser",
-            "img": "images/webbrowser.jpg",
-            "url": "https://www.mozilla.org/en-US/firefox/new/",
-            "desc": "A web browser is a software application for accessing information on the World Wide Web."
-        },
-        "sqlmap": {
-            "name": "SQLmap",
-            "img": "images/sqlmap.png",
-            "url": "http://sqlmap.org/",
-            "desc": "sqlmap is an open source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking over of database servers."
-        }
-    };
-    $scope.currentTools = [];
-    $scope.gameboard = {};
     $scope.waiting = true;
     $scope.missionContentShown = false;
 
@@ -365,10 +163,7 @@ app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $
     }
 
     /** Function to play beep sound */ 
-    $scope.playSound = function() {
-        var sound = document.getElementById('play');
-        sound.play();
-    }
+
     $rootScope.playSound = function() {
       var sound = document.getElementById('play');
       sound.play();
@@ -395,48 +190,17 @@ app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $
               var msg = JSON.parse(event.data);
                 var type = msg['type'];
 
+
+                console.log('>>>>>>>>>>>>>>>>>>', msg.type);
+
                 if (type == 'login') {
+                  console.log('ws; LOGGGGIIINNN', msg.id);
                   $scope.playerId = msg.id;
-                  $scope.teamName = null;
-                } 
-                
-                else if (type == 'started') {
-                    $scope.waiting = false;;
-                    $scope.$applyAsync();
-                    $scope.playSound();
-                    introJs().start()
-                } 
-                
-                else if (type == 'gameboard') {
-                    $scope.gameboard = msg.gameboard[$scope.teamName];
-                    for (var id in $scope.gameboard.missions) {
-                        var mission = $scope.gameboard.missions[id];
-                        var missionView = $scope.gameboardView.data.missions[id];
-                        if (missionView) {
-                            if (!mission.unlocked) {
-                                missionView.extraStyle = 'fillColor=' + LOCKED_COLOR;
-                            } else if (mission.done) {
-                                missionView.extraStyle = 'fillColor=' + COMPLETED_COLOR;
-                            } else if (mission.playerName) {
-                                missionView.extraStyle = 'fillColor=' + IN_PROGRESS_COLOR;
-                            } else {
-                                missionView.extraStyle = 'fillColor=' + UNLOCKED_COLOR;
-                            }
-                        }
-                    }
-                    var levelNum;
-                    for (levelNum = 0; levelNum < $scope.gameboard.currentRing; levelNum++) {
-                        $scope.gameboardView.data.levels[levelNum].extraStyle = 'strokeColor=' + COMPLETED_COLOR;
-                    }
-                    if ($scope.gameboardView.data.levels[levelNum])
-                        $scope.gameboardView.data.levels[levelNum].extraStyle = 'strokeColor=' + IN_PROGRESS_COLOR;
-
-                    $scope.gameboardView.view.refresh();
-
-                    $scope.$applyAsync();
+                  $rootScope.teamName = null;
                 } 
                 
                 else if (type == 'stateData') {
+                  console.log('stateData');
                     $scope.missionContent = $sce.trustAsHtml(msg.text);
 
                     $scope.currentTools = [];
@@ -521,7 +285,7 @@ app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $
     
     // Connect to Web Socket.
     
-    connectToWS();
+//    connectToWS();
     WebSocketService.connectToWS();
 
 });
