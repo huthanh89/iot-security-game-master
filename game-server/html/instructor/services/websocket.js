@@ -33,6 +33,8 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, Playe
           var msg  = JSON.parse(event.data);
           var type = msg['type'];
 
+          console.log(msg);
+
           if (type == 'player') {
               PlayerData.updatePlayerData(msg);
           } 

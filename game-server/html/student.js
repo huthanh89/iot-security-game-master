@@ -326,61 +326,6 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
             $window.open(url, "_blank");
     };
 
-    /** Intialize scope variables. */
-    $scope.chatHistory = '';
-    $scope.chatMsg = '';
-    $scope.chatToList = [{
-        id: 'everyone',
-        name: 'Everyone'
-    }, {
-        id: 'instructor',
-        name: 'Instructor'
-    }];
-    $scope.chatTo = $scope.chatToList[0];
-    
-    /** Function to update the chat to the list .*/
-    $scope.updateChatToList = function() {
-        if ($scope.chatToList.length == 2) {
-            for (var t in $scope.scoreBoard) {
-                var team = $scope.scoreBoard[t];
-                for (var p in team.players) {
-                    var player = team.players[p];
-                    if (player.id == $scope.playerId) {
-                        $scope.teamName = team.name;
-                        break;
-                    }
-                }
-            }
-
-            $scope.chatToList.push({ disabled: true, id: '__', name: '--' });
-            $scope.chatToList.push({ id: 'team', name: 'My Team' });
-            for (var t in $scope.scoreBoard) {
-                var team = $scope.scoreBoard[t];
-                if (team.name != $scope.teamName) {
-                    $scope.chatToList.push({ id: 'team:' + team.name, name: team.name });
-                }
-            }
-
-            $scope.chatToList.push({ disabled: true, id: '__', name: '--' });
-            for (var t in $scope.scoreBoard) {
-                var team = $scope.scoreBoard[t];
-                for (var p in team.players) {
-                    var player = team.players[p];
-                    if (player.id != $scope.playerId) {
-                        $scope.chatToList.push({ id: player.id, name: player.name });
-                    }
-                }
-            }
-        }
-    };
-
-    /** Function to append chat to the chat view */
-    
-    $scope.appendChat = function(from, to, msg) {
-        var chatDiv = $('#chathistory');
-        chatDiv.html(chatDiv.html() + '<br>' + from + ' to ' + to + ': ' + msg);
-        $('.chat-history').scrollTop(chatDiv[0].scrollHeight);
-    }
 
     /** Function to append notification to the notification view*/
     $scope.appendNotification = function(from, msg) {
@@ -388,20 +333,6 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
         notiDiv.html(notiDiv.html() + from + ': ' + msg + '<br>');
         $('.notification-history').scrollTop(notiDiv[0].scrollHeight);
     }
-
-    /** Function to send the chat */
-    $scope.sendChat = function() {
-        var msg = $scope.chatMsg;
-        $scope.chatMsg = '';
-        if (!msg)
-            return;
-        $scope.appendChat('Me', $scope.chatTo.name, msg);
-        ws.send(JSON.stringify({
-            type: 'chat',
-            to: $scope.chatTo.id,
-            msg: msg
-        }));
-    };
 
      /** Clear the mission content */ 
     $scope.missionContent = '';
@@ -465,25 +396,7 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
     function connectToWS() {
         ws = new WebSocket(url);
         $scope.ws = ws;
-        ws.onopen = function() {
 
-            // TODO: remove debug
-            $scope.playerName = 'sally';
-
-            var name = $scope.playerName;
-            while (name == null || name == "") {
-                name = prompt("Name:");
-            }
-            $scope.playerName = name;
-
-            ws.send(JSON.stringify({
-                type: 'login',
-                name: name,
-                ip: $location.search().ip
-            }));
-
-            $scope.$applyAsync();
-        };
         ws.onclose = function() {
             setTimeout(function() {
                 connectToWS();
@@ -492,24 +405,23 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
         };
         ws.onmessage = function(event) {
             try {
-                var msg = JSON.parse(event.data);
+
+              var msg = JSON.parse(event.data);
                 var type = msg['type'];
+
                 if (type == 'login') {
-                    $scope.playerId = msg.id;
-                    $scope.teamName = null;
-                } else if (type == 'chat') {
-                    if (msg.to == '__notification__') {
-                        $scope.appendNotification(msg.from, msg.msg);
-                    } else {
-                        $scope.appendChat(msg.from, msg.to, msg.msg);
-                    }
-                    $scope.playSound();
-                } else if (type == 'started') {
+                  $scope.playerId = msg.id;
+                  $scope.teamName = null;
+                } 
+                
+                else if (type == 'started') {
                     $scope.waiting = false;;
                     $scope.$applyAsync();
                     $scope.playSound();
                     introJs().start()
-                } else if (type == 'scores') {
+                } 
+                
+                else if (type == 'scores') {
                     if (JSON.stringify(getScores($scope.scoreBoard)) != JSON.stringify(getScores(msg.scores))) {
                         $scope.playSound();
                     }
@@ -517,7 +429,9 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
                     $scope.scoreBoard = msg.scores;
                     $scope.updateChatToList();
                     $scope.$applyAsync();
-                } else if (type == 'gameboard') {
+                } 
+                
+                else if (type == 'gameboard') {
                     $scope.gameboard = msg.gameboard[$scope.teamName];
                     for (var id in $scope.gameboard.missions) {
                         var mission = $scope.gameboard.missions[id];
@@ -544,7 +458,9 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
                     $scope.gameboardView.view.refresh();
 
                     $scope.$applyAsync();
-                } else if (type == 'stateData') {
+                } 
+                
+                else if (type == 'stateData') {
                     $scope.missionContent = $sce.trustAsHtml(msg.text);
 
                     $scope.currentTools = [];
@@ -594,16 +510,24 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
                         $('.disable-answers-true button').prop('disabled', true);
                     }, 500);
 
-                } else if (type == 'incorrectFlag') {
+                } 
+                
+                else if (type == 'incorrectFlag') {
                     $scope.openModal("Error", 'Incorrect Flag');
 
-                } else if (type == 'error') {
+                } 
+                
+                else if (type == 'error') {
                     $scope.openModal("Error", msg.msg);
 
-                } else if (type == 'levelsCompleted') {
+                } 
+                
+                else if (type == 'levelsCompleted') {
                     $scope.openModal("Success", 'Congratulations! Your team has completed all levels.');
 
-                } else if (type == 'endgame') {
+                } 
+                
+                else if (type == 'endgame') {
                     var winner = msg['winner'];
                     if ($scope.loggedInUser.username == winner) {
                         $scope.missionCompleted = true;
@@ -613,7 +537,8 @@ app.controller('studentCtrl', function($scope, $window, $uibModal, $location, $s
                         $scope.$applyAsync();
                     }
                 }
-            } catch (e) {
+            } 
+            catch (e) {
             }
         };
     }

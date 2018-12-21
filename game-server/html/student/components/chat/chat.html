@@ -1,0 +1,13 @@
+<div class="col-sm-12 chat-content">
+  <div class="form-group">
+      <textarea class="form-control" rows="1" id="comment" ng-model="chatMsg" ng-keyup="$event.keyCode == 13 ? sendChat() : null"></textarea>
+      <span class="inst-chat-header">
+              <span class="chat-to">To:
+                  <select ng-model="chatTo">
+                      <option ng-repeat="to in chatToList" ng-value="to" ng-disabled="to.disabled">{{to.name}}</option>
+                  </select>
+              </span>
+      <button class="btn btn-success" style="float:right; margin-top: 5px" ng-click="sendChat()">Send</button>
+      </span>
+  </div>
+</div>

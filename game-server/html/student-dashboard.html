@@ -21,8 +21,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <script src="https://unpkg.com/hammerjs@2.0.8/hammer.min.js"></script>
-    <script src="https://unpkg.com/muuri@0.7.1/dist/muuri.min.js"></script>
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -30,7 +28,9 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.core.js"></script>
     
-    <script src="https://unpkg.com/web-animations-js@2.3.1/web-animations.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/muuri/0.5.4/muuri.min.js"></script>
 
     <!–– Application Scripts ––>
 
@@ -38,7 +38,8 @@
     <script src="app.js"></script>
     <script src="student.js"></script>
     <script src="student/services/websocket.js"></script>
-
+    <script src="student/components/chat/chat.js"></script>
+    
     <script type="text/javascript">
         mxBasePath = 'vendor/src';
     </script>
@@ -49,6 +50,13 @@
 </head>
 <body ng-app="gameApp" ng-controller="studentCtrl" style="background-color:#fff; overflow-x: hidden">
     <audio id="play" src="images/chatSound.wav" autostart="false"></audio>
+
+
+
+
+    <!–– TODO: remove old Scripts ––>
+
+
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10 st-head text-center">
@@ -95,6 +103,7 @@
                     </div>
                 </div>
                 <div class="row chat-board st-chat-board" data-step="2" data-intro="In the Chat panel, you can send messages to other players. Several channels are available, such as a global chat and team chat.  You can also send messages directly to specific players or your instructor. Remember to keep your communications civil!"
+
                     data-position='right'>
                     <div class="col-sm-12 chat-header">
                         <span class="chat-title">Chat</span>
@@ -104,20 +113,12 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-12 chat-content">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="1" id="comment" ng-model="chatMsg" ng-keyup="$event.keyCode == 13 ? sendChat() : null"></textarea>
-                            <span class="inst-chat-header">
-                                    <span class="chat-to">To:
-                                        <select ng-model="chatTo">
-                                            <option ng-repeat="to in chatToList" ng-value="to" ng-disabled="to.disabled">{{to.name}}</option>
-                                        </select>
-                                    </span>
-                            <button class="btn btn-success" style="float:right; margin-top: 5px" ng-click="sendChat()">Send</button>
-                            </span>
 
-                        </div>
-                    </div>
+
+                    <chat></chat>
+
+
+
                 </div>
             </div>
             <div class="col-sm-6 middle-cont" ng-show="!waiting">

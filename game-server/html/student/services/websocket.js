@@ -44,24 +44,27 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
       };
       ws.onmessage = function(event) {
           try {
+
               var msg = JSON.parse(event.data);
               var type = msg['type'];
+            
               if (type == 'login') {
                   $rootScope.playerId = msg.id;
                   $rootScope.teamName = null;
-              } else if (type == 'chat') {
-                  if (msg.to == '__notification__') {
-                      $rootScope.appendNotification(msg.from, msg.msg);
-                  } else {
-                      $rootScope.appendChat(msg.from, msg.to, msg.msg);
-                  }
-                  $rootScope.playSound();
-              } else if (type == 'started') {
+              } 
+              
+              else if (type == 'chat') {
+                $rootScope.$broadcast('ws:chat', msg);
+              } 
+              
+              else if (type == 'started') {
                   $rootScope.waiting = false;;
                   $rootScope.$applyAsync();
                   $rootScope.playSound();
                   introJs().start()
-              } else if (type == 'scores') {
+              } 
+              
+              else if (type == 'scores') {
                   if (JSON.stringify(getScores($rootScope.scoreBoard)) != JSON.stringify(getScores(msg.scores))) {
                       $rootScope.playSound();
                   }
@@ -69,7 +72,9 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
                   $rootScope.scoreBoard = msg.scores;
                   $rootScope.updateChatToList();
                   $rootScope.$applyAsync();
-              } else if (type == 'gameboard') {
+              } 
+              
+              else if (type == 'gameboard') {
                   $rootScope.gameboard = msg.gameboard[$rootScope.teamName];
                   for (var id in $rootScope.gameboard.missions) {
                       var mission = $rootScope.gameboard.missions[id];
@@ -96,7 +101,9 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
                   $rootScope.gameboardView.view.refresh();
 
                   $rootScope.$applyAsync();
-              } else if (type == 'stateData') {
+              } 
+              
+              else if (type == 'stateData') {
                   $rootScope.missionContent = $sce.trustAsHtml(msg.text);
 
                   $rootScope.currentTools = [];
@@ -146,16 +153,24 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
                       $('.disable-answers-true button').prop('disabled', true);
                   }, 500);
 
-              } else if (type == 'incorrectFlag') {
+              } 
+              
+              else if (type == 'incorrectFlag') {
                   $rootScope.openModal("Error", 'Incorrect Flag');
 
-              } else if (type == 'error') {
+              } 
+              
+              else if (type == 'error') {
                   $rootScope.openModal("Error", msg.msg);
 
-              } else if (type == 'levelsCompleted') {
+              } 
+              
+              else if (type == 'levelsCompleted') {
                   $rootScope.openModal("Success", 'Congratulations! Your team has completed all levels.');
 
-              } else if (type == 'endgame') {
+              } 
+              
+              else if (type == 'endgame') {
                   var winner = msg['winner'];
                   if ($rootScope.loggedInUser.username == winner) {
                       $rootScope.missionCompleted = true;
@@ -165,8 +180,13 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
                       $rootScope.$applyAsync();
                   }
               }
-          } catch (e) {
+
+          } 
+          
+          catch (e) {
+          
           }
+
       };
 
   }
