@@ -29,11 +29,15 @@ gulp.task('default',(cb) =>{
 // Watch
 //-----------------------------------------------------------------------------//
 
+gulp.watch('instructor.css',            gulp.series('reload'));
 gulp.watch('instructor-dashboard.html', gulp.series('reload'));
-gulp.watch('instructor/**/*js',         gulp.series('reload'));
+gulp.watch('instructor/**/*.js',        gulp.series('reload'));
+gulp.watch('instructor/**/*.html',      gulp.series('reload'));
 gulp.watch('instructor.js',             gulp.series('reload'));
+gulp.watch('student.css',               gulp.series('reload'));
 gulp.watch('student-dashboard.html',    gulp.series('reload'));
 gulp.watch('student.js',                gulp.series('reload'));
-gulp.watch('student/**/*js',            gulp.series('reload'));
+gulp.watch('student/**/*.js',           gulp.series('reload'));
+gulp.watch('student/**/*.html',         gulp.series('reload'));
 
 //-----------------------------------------------------------------------------//

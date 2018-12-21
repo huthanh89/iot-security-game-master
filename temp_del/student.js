@@ -343,6 +343,7 @@ app.controller('studentCtrl', ['$scope', '$window', '$uibModal', '$location', '$
     
     /** Function to update the chat to the list .*/
     $scope.updateChatToList = function() {
+      
         if ($scope.chatToList.length == 2) {
             for (var t in $scope.scoreBoard) {
                 var team = $scope.scoreBoard[t];

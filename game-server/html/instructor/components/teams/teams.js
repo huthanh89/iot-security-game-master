@@ -29,6 +29,10 @@ function Controller($scope, $rootScope, $location, PlayerData){
     $scope.teamData = value;
   });
 
+  $scope.$watch('teamData', function(){
+    $rootScope.refreshGrid();
+  }, true);
+
   // Move players to a team.
 
   $scope.moveLeft = function() {
@@ -123,6 +127,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
     else {
         alert("Enter Team Name");
     }
+
   }
 
   /** Function to update team name*/
@@ -149,6 +154,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
           player.selectedTeam = team.name;
         }
     });
+
   }
 
   /** Function to remove team */
@@ -176,7 +182,7 @@ function Controller($scope, $rootScope, $location, PlayerData){
     $scope.team          = team;
     $scope.editTeamIndex = index;
   }
-
+  
   // Append modal to body to fix backdrop issue.
 
   $scope.showModal = function(type){

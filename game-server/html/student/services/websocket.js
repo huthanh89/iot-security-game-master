@@ -19,7 +19,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
       ws.onopen = function() {
 
         // TODO: remove debug
-        $rootScope.playerName = 'sally';
+       // $rootScope.playerName = 'sally';
 
         var name = $rootScope.playerName;
         while (name == null || name == "") {

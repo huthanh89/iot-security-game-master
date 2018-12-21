@@ -19,11 +19,11 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, Playe
       ws.onopen = function() {};
       
       ws.onclose = function() {
-          if (reconnect) {
-              setTimeout(function() {
-                  connectToWS();
-              }, 2000);
-          }
+        if (reconnect) {
+          setTimeout(function() {
+            connectToWS();
+          }, 2000);
+        }
       };
 
       ws.onmessage = function(event) {
@@ -32,8 +32,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, Playe
 
           var msg  = JSON.parse(event.data);
           var type = msg['type'];
-
-          console.log(msg);
 
           if (type == 'player') {
               PlayerData.updatePlayerData(msg);

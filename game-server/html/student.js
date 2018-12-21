@@ -190,11 +190,7 @@ app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $
               var msg = JSON.parse(event.data);
                 var type = msg['type'];
 
-
-                console.log('>>>>>>>>>>>>>>>>>>', msg.type);
-
                 if (type == 'login') {
-                  console.log('ws; LOGGGGIIINNN', msg.id);
                   $scope.playerId = msg.id;
                   $rootScope.teamName = null;
                 } 

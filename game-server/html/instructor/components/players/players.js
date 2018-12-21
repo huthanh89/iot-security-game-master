@@ -2,15 +2,18 @@
 // Controller
 //-------------------------------------------------------------------------------//
 
-function Controller($scope, PlayerData){
+function Controller($scope, $rootScope, PlayerData){
 
-  $scope.playerData = {};
+  $scope.players = _.values(PlayerData.playerData);
 
-  $scope.$watch(function(){
-    return PlayerData.playerData;
-  }, function(newVal, oldVal){
-    $scope.playerData = newVal;
+  $rootScope.$on('players', function(event, playerData) {
+    $scope.players = _.values(playerData);
+
+    // Call scope apply to ensure angular process the new model change.
+
+    $scope.$apply();
   });
+
 }
 
 //------------------------------------------------------------------------------//
