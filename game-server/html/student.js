@@ -8,7 +8,7 @@ var app = angular.module('gameApp');
 // Main Controller
 //-------------------------------------------------------------------------------//
 
-app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $location, $sce, $timeout, WebSocketService) {
+app.controller('studentCtrl', function($scope, $rootScope, $uibModal, $sce, $timeout, WebSocketService) {
     
     /** Intialize scope variables */
     window.scope = $scope;
@@ -18,70 +18,14 @@ app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $
     // TODO: Remove.
     $scope.waiting = false;
     
-    /** Function to select mission */
-    $scope.selectMission = function(missionId) {
-        $scope.selectedMission = $scope.gameboard.missions[missionId];
-        if (!$scope.selectedMission) {
-            $scope.openModal("Warning", 'Mission not available.');
-            return;
-        }
-        if (!$scope.selectedMission.unlocked) {
-            $scope.openModal("Warning", 'Mission is locked.');
-            return;
-        }
-        var showContent = false;
-        if ($scope.selectedMission.playerId) {
-            ws.send(JSON.stringify({
-                type: 'selectMission',
-                mission: missionId
-            }));
-            showContent = true;
-        }else {
-
-            $scope.missionContentShown = true;
-            var modalInstance = $uibModal.open({
-                animation: true,
-                scope: $scope,
-                templateUrl: './missionModel.html',
-                controller: function($uibModalInstance) {
-                    $ctrl = this;
-                    $ctrl.showContent = showContent;
-                    $ctrl.ok = function() {
-                        ws.send(JSON.stringify({
-                            type: 'selectMission',
-                            mission: missionId
-                        }));
-                        $ctrl.showContent = true;
-                        $uibModalInstance.dismiss('ok');
-                        $scope.missionContentShown = false;
-                    };
-
-                    $ctrl.cancel = function() {
-                        $uibModalInstance.dismiss('cancel');
-                        $scope.missionContentShown = false;
-                    };
-
-                    $ctrl.close = function() {
-                        $uibModalInstance.close('saved');
-                        $scope.missionContentShown = false;
-                    }
-
-                },
-                controllerAs: 'ctrl',
-                windowClass: 'mission-modal-window',
-                size: 'md',
-                backdrop: false
-            });
-
-            modalInstance.result.then(function(response) {}, function() {});
-        }
-    };
-
     /** Function to open modal pop up.
      @param title is heading of the modal
      @param content is  content of modal
     */
     $scope.openModal = function(title, content) {
+
+        console.log('open modal');
+
         var template = $('.modal-template').html();
         template = template.replace('[[name]]', title).replace('[[description]]', content);
         $scope.isSuccess = false;
@@ -116,14 +60,6 @@ app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $
         modalInstance.result.then(function(response) {
         }, function() {
         });
-    };
-
-    /** Function to open  window.
-     @param  url is  window location url
-    */
-    $scope.goToUrl = function(url) {
-        if (url)
-            $window.open(url, "_blank");
     };
 
      /** Clear the mission content */ 
@@ -178,12 +114,6 @@ app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $
         ws = new WebSocket(url);
         $scope.ws = ws;
 
-        ws.onclose = function() {
-            setTimeout(function() {
-                connectToWS();
-            }, 2000);
-            $scope.$applyAsync();
-        };
         ws.onmessage = function(event) {
             try {
 
@@ -248,6 +178,8 @@ app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $
 
                 } 
                 
+
+                
                 else if (type == 'incorrectFlag') {
                     $scope.openModal("Error", 'Incorrect Flag');
 
@@ -281,7 +213,6 @@ app.controller('studentCtrl', function($scope, $rootScope, $window, $uibModal, $
     
     // Connect to Web Socket.
     
-//    connectToWS();
     WebSocketService.connectToWS();
 
 });

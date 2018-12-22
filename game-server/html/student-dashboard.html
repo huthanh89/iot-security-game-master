@@ -60,21 +60,6 @@
 
     <!–– TODO: remove old Scripts ––>
 
-
-    <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10 st-head text-center">
-            <span class="btn btn-success" ng-show="!waiting" style="float:left; margin-top: 4px" href="javascript:void(0);" onclick="javascript:introJs().start();">?</span>
-            <span>Student</span>
-            <span class="user">
-				<span>{{playerName}}</span>
-            <span ng-if="teamName"> - {{teamName}}</span>
-            <span class="green-dot" ng-if="ws && ws.readyState == 1"></span>
-            <span class="red-dot" ng-if="!ws || ws.readyState != 1"></span>
-            </span>
-        </div>
-        <div class="col-sm-1"></div>
-    </div>
     <div class="st-dash-container">
         <div class="row">
             <div class="col-sm-3 left-cont">
@@ -88,21 +73,13 @@
                 <notification></notification>
                 <tools></tools>
             </div>
-            <div class="col-sm-9" ng-show="waiting">
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-10 outer-table-cont">
-                        <div class="table-content student-waiting">
-                            <div class="blink">
-                                <span>Waiting for Instructor...</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-1"></div>
-                </div>
-            </div>
+            
+            <waiting></waiting>
+
         </div>
     </div>
+
+
     <div class="modal-template" style="display:none">
         <div class="modal-header" ng-class="{'green-header':isSuccess}">
             <h5 class="modal-title" id="missionModalLabel">[[name]]

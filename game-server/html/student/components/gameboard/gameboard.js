@@ -2,7 +2,7 @@
 // Controller
 //-------------------------------------------------------------------------------//
 
-function Controller($scope, $rootScope){
+function Controller($scope, $rootScope, $uibModal){
   
   $scope.gameboard = {
     missions: []

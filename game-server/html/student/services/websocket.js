@@ -22,9 +22,15 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
        // $rootScope.playerName = 'sally';
 
         var name = $rootScope.playerName;
+
+        /*
         while (name == null || name == "") {
             name = prompt("Name:");
         }
+        */
+        name = 'sally';
+
+
         $rootScope.playerName = name;
 
         ws.send(JSON.stringify({
@@ -81,7 +87,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               } 
               
               else if (type == 'stateData') {
-                console.log('stateData');
+                console.log('stateData not implemented');
               } 
               
               else if (type == 'incorrectFlag') {
