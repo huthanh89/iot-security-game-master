@@ -218,6 +218,7 @@ function Controller($scope, $rootScope, $uibModal){
     $scope.gameboardView.view.refresh();
 
     $scope.$applyAsync();
+    
   });
   
   $rootScope.$on('ws:stateData', function(event, msg) {

@@ -18,18 +18,12 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
 
       ws.onopen = function() {
 
-        // TODO: remove debug
-       // $rootScope.playerName = 'sally';
-
         var name = $rootScope.playerName;
+        name = 'sally';
 
-        /*
         while (name == null || name == "") {
             name = prompt("Name:");
         }
-        */
-        name = 'sally';
-
 
         $rootScope.playerName = name;
 
@@ -87,7 +81,9 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               } 
               
               else if (type == 'stateData') {
-                console.log('stateData not implemented');
+                console.log('stateData not implemented', msg);
+                $rootScope.$broadcast('ws:tools', msg);
+                $rootScope.$broadcast('ws:mission', msg);
               } 
               
               else if (type == 'incorrectFlag') {

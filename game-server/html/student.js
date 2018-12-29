@@ -19,8 +19,8 @@ app.controller('studentCtrl', function($scope, $rootScope, $uibModal, $sce, $tim
     $scope.waiting = false;
     
     /** Function to open modal pop up.
-     @param title is heading of the modal
-     @param content is  content of modal
+    @param title is heading of the modal
+    @param content is  content of modal
     */
     $scope.openModal = function(title, content) {
 
@@ -99,10 +99,11 @@ app.controller('studentCtrl', function($scope, $rootScope, $uibModal, $sce, $tim
     }
 
     /** Function to play beep sound */ 
+    //TODO: enable sound for production build.
 
     $rootScope.playSound = function() {
-      var sound = document.getElementById('play');
-      sound.play();
+      //var sound = document.getElementById('play');
+      //sound.play();
     }
 
      /** web socket logic start here */
@@ -120,20 +121,11 @@ app.controller('studentCtrl', function($scope, $rootScope, $uibModal, $sce, $tim
               var msg = JSON.parse(event.data);
                 var type = msg['type'];
 
-                if (type == 'login') {
-                  $scope.playerId = msg.id;
-                  $rootScope.teamName = null;
-                } 
-                
-                else if (type == 'stateData') {
-                  console.log('stateData');
-                    $scope.missionContent = $sce.trustAsHtml(msg.text);
+                if (type == 'stateData') {
 
-                    $scope.currentTools = [];
-                    for (var i in msg.tools) {
-                        var tool = msg.tools[i];
-                        $scope.currentTools.push($scope.tools[tool]);
-                    }
+                    console.log('stateData');
+  
+                    $scope.missionContent = $sce.trustAsHtml(msg.text);
 
                     $scope.selectedMission = $scope.gameboard.missions[msg.missionId];
                     if (!$scope.missionContentShown) {
@@ -177,34 +169,7 @@ app.controller('studentCtrl', function($scope, $rootScope, $uibModal, $sce, $tim
                     }, 500);
 
                 } 
-                
 
-                
-                else if (type == 'incorrectFlag') {
-                    $scope.openModal("Error", 'Incorrect Flag');
-
-                } 
-                
-                else if (type == 'error') {
-                    $scope.openModal("Error", msg.msg);
-
-                } 
-                
-                else if (type == 'levelsCompleted') {
-                    $scope.openModal("Success", 'Congratulations! Your team has completed all levels.');
-
-                } 
-                
-                else if (type == 'endgame') {
-                    var winner = msg['winner'];
-                    if ($scope.loggedInUser.username == winner) {
-                        $scope.missionCompleted = true;
-                        $scope.$applyAsync();
-                    } else {
-                        $scope.otherMissionCompleted = true;
-                        $scope.$applyAsync();
-                    }
-                }
             } 
             catch (e) {
             }
