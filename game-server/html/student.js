@@ -11,57 +11,12 @@ var app = angular.module('gameApp');
 app.controller('studentCtrl', function($scope, $rootScope, $uibModal, $sce, $timeout, WebSocketService) {
     
     /** Intialize scope variables */
-    window.scope = $scope;
     $scope.waiting = true;
     $scope.missionContentShown = false;
 
     // TODO: Remove.
     $scope.waiting = false;
     
-    /** Function to open modal pop up.
-    @param title is heading of the modal
-    @param content is  content of modal
-    */
-    $scope.openModal = function(title, content) {
-
-        console.log('open modal');
-
-        var template = $('.modal-template').html();
-        template = template.replace('[[name]]', title).replace('[[description]]', content);
-        $scope.isSuccess = false;
-        if (title === 'Success') {
-            $scope.isSuccess = true;
-        }
-        var modalInstance = $uibModal.open({
-            animation: true,
-            template: template,
-            scope: $scope,
-            controller: function($uibModalInstance) {
-                $ctrl = this;
-                $ctrl.ok = function() {
-                    $ctrl.close();
-                };
-
-                $ctrl.cancel = function() {
-                    $uibModalInstance.dismiss('cancel');
-                };
-
-                $ctrl.close = function() {
-                    $uibModalInstance.close('saved');
-                }
-
-            },
-            controllerAs: 'ctrl',
-            windowClass: 'alert-modal-window',
-            size: 'sm',
-            backdrop: 'static'
-        });
-
-        modalInstance.result.then(function(response) {
-        }, function() {
-        });
-    };
-
      /** Clear the mission content */ 
     $scope.missionContent = '';
     
@@ -112,7 +67,9 @@ app.controller('studentCtrl', function($scope, $rootScope, $uibModal, $sce, $tim
     var ws = null;
 
     function connectToWS() {
-        ws = new WebSocket(url);
+
+      ws = new WebSocket(url);
+
         $scope.ws = ws;
 
         ws.onmessage = function(event) {
@@ -123,7 +80,7 @@ app.controller('studentCtrl', function($scope, $rootScope, $uibModal, $sce, $tim
 
                 if (type == 'stateData') {
 
-                    console.log('stateData');
+                    console.log('stateData------');
   
                     $scope.missionContent = $sce.trustAsHtml(msg.text);
 
@@ -177,9 +134,9 @@ app.controller('studentCtrl', function($scope, $rootScope, $uibModal, $sce, $tim
     }
     
     // Connect to Web Socket.
-    
     WebSocketService.connectToWS();
-
+    
+    connectToWS();
 });
 
 //-------------------------------------------------------------------------------//

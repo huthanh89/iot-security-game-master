@@ -88,10 +88,11 @@ function Controller($scope, $rootScope){
   $scope.currentTools = [];
 
   $rootScope.$on('ws:tools', function(event, msg) {
+    $scope.currentTools = [];
     msg.tools.forEach(function(tool){
       $scope.currentTools.push($scope.tools[tool]);
     });
-    $scope.$applyAsync();
+    $scope.$digest();
   });
   
 }

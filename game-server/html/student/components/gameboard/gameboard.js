@@ -15,6 +15,46 @@ function Controller($scope, $rootScope, $uibModal){
   var IN_PROGRESS_COLOR = '#5cb85c';
 
   $scope.gameboard = {};
+  
+  $scope.openModal = function(title, content) {
+
+    console.log('open modal');
+
+    var template = $('.modal-template').html();
+    template = template.replace('[[name]]', title).replace('[[description]]', content);
+    $scope.isSuccess = false;
+    if (title === 'Success') {
+        $scope.isSuccess = true;
+    }
+    var modalInstance = $uibModal.open({
+        animation: true,
+        template: template,
+        scope: $scope,
+        controller: function($uibModalInstance) {
+            $ctrl = this;
+            $ctrl.ok = function() {
+                $ctrl.close();
+            };
+
+            $ctrl.cancel = function() {
+                $uibModalInstance.dismiss('cancel');
+            };
+
+            $ctrl.close = function() {
+                $uibModalInstance.close('saved');
+            }
+
+        },
+        controllerAs: 'ctrl',
+        windowClass: 'alert-modal-window',
+        size: 'sm',
+        backdrop: 'static'
+    });
+
+    modalInstance.result.then(function(response) {
+    }, function() {
+    });
+  };
 
   /** Function to intialize the game board chart(mx client chart) */
   $scope.initGameboard = function() {

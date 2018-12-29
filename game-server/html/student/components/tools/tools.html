@@ -3,7 +3,7 @@
         <span class="chat-title">Tools</span>
     </div>
     <div class="row tools-content">
-        <div class="col-sm-4" ng-repeat="tool in currentTools" ng-click="goToUrl(tool.url);">
+        <div class="col-sm-4" ng-repeat="tool in currentTools track by $index" ng-click="goToUrl(tool.url);">
             <span class="image-container">
                     <img class="tools-image" ng-src="{{tool.img}}" />
                     <span class="image-tooltip">
