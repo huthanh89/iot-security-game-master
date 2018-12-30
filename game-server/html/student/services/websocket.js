@@ -82,6 +82,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               
               else if (type == 'stateData') {
                 $rootScope.$broadcast('ws:tools', msg);
+                $rootScope.$broadcast('ws:selectedMission', msg);
                 $rootScope.$broadcast('ws:mission', msg);
               } 
               

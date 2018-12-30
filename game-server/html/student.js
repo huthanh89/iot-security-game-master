@@ -8,7 +8,7 @@ var app = angular.module('gameApp');
 // Main Controller
 //-------------------------------------------------------------------------------//
 
-app.controller('studentCtrl', function($scope, $rootScope, $uibModal, $sce, $timeout, WebSocketService) {
+app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     
     /** Intialize scope variables */
     $scope.waiting = true;

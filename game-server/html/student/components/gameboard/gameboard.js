@@ -184,7 +184,7 @@ function Controller($scope, $rootScope, $uibModal){
     var showContent = false;
     if ($scope.selectedMission.playerId) {
         ws.send(JSON.stringify({
-            type: 'selectMission',
+            type:   'selectMission',
             mission: missionId
         }));
         showContent = true;
@@ -260,7 +260,11 @@ function Controller($scope, $rootScope, $uibModal){
     $scope.$applyAsync();
     
   });
-  
+
+  $rootScope.$on('ws:selectedMission', function(event, msg) {  
+    $scope.selectedMission = $scope.gameboard.missions[msg.missionId];
+  });
+
 }
 
 //------------------------------------------------------------------------------//

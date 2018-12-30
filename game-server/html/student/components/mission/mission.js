@@ -2,7 +2,7 @@
 // Controller
 //-------------------------------------------------------------------------------//
 
-function Controller($scope, $rootScope, $uibModal, $sce){
+function Controller($scope, $rootScope, $uibModal, $sce, $timeout){
 
   $scope.missionContentShown = false;
   
@@ -11,11 +11,8 @@ function Controller($scope, $rootScope, $uibModal, $sce){
 
   $rootScope.$on('ws:mission', function(event, msg) {
 
-    console.log('mission >>>> ', msg);
-
     $scope.missionContent = $sce.trustAsHtml(msg.text);
 
-    //$scope.selectedMission = $scope.gameboard.missions[msg.missionId];
     if (!$scope.missionContentShown) {
         $scope.missionContentShown = true;
         var modalInstance = $uibModal.open({
