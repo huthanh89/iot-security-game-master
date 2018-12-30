@@ -9,6 +9,39 @@ function Controller($scope, $rootScope, $uibModal, $sce, $timeout){
   /** Clear the mission content */ 
   $scope.missionContent = '';
 
+  /** Function to submit flag.
+  @param flag is boolean  to update flag
+  */ 
+  $scope.submitFlag = function(flag) {
+    if (flag) {
+        ws.send(JSON.stringify({
+            type: 'flag',
+            flag: flag
+        }));
+    }
+  }
+  
+  /** Function to submit quiz.
+  @param answers  for submitting  quiz
+  */ 
+  $scope.submitQuiz = function(answers) {
+    for (var i in answers) {
+        var answer = answers[i];
+        if (answer && (typeof(answer) == 'object')) {
+            var newAnswer = [];
+            for (var j in answer) {
+                if (answer[j])
+                    newAnswer.push(j);
+            }
+            answers[i] = newAnswer.sort();
+        }
+    }
+    ws.send(JSON.stringify({
+        type: 'quiz',
+        answers: answers
+    }));
+  }
+
   $rootScope.$on('ws:mission', function(event, msg) {
 
     $scope.missionContent = $sce.trustAsHtml(msg.text);
