@@ -81,7 +81,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               } 
               
               else if (type == 'stateData') {
-                console.log('stateData not implemented', msg);
                 $rootScope.$broadcast('ws:tools', msg);
                 $rootScope.$broadcast('ws:mission', msg);
               } 

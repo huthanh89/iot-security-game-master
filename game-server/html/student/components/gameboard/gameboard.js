@@ -261,9 +261,6 @@ function Controller($scope, $rootScope, $uibModal){
     
   });
   
-  $rootScope.$on('ws:stateData', function(event, msg) {
-
-  });
 }
 
 //------------------------------------------------------------------------------//
