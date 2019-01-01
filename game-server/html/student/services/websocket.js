@@ -7,9 +7,11 @@
 
 angular.module('gameApp').factory('WebSocketService', function($rootScope, $location){
 
-  var reconnect = true;
-  var url       = 'ws://' + window.location.host + '/player'
-  var ws        = new WebSocket(url);
+  let reconnect = true;
+  let url       = 'ws://' + window.location.host + '/player'
+  let ws        = new WebSocket(url);
+  let ip        = $location.search().ip
+  $rootScope.ip = ip;
   $rootScope.ws = ws;
 
   return {
@@ -29,8 +31,8 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
 
         ws.send(JSON.stringify({
             type: 'login',
-            name: name,
-            ip: $location.search().ip
+            name:  name,
+            ip:    ip
         }));
 
         $rootScope.$applyAsync();

@@ -12,6 +12,10 @@ function Controller($scope, $rootScope){
     $scope.teamName = value;
   });
 
+  $rootScope.$watch('ip', function(value){
+    $scope.ip = value;
+  });
+
 }
 
 //------------------------------------------------------------------------------//

@@ -9,7 +9,23 @@
       <tbody>
         <tr>
           <td>
-            <b>Status</b>
+            <b>Name</b>
+          </td>
+          <td>
+            <span>{{playerName}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>IP Address</b>
+          </td>
+          <td>
+            <span>{{ip}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <b>Connection</b>
           </td>
           <td>
             {{ws}}
@@ -19,18 +35,11 @@
         </tr>
         <tr>
           <td>
-            <b>Name</b>
-          </td>
-          <td>
-            <span>{{playerName}}</span>
-          </td>
-        </tr>
-        <tr>
-          <td>
             <b>Team</b>
           </td>
           <td>
             <span>{{teamName}}</span>
+            <i class="fas fa-exclamation-triangle text-danger" ng-if="!teamName"></i>  
           </td>
         </tr>
       </tbody>

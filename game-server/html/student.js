@@ -26,10 +26,6 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
       //sound.play();
     }
 
-    $rootScope.teamName = 'asdf';
-    $rootScope.playerName = 'asdf';
-
-
     // Connect to Web Socket.
     
     WebSocketService.connectToWS();
