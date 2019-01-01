@@ -10,14 +10,15 @@ var app = angular.module('gameApp');
 
 app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     
-    /** Intialize scope variables */
+    // Intialize scope variables
+
     $scope.waiting = true;
 
     // TODO: Remove.
-    $scope.waiting = false;
-    
 
-    /** Function to play beep sound */ 
+    $scope.waiting = false;
+
+    // Function to play beep sound
     //TODO: enable sound for production build.
 
     $rootScope.playSound = function() {
@@ -25,7 +26,12 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
       //sound.play();
     }
 
+    $rootScope.teamName = 'asdf';
+    $rootScope.playerName = 'asdf';
+
+
     // Connect to Web Socket.
+    
     WebSocketService.connectToWS();
     
 });

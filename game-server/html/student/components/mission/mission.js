@@ -13,6 +13,9 @@ function Controller($scope, $rootScope, $uibModal, $sce, $timeout){
   @param flag is boolean  to update flag
   */ 
   $scope.submitFlag = function(flag) {
+
+    console.log('SUBMMITTING', flag);
+
     if (flag) {
         ws.send(JSON.stringify({
             type: 'flag',

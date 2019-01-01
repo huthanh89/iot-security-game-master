@@ -1,7 +1,7 @@
 //-------------------------------------------------------------------------------//
 // Service
 //
-// Web Socket logic
+// Web Socket logic for student dashboard.
 // ws://game-server.local:8080/player
 //-------------------------------------------------------------------------------//
 
@@ -10,7 +10,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
   var reconnect = true;
   var url       = 'ws://' + window.location.host + '/player'
   var ws        = new WebSocket(url);
-  window.ws     = ws;
+  $rootScope.ws = ws;
 
   return {
 
@@ -42,12 +42,15 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
           }, 2000);
           $rootScope.$applyAsync();
       };
+
       ws.onmessage = function(event) {
           try {
 
               var msg = JSON.parse(event.data);
               var type = msg['type'];
             
+              console.log('ws:', msg);
+
               if (type == 'login') {
                   $rootScope.playerId = msg.id;
                   $rootScope.teamName = null;
@@ -120,7 +123,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
 
       };
 
-  }
+    }
 
   }
 });

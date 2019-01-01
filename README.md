@@ -12,7 +12,7 @@ Open instructor dashaboard:
 
 http://localhost:8080/instructor-dashboard.html?cheat
 
-Open studen dashbaord:
+Open student dashbaord:
 
 http://localhost:8080/student-dashboard.html?ip=10.1.101.11  
 

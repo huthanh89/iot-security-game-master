@@ -172,6 +172,10 @@ function Controller($scope, $rootScope, $uibModal){
 
   /** Function to select mission */
   $scope.selectMission = function(missionId) {
+
+
+    console.log('select mission:', missionId);
+
     $scope.selectedMission = $scope.gameboard.missions[missionId];
     if (!$scope.selectedMission) {
         $scope.openModal("Warning", 'Mission not available.');
