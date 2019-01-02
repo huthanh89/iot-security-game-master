@@ -18,8 +18,6 @@ function Controller($scope, $rootScope, $uibModal){
   
   $scope.openModal = function(title, content) {
 
-    console.log('>>>>>   open modal  <<<<<<');
-
     var template = $('.modal-template').html();
     template = template.replace('[[name]]', title).replace('[[description]]', content);
 
@@ -60,9 +58,7 @@ function Controller($scope, $rootScope, $uibModal){
   /** Function to intialize the game board chart(mx client chart) */
   $scope.initGameboard = function() {
 
-      console.log('init gameboard');
-
-      var container = document.getElementById('gameboardContainer');
+    var container = document.getElementById('gameboardContainer');
       // Checks if the browser is supported
       if (!mxClient.isBrowserSupported()) {
           // Displays an error message if the browser is not supported.
@@ -177,29 +173,18 @@ function Controller($scope, $rootScope, $uibModal){
   /** Function to select mission */
   $scope.selectMission = function(missionId) {
 
-    console.log('>> select mission: <<<', missionId);
-
-    
-    $scope.selectedMission = $scope.gameboard.missions[missionId];
-
-    console.log('SCOPE', $scope.selectedMission);
+    $rootScope.selectedMission = $scope.gameboard.missions[missionId];
 
     // Mission not available.
 
-    if (!$scope.selectedMission) {
-
-      console.log('mission not available.');
-
+    if (!$rootScope.selectedMission) {
       $scope.openModal("Warning", 'Mission not available.');
       return;
     }
 
     // Mission is locked.
 
-    if (!$scope.selectedMission.unlocked) {
-      
-      console.log('mission locked');
-
+    if (!$rootScope.selectedMission.unlocked) {
       $scope.openModal("Warning", 'Mission is locked.');
       return;
     }
@@ -209,10 +194,7 @@ function Controller($scope, $rootScope, $uibModal){
     
     // Send selected mission to websocket.
     
-    if ($scope.selectedMission.playerId) {
-
-      console.log('sending mission id');
-
+    if ($rootScope.selectedMission.playerId) {
       $rootScope.ws.send(JSON.stringify({
           type:   'selectMission',
           mission: missionId
@@ -296,13 +278,10 @@ function Controller($scope, $rootScope, $uibModal){
     
   });
 
-  // Show mission modal.
+  // Update selected mission root variable state.
 
   $rootScope.$on('ws:selectedMission', function(event, msg) {  
-
-    console.log('===== handle ws');
-
-    $scope.selectedMission = $scope.gameboard.missions[msg.missionId];
+    $rootScope.selectedMission = $scope.gameboard.missions[msg.missionId];
   });
 
 }

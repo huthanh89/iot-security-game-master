@@ -46,8 +46,8 @@ function Controller($scope, $rootScope, $uibModal, $sce, $timeout){
 
   $rootScope.$on('ws:mission', function(event, msg) {
 
+    $scope.selectedMission = $rootScope.selectedMission;
 
-    console.log(msg);
     $scope.missionID = msg.missionId;
 
     $scope.missionContent = $sce.trustAsHtml(msg.text);
@@ -85,13 +85,6 @@ function Controller($scope, $rootScope, $uibModal, $sce, $timeout){
         $('.disable-answers-true textarea').prop('disabled', true);
         $('.disable-answers-true button').prop('disabled', true);
     }, 500);
-  });
-
-
-  $rootScope.$on('ws:selectedMission', function(event, msg) {
-    
-    console.log('///', msg);
-//    $scope.selectedMission = $scope.gameboard.missions[msg.missionId];
   });
 
 }
