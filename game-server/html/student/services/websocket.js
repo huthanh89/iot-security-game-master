@@ -29,7 +29,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
 
         $rootScope.playerName = name;
 
-        ws.send(JSON.stringify({
+        $rootScope.ws.send(JSON.stringify({
             type: 'login',
             name:  name,
             ip:    ip
@@ -51,7 +51,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               var msg = JSON.parse(event.data);
               var type = msg['type'];
             
-              console.log('ws:', msg);
+              //console.log('ws:', msg);
 
               if (type == 'login') {
                   $rootScope.playerId = msg.id;
@@ -86,8 +86,17 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               } 
               
               else if (type == 'stateData') {
+
+                // Update tools list.
+
                 $rootScope.$broadcast('ws:tools', msg);
+
+                // Update mission state.
+
                 $rootScope.$broadcast('ws:selectedMission', msg);
+
+                // Show mission.
+
                 $rootScope.$broadcast('ws:mission', msg);
               } 
               

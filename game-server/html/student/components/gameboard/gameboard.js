@@ -18,16 +18,10 @@ function Controller($scope, $rootScope, $uibModal){
   
   $scope.openModal = function(title, content) {
 
-    console.log('open modal', title, content);
+    console.log('>>>>>   open modal  <<<<<<');
 
     var template = $('.modal-template').html();
     template = template.replace('[[name]]', title).replace('[[description]]', content);
-
-    console.log(template);
-
-    $('#modal-locked').modal('show');
-
-    /*
 
     $scope.isSuccess = false;
     if (title === 'Success') {
@@ -61,11 +55,13 @@ function Controller($scope, $rootScope, $uibModal){
     modalInstance.result.then(function(response) {
     }, function() {
     });
-    */
   };
 
   /** Function to intialize the game board chart(mx client chart) */
   $scope.initGameboard = function() {
+
+      console.log('init gameboard');
+
       var container = document.getElementById('gameboardContainer');
       // Checks if the browser is supported
       if (!mxClient.isBrowserSupported()) {
@@ -181,15 +177,18 @@ function Controller($scope, $rootScope, $uibModal){
   /** Function to select mission */
   $scope.selectMission = function(missionId) {
 
-    console.log('select mission:', missionId);
+    console.log('>> select mission: <<<', missionId);
 
+    
     $scope.selectedMission = $scope.gameboard.missions[missionId];
+
+    console.log('SCOPE', $scope.selectedMission);
 
     // Mission not available.
 
     if (!$scope.selectedMission) {
 
-      console.log('no available.');
+      console.log('mission not available.');
 
       $scope.openModal("Warning", 'Mission not available.');
       return;
@@ -199,63 +198,69 @@ function Controller($scope, $rootScope, $uibModal){
 
     if (!$scope.selectedMission.unlocked) {
       
-      console.log('locked');
+      console.log('mission locked');
 
       $scope.openModal("Warning", 'Mission is locked.');
       return;
     }
 
-    // Send selected mission.
-
+    
     var showContent = false;
-
-    console.log($scope.selectedMission);
-
+    
+    // Send selected mission to websocket.
+    
     if ($scope.selectedMission.playerId) {
-        ws.send(JSON.stringify({
-            type:   'selectMission',
-            mission: missionId
-        }));
-        showContent = true;
+
+      console.log('sending mission id');
+
+      $rootScope.ws.send(JSON.stringify({
+          type:   'selectMission',
+          mission: missionId
+      }));
+      showContent = true;
     }
+
+    // Show actual mission.
+
     else {
+  
+      console.log('showing mission!!');
 
-        $scope.missionContentShown = true;
-        var modalInstance = $uibModal.open({
-            animation: true,
-            scope: $scope,
-            templateUrl: './missionModel.html',
-            controller: function($uibModalInstance) {
-                $ctrl = this;
-                $ctrl.showContent = showContent;
-                $ctrl.ok = function() {
-                    ws.send(JSON.stringify({
-                        type: 'selectMission',
-                        mission: missionId
-                    }));
-                    $ctrl.showContent = true;
-                    $uibModalInstance.dismiss('ok');
-                    $scope.missionContentShown = false;
-                };
+      $scope.missionContentShown = true;
+      var modalInstance = $uibModal.open({
+          animation: true,
+          scope: $scope,
+          templateUrl: './missionModel.html',
+          controller: function($uibModalInstance) {
+              $ctrl = this;
+              $ctrl.showContent = showContent;
+              $ctrl.ok = function() {
+                  $rootScope.ws.send(JSON.stringify({
+                      type: 'selectMission',
+                      mission: missionId
+                  }));
+                  $ctrl.showContent = true;
+                  $uibModalInstance.dismiss('ok');
+                  $scope.missionContentShown = false;
+              };
 
-                $ctrl.cancel = function() {
-                    $uibModalInstance.dismiss('cancel');
-                    $scope.missionContentShown = false;
-                };
+              $ctrl.cancel = function() {
+                  $uibModalInstance.dismiss('cancel');
+                  $scope.missionContentShown = false;
+              };
 
-                $ctrl.close = function() {
-                    $uibModalInstance.close('saved');
-                    $scope.missionContentShown = false;
-                }
+              $ctrl.close = function() {
+                  $uibModalInstance.close('saved');
+                  $scope.missionContentShown = false;
+              }
 
-            },
-            controllerAs: 'ctrl',
-            windowClass: 'mission-modal-window',
-            size: 'md',
-            backdrop: false
-        });
+          },
+          controllerAs: 'ctrl',
+          windowClass: 'mission-modal-window',
+          backdrop: false
+      });
 
-        modalInstance.result.then(function(response) {}, function() {});
+      modalInstance.result.then(function(response) {}, function() {});
     }
   };
 
@@ -293,7 +298,12 @@ function Controller($scope, $rootScope, $uibModal){
     
   });
 
+  // Show mission modal.
+
   $rootScope.$on('ws:selectedMission', function(event, msg) {  
+
+    console.log('===== handle ws');
+
     $scope.selectedMission = $scope.gameboard.missions[msg.missionId];
   });
 
