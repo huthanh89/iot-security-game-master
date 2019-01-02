@@ -18,8 +18,12 @@ body{
 }
 
 nav{
-  background: #009edc;
+  background: #f8971d;
   color: white;
+}
+
+.navbar-brand{
+  letter-spacing: 2px;
 }
 
 .card{
@@ -27,14 +31,14 @@ nav{
 }
 
 .card-header{
-  background: #009edc;
+  background: #f8971d;
   color: white;
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .card-body{
-  border: 2px #009edc solid;
+  border: 2px #f8971d solid;
 }
 
 #chathistory{

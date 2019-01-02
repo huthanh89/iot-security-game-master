@@ -17,6 +17,10 @@ body{
   margin-bottom: 20px;
 }
 
+.navbar-brand{
+  letter-spacing: 2px;
+}
+
 .card{
   margin: 10px;
 }
@@ -25,7 +29,7 @@ body{
   background: #009edc;
   color: white;
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .card-body{
