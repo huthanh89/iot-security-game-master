@@ -21,7 +21,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, Playe
       ws.onclose = function() {
         if (reconnect) {
           setTimeout(function() {
-            connectToWS();
+            ws.connectToWS();
           }, 2000);
         }
       };

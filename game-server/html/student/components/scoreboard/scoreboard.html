@@ -1,28 +1,33 @@
-<div class="row score-board" data-step="1" data-intro="This is the Scoreboard. Here, you and your team can see how you stack up against the competition." data-position='right'>
-    <div class="col-sm-12 board-header">
-        <span class="team">Team</span>
-        <span class="score">Score</span>
-    </div>
-    <div class="col-sm-12 board-content">
-
-        <div class="row">
-            <div class="col-sm-12">
-                <ol>
-                    <li class="team-text" ng-repeat="team in scoreBoard">
-                        <span class="team-cont" style="font-weight: bold;" uib-tooltip="{{team.name}}" tooltip-append-to-body="true" tooltip-placement="top" tooltip-enable="team.name.length > 15">{{team.name}}
-                            </span>
-                        <span class="score-cont" style="font-weight:bold">{{team.score |fixDecimal:2}}</span>
-                        <span class="team-member-container">
-                                <span class="team-member-names" ng-repeat="player in team.players">{{player.name}}</span>
-                        </span>
-
-                    </li>
-                </ol>
-            </div>
-        </div>
-        <div class='col-sm-12' style="display:none">
-            <input type="radio" ng-model="selectedTeam" value="team 1" name='team'>Team 1
-            <input type="radio" ng-model="selectedTeam" value="team 2" name='team'>Team 2
-        </div>
-    </div>
+<div class="card">
+  <div class="card-header">
+    <i class="fas fa-grip-lines fa-lg float-right"></i>
+    <i class="fas fa-list-ol fa-fw"></i>
+    Scoreboard
+  </div>
+  <div class="card-body">
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr>
+          <th>Team</th>
+          <th>Score</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="team in scoreBoard">
+          <td>  
+            {{team.name}}
+          </td>
+          <td>
+            {{team.score |fixDecimal:2}}
+          </td>
+          <td>  
+            <a href="#" data-toggle="popover" scoreboard-popover-directive>
+              <i class="fas fa-search-plus fa-fw"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
