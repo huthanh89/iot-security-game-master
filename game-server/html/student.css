@@ -62,8 +62,7 @@ body{
   cursor: grabbing;
 }
 
-
-/* Dashboard drag and drop */
+/* Dashboard drag and drop - START */
 
 .grid {
   position: relative;
@@ -96,4 +95,14 @@ body{
   z-index: 0;
 }
 
-/* Dashboard drag and drop END */
+/* Dashboard drag and drop - END */
+
+.modal-body img {
+  max-width: 100%;
+}
+
+.modal-close-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}

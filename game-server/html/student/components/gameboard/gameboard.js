@@ -220,16 +220,14 @@ function Controller($scope, $rootScope, $uibModal){
       showContent = true;
     }
 
-    // Show actual mission.
+    // Show confirm mission modal.
 
     else {
   
-      console.log('showing mission!!');
-
       $scope.missionContentShown = true;
       var modalInstance = $uibModal.open({
-          animation: true,
-          scope: $scope,
+          animation:   true,
+          scope:       $scope,
           templateUrl: './missionModel.html',
           controller: function($uibModalInstance) {
               $ctrl = this;
@@ -256,8 +254,8 @@ function Controller($scope, $rootScope, $uibModal){
 
           },
           controllerAs: 'ctrl',
-          windowClass: 'mission-modal-window',
-          backdrop: false
+          windowClass:  'mission-modal-window',
+          backdrop:      false
       });
 
       modalInstance.result.then(function(response) {}, function() {});
