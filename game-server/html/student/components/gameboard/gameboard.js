@@ -18,10 +18,17 @@ function Controller($scope, $rootScope, $uibModal){
   
   $scope.openModal = function(title, content) {
 
-    console.log('open modal');
+    console.log('open modal', title, content);
 
     var template = $('.modal-template').html();
     template = template.replace('[[name]]', title).replace('[[description]]', content);
+
+    console.log(template);
+
+    $('#modal-locked').modal('show');
+
+    /*
+
     $scope.isSuccess = false;
     if (title === 'Success') {
         $scope.isSuccess = true;
@@ -54,6 +61,7 @@ function Controller($scope, $rootScope, $uibModal){
     modalInstance.result.then(function(response) {
     }, function() {
     });
+    */
   };
 
   /** Function to intialize the game board chart(mx client chart) */
@@ -173,26 +181,44 @@ function Controller($scope, $rootScope, $uibModal){
   /** Function to select mission */
   $scope.selectMission = function(missionId) {
 
-
     console.log('select mission:', missionId);
 
     $scope.selectedMission = $scope.gameboard.missions[missionId];
+
+    // Mission not available.
+
     if (!$scope.selectedMission) {
-        $scope.openModal("Warning", 'Mission not available.');
-        return;
+
+      console.log('no available.');
+
+      $scope.openModal("Warning", 'Mission not available.');
+      return;
     }
+
+    // Mission is locked.
+
     if (!$scope.selectedMission.unlocked) {
-        $scope.openModal("Warning", 'Mission is locked.');
-        return;
+      
+      console.log('locked');
+
+      $scope.openModal("Warning", 'Mission is locked.');
+      return;
     }
+
+    // Send selected mission.
+
     var showContent = false;
+
+    console.log($scope.selectedMission);
+
     if ($scope.selectedMission.playerId) {
         ws.send(JSON.stringify({
             type:   'selectMission',
             mission: missionId
         }));
         showContent = true;
-    }else {
+    }
+    else {
 
         $scope.missionContentShown = true;
         var modalInstance = $uibModal.open({
@@ -232,6 +258,8 @@ function Controller($scope, $rootScope, $uibModal){
         modalInstance.result.then(function(response) {}, function() {});
     }
   };
+
+  // Show Gameboard.
 
   $rootScope.$on('ws:gameboard', function(event, msg) {
 

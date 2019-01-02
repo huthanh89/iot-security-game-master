@@ -43,6 +43,7 @@
       <script src="student/components/gameboard/gameboard.js"></script>
       <script src="student/components/mission/mission.js"></script>
       <script src="student/components/player/player.js"></script>
+      <script src="student/components/modal/locked.js"></script>
 
       <script type="text/javascript">
           mxBasePath = 'vendor/src';
@@ -58,14 +59,16 @@
     <navbar></navbar>
  
     <div class="container" >
-
-            <scoreboard></scoreboard>
-            <player></player>
-            <chat></chat>
+            <locked></locked>
 
             <div ng-show="!waiting">
               <gameboard></gameboard>
             </div>
+            
+            <scoreboard></scoreboard>
+            <player></player>
+            <chat></chat>
+
 
             <div ng-show="!waiting">
                 <notification></notification>
@@ -75,6 +78,7 @@
             <waiting></waiting>
 
             <mission></mission>
+
 
     </div>
 
