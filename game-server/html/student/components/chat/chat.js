@@ -85,7 +85,7 @@ function Controller($scope, $rootScope){
     if (!msg)
         return;
     $scope.appendChat('Me', $scope.chatTo.name, msg);
-    ws.send(JSON.stringify({
+    $rootScope.ws.send(JSON.stringify({
         type: 'chat',
         to: $scope.chatTo.id,
         msg: msg
