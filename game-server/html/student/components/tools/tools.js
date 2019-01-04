@@ -100,12 +100,9 @@ function Controller($scope, $rootScope){
 
     // Append mission tools to array.
 
-    
     msg.tools.forEach(function(tool){
       $scope.currentTools.push($scope.tools[tool]);
     });
-
-    console.log($scope.currentTools);
 
     $scope.$digest();
 
