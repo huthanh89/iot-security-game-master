@@ -21,7 +21,9 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
       ws.onopen = function() {
 
         var name = $rootScope.playerName;
-        name = 'sally';
+       
+        // TODO: remove debug
+        // name = 'sally';
 
         while (name == null || name == "") {
             name = prompt("Name:");
