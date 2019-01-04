@@ -112,14 +112,20 @@ nav{
   top: 15px;
 }
 
+#tools-container{
+  height: 300px;
+  overflow-y: auto;
+  cursor: pointer;
+}
+
 .tools-image-container{
-  width: 100%;
-  height: 200px;
+  width: 100px;
+  height: 100px;
 }
 
 .tools-image{
   width: 100%;
-  height: 200px;
+  height: 100%;
 }
 
 .tooltip-image{

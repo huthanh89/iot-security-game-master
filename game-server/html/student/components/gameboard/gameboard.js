@@ -174,6 +174,7 @@ function Controller($scope, $rootScope, $uibModal){
   $scope.selectMission = function(missionId) {
 
     $rootScope.selectedMission = $scope.gameboard.missions[missionId];
+    $scope.selectedMission     = $rootScope.selectedMission 
 
     // Mission not available.
 
@@ -188,7 +189,6 @@ function Controller($scope, $rootScope, $uibModal){
       $scope.openModal("Warning", 'Mission is locked.');
       return;
     }
-
     
     var showContent = false;
     
@@ -205,39 +205,44 @@ function Controller($scope, $rootScope, $uibModal){
     // Show confirm mission modal.
 
     else {
+
+      console.log('show confirm');
   
       $scope.missionContentShown = true;
       var modalInstance = $uibModal.open({
           animation:   true,
           scope:       $scope,
           templateUrl: './missionModel.html',
+          backdrop: true,
           controller: function($uibModalInstance) {
-              $ctrl = this;
-              $ctrl.showContent = showContent;
-              $ctrl.ok = function() {
-                  $rootScope.ws.send(JSON.stringify({
-                      type: 'selectMission',
-                      mission: missionId
-                  }));
-                  $ctrl.showContent = true;
-                  $uibModalInstance.dismiss('ok');
-                  $scope.missionContentShown = false;
-              };
 
-              $ctrl.cancel = function() {
-                  $uibModalInstance.dismiss('cancel');
-                  $scope.missionContentShown = false;
-              };
+            console.log('this', this);
 
-              $ctrl.close = function() {
-                  $uibModalInstance.close('saved');
-                  $scope.missionContentShown = false;
-              }
+            $ctrl = this;
+            $ctrl.showContent = showContent;
+            $ctrl.ok = function() {
+                $rootScope.ws.send(JSON.stringify({
+                    type: 'selectMission',
+                    mission: missionId
+                }));
+                $ctrl.showContent = true;
+                $uibModalInstance.dismiss('ok');
+                $scope.missionContentShown = false;
+            };
+
+            $ctrl.cancel = function() {
+                $uibModalInstance.dismiss('cancel');
+                $scope.missionContentShown = false;
+            };
+
+            $ctrl.close = function() {
+                $uibModalInstance.close('saved');
+                $scope.missionContentShown = false;
+            }
 
           },
           controllerAs: 'ctrl',
-          windowClass:  'mission-modal-window',
-          backdrop:      false
+          windowClass:  'mission-modal-window'
       });
 
       modalInstance.result.then(function(response) {}, function() {});

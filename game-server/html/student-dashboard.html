@@ -58,6 +58,10 @@
           <tools></tools>
         </div>
 
+        <div ng-show="!waiting">
+          <gameboard></gameboard>
+        </div>
+
         <player></player>
 
         <chat></chat>
@@ -66,9 +70,6 @@
           <notification></notification>
         </div>
 
-        <div ng-show="!waiting">
-          <gameboard></gameboard>
-        </div>
         
         <div ng-show="!waiting">
           <scoreboard></scoreboard>

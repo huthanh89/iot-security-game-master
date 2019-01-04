@@ -85,14 +85,30 @@ function Controller($scope, $rootScope){
     }
   };
   
+  $scope.itemClicked = function(index){
+    let url = $scope.currentTools[index].url;
+    window.open(url,"__target")
+  }
+
   $scope.currentTools = [];
 
   $rootScope.$on('ws:tools', function(event, msg) {
+
+    // Reset tools array.
+
     $scope.currentTools = [];
+
+    // Append mission tools to array.
+
+    
     msg.tools.forEach(function(tool){
       $scope.currentTools.push($scope.tools[tool]);
     });
+
+    console.log($scope.currentTools);
+
     $scope.$digest();
+
   });
   
 }
