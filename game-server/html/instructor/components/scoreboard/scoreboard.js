@@ -66,6 +66,8 @@ angular.module('gameApp').directive('scoreboardPopoverDirective', function($root
         `
     });
 
+    // Refresh grid after ng-repeat.
+
     $rootScope.refreshGrid();
 
   };
