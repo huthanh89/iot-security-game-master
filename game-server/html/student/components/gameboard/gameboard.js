@@ -16,7 +16,11 @@ function Controller($scope, $rootScope, $uibModal){
 
   $scope.gameboard = {};
   
+  // Open modal to show locked / not available levels.
+
   $scope.openModal = function(title, content) {
+
+    console.log('open modal');
 
     var template = $('.modal-template').html();
     template = template.replace('[[name]]', title).replace('[[description]]', content);
