@@ -36,7 +36,7 @@ function Controller($scope, $rootScope){
 // This directive gets called when component fully renders.
 //------------------------------------------------------------------------------//
 
-angular.module('gameApp').directive('scoreboardPopoverDirective', function() {
+angular.module('gameApp').directive('scoreboardPopoverDirective', function($rootScope) {
   return function(scope, element, attrs) {
     
     let tableRows = [];
@@ -66,7 +66,10 @@ angular.module('gameApp').directive('scoreboardPopoverDirective', function() {
         `
     });
 
+    $rootScope.refreshGrid();
+
   };
+
 });
 
 //------------------------------------------------------------------------------//
