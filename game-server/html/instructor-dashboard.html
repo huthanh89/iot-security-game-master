@@ -61,16 +61,16 @@
   <body ng-app="gameApp" ng-controller="instructorCtrl">
       <audio id="play" src="images/chatSound.wav" autostart="false"></audio>
 
-      <navbar></navbar>
+      <nav class="navbar navbar-dark">
+        <a class="navbar-brand text-white mr-auto" href="#">Instructor</a>
+        <form class="form-inline">
+          <setting></setting>
+          <start></start>
+        </form>
+      </nav>
 
+      
       <div class="container" ng-init='sort()'>
-        
-        <div class="row ">
-            <div class="col-lg-12">
-              <setting></setting>
-              <start></start>
-            </div>
-        </div>
         
         <div class="grid">
           <div class="item">

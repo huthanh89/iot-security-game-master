@@ -7,14 +7,13 @@
   <div class="card-body">
 
       <div class="col-sm-4" ng-repeat="tool in currentTools track by $index" ng-click="goToUrl(tool.url);">
-          <span class="image-container">
+          <div class="tools-image-container">
             <img class="tools-image" ng-src="{{tool.img}}" />
             <span class="image-tooltip">
               <img class="tooltip-image" ng-src="{{tool.img}}"  href="#"  />
-              <span class="tt-image-desc"><span class="desc-tag">{{tool.name}}</span>{{tool.desc}} 
-              </span>
+              <span class="tt-image-desc"><span class="desc-tag">{{tool.name}}</span>{{tool.desc}}</span>
             </span>
-          </span>
+          </div>
           <span class="image-action">
             {{tool.name}}
           </span>

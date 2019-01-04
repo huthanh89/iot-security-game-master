@@ -18,7 +18,7 @@ body{
 }
 
 nav{
-  background: #f8971d;
+  background: #8B1001;
   color: white;
 }
 
@@ -31,14 +31,14 @@ nav{
 }
 
 .card-header{
-  background: #f8971d;
+  background: #2B5592;
   color: white;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
 .card-body{
-  border: 2px #f8971d solid;
+  border: 2px #2B5592 solid;
 }
 
 #chathistory{

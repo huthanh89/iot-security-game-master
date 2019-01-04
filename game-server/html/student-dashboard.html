@@ -56,9 +56,12 @@
   <body ng-app="gameApp" ng-controller="studentCtrl">
     <audio id="play" src="images/chatSound.wav" autostart="false"></audio>
     <navbar></navbar>
- 
+
     <div class="container" >
-            <locked></locked>
+
+            <div ng-show="!waiting">
+                <tools></tools>
+            </div>
 
             <div ng-show="!waiting">
               <gameboard></gameboard>
@@ -71,13 +74,13 @@
 
             <div ng-show="!waiting">
                 <notification></notification>
-                <tools></tools>
             </div>
 
             <waiting></waiting>
+
+            <!–– Modal component ––>
+
             <mission></mission>
-
-
 
     </div>
 
