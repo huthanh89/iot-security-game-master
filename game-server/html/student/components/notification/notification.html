@@ -1,16 +1,25 @@
 <div class="card" data-step="3" data-intro="The Notification panel will have important messages from the game server and your instructor. Keep an eye on it!" data-position='left'>
   <div class="card-header">
     <i class="fas fa-grip-lines fa-lg float-right"></i>
-    <i class="fas fa-bell fa-fw"></i>
+    <i class="fas fa-bullhorn fa-fw"></i>
     Notifications
   </div>
-  <div class="card-body">
-
-      <div class="notification-history">
-          <div id='notificationhistory'>
-          </div>
-      </div>
-
+  <div id='notification-container' class="card-body">
+    <table class="table table-sm table-hover table-borderless">
+      <tbody>
+        <tr class="" ng-repeat="notification in notifications">
+          <td>  
+            <i class="far fa-bell"></i>
+          </td>
+          <td>  
+            {{notification.date | date : "h:mm a"}}
+          </td>
+          <td>
+            {{notification.msg}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 

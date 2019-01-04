@@ -10,7 +10,7 @@ var app = angular.module('gameApp');
 
 app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     
-    // Intialize scope variables
+    // Initialize scope variables
 
     $scope.waiting = true;
 

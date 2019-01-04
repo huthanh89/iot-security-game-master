@@ -3,17 +3,25 @@
 //-------------------------------------------------------------------------------//
 
 function Controller($scope, $rootScope){
-    
-  /** Function to append notification to the notification view*/
-  $scope.appendNotification = function(from, msg) {
-    var notiDiv = $('#notificationhistory');
-    notiDiv.html(notiDiv.html() + from + ': ' + msg + '<br>');
-    $('.notification-history').scrollTop(notiDiv[0].scrollHeight);
-  }
+
+  $scope.notifications = [];
 
   $rootScope.$on('ws:notification', function(event, msg) {
-    $scope.appendNotification(msg.from, msg.to, msg.msg);
+
+    // Append new message in front.
+
+    $scope.notifications.unshift(
+      { date: new Date(), msg: msg.msg }
+    );
+  
+    // Call digest for the view to process the updated array.
+
+    $scope.$digest();
+
+    // Play sound.
+
     $rootScope.playSound();
+
   });
   
 }

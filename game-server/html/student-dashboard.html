@@ -48,10 +48,14 @@
     <audio id="play" src="images/chatSound.wav" autostart="false"></audio>
     <navbar></navbar>
 
+    <div id='waiting-component' ng-show="waiting">
+      <waiting></waiting>
+    </div>
+
     <div class="container" >
 
         <div ng-show="waiting">
-          <waiting></waiting>
+          <notification></notification>
         </div>
 
         <div ng-show="!waiting">
@@ -68,10 +72,6 @@
 
         <player></player>
         <chat></chat>
-
-        <div ng-show="waiting">
-          <notification></notification>
-        </div>
 
         <!–– Modal component ––>
 
