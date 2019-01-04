@@ -14,10 +14,6 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
 
     $scope.waiting = true;
 
-    // TODO: Remove.
-
-    $scope.waiting = false;
-
     // Function to play beep sound
     //TODO: enable sound for production build.
 

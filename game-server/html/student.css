@@ -127,3 +127,14 @@ nav{
   height: 200px;
 }
 
+#waiting-icon{
+  color: rgb(50, 151, 168);
+}
+
+#waiting-text{
+  position: relative;
+  margin-left: 10px;
+  font-size: 25px;
+  color: rgb(50, 151, 168);
+  bottom: 10px;
+}

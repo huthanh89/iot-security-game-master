@@ -40,6 +40,7 @@
       <script src="student/components/gameboard/gameboard.js"></script>
       <script src="student/components/player/player.js"></script>
       <script src="student/components/mission/mission.js"></script>
+      <script src="student/components/waiting/waiting.js"></script>
 
   </head>
 
@@ -49,24 +50,28 @@
 
     <div class="container" >
 
+        <div ng-show="waiting">
+          <waiting></waiting>
+        </div>
+
         <div ng-show="!waiting">
-            <tools></tools>
+          <tools></tools>
         </div>
 
         <div ng-show="!waiting">
           <gameboard></gameboard>
         </div>
+        
+        <div ng-show="!waiting">
+          <scoreboard></scoreboard>
+        </div>
 
-        <scoreboard></scoreboard>
         <player></player>
         <chat></chat>
 
-
-        <div ng-show="!waiting">
-            <notification></notification>
+        <div ng-show="waiting">
+          <notification></notification>
         </div>
-
-        <waiting></waiting>
 
         <!–– Modal component ––>
 
