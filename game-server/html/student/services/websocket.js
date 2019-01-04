@@ -71,7 +71,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               } 
               
               else if (type == 'started') {
-                  $rootScope.waiting = false;;
+                  $rootScope.waiting = false;
                   $rootScope.$applyAsync();
                   $rootScope.playSound();
                   introJs().start()

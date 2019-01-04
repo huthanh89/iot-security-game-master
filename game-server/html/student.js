@@ -12,7 +12,7 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     
     // Initialize scope variables
 
-    $scope.waiting = true;
+    $rootScope.waiting = true;
 
     // Function to play beep sound
     //TODO: enable sound for production build.

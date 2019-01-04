@@ -54,12 +54,16 @@
 
     <div class="container" >
 
-        <div ng-show="waiting">
-          <notification></notification>
-        </div>
-
         <div ng-show="!waiting">
           <tools></tools>
+        </div>
+
+        <player></player>
+
+        <chat></chat>
+
+        <div ng-show="waiting">
+          <notification></notification>
         </div>
 
         <div ng-show="!waiting">
@@ -69,9 +73,6 @@
         <div ng-show="!waiting">
           <scoreboard></scoreboard>
         </div>
-
-        <player></player>
-        <chat></chat>
 
         <!–– Modal component ––>
 
