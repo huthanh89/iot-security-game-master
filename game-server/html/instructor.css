@@ -31,14 +31,14 @@ nav{
 }
 
 .card-header{
-  background: #2B5592;
+  background: #58585B;
   color: white;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
 .card-body{
-  border: 2px #2B5592 solid;
+  border: 2px #58585B solid;
 }
 
 #chathistory{
