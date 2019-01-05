@@ -160,7 +160,7 @@ nav{
   max-height: 250px;
 }
 
-/* Mission - Start */
+/* Prototype CSS code - Start */
 
 .info-header{
   display: block;
@@ -178,4 +178,31 @@ nav{
   margin: 10px 0;
 }
 
-/* Mission - END */
+
+.mission-sub-title{
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.quiz-result{
+  font-weight: normal;
+}
+
+.quiz-result span{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.quiz-remediation {
+  margin: 10px 0;
+}
+
+.quiz-feedback {
+  font-weight: bold;
+  font-size: 18px;
+  color: rgb(58, 148, 65);
+}
+
+/* Prototype CSS code - END */
