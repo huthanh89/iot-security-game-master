@@ -154,3 +154,27 @@ nav{
   height: 220px;
   overflow-x: auto;
 }
+
+#mission-container img{
+  width: 100%;
+}
+
+/* Mission - Start */
+
+.info-header{
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.info-steps{
+  display: block;
+}
+
+.hint{
+  display: block;
+  margin: 10px 0;
+}
+
+/* Mission - END */

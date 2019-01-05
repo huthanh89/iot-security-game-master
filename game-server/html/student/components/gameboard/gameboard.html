@@ -1,20 +1,32 @@
-  <div id="gameboardContainer" style="overflow:hidden;" ng-init="initGameboard()" data-step="5" data-intro="This is the main GameBoard. This is where your missions, which are indicated by Circles, will be displayed. To start a mission, click on an unlocked Circle. Unlocked Circles are yellow, locked Circles are gray, and completed Circles are blue. And that's it! Click on the center circle of the rings to begin the game. Good luck and have fun!">
+
+<div class="card" data-step="2" data-intro="In the Chat panel, you can send messages to other players. Several channels are available, such as a global chat and team chat.  You can also send messages directly to specific players or your instructor. Remember to keep your communications civil!" data-position='right'>
+  <div class="card-header">
+    <i class="fas fa-grip-lines fa-lg float-right"></i>
+    <i class="fas fa-map fa-fw"></i>
+    Gameboard
   </div>
+  <div id="gameboard-container" class="card-body">
+    <div id="gameboardContainer" style="overflow:hidden;" ng-init="initGameboard()" data-step="5" data-intro="This is the main GameBoard. This is where your missions, which are indicated by Circles, will be displayed. To start a mission, click on an unlocked Circle. Unlocked Circles are yellow, locked Circles are gray, and completed Circles are blue. And that's it! Click on the center circle of the rings to begin the game. Good luck and have fun!">
+    </div>
+  </div>
+</div>
 
 
 
-  <div class="modal-template" style="display:none">
-    <div class="modal-header" ng-class="{'green-header':isSuccess}">
-        <h5 class="modal-title" id="missionModalLabel">[[name]]
-            <button type="button" class="close" ng-click='ctrl.cancel()' aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </h5>
-    </div>
-    <div class="modal-body">
-        <div>[[description]]</div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" ng-click='ctrl.cancel()'>OK</button>
-    </div>
+<!-- Modal -->
+
+<div class="modal-template" style="display:none">
+  <div class="modal-header" ng-class="{'green-header':isSuccess}">
+      <h5 class="modal-title" id="missionModalLabel">[[name]]
+          <button type="button" class="close" ng-click='ctrl.cancel()' aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+      </h5>
+  </div>
+  <div class="modal-body">
+      <div>[[description]]</div>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" ng-click='ctrl.cancel()'>OK</button>
+  </div>
 </div>

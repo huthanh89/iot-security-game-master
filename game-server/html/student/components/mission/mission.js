@@ -4,12 +4,12 @@
 
 function Controller($scope, $rootScope, $uibModal, $sce, $timeout){
 
-  /** Clear the mission content */ 
+  // Initialize scope.
+
   $scope.missionContent = '';
 
-  /** Function to submit flag.
-  @param flag is boolean  to update flag
-  */ 
+  // Handle submit.
+
   $scope.submitFlag = function(flag) {
 
     console.log('SUBMMITTING', flag);
@@ -22,27 +22,7 @@ function Controller($scope, $rootScope, $uibModal, $sce, $timeout){
     }
   }
   
-  // Handle quiz submission.
-
-  $scope.submitQuiz = function(answers) {
-    for (var i in answers) {
-        var answer = answers[i];
-        if (answer && (typeof(answer) == 'object')) {
-            var newAnswer = [];
-            for (var j in answer) {
-                if (answer[j])
-                    newAnswer.push(j);
-            }
-            answers[i] = newAnswer.sort();
-        }
-    }
-    $rootScope.ws.send(JSON.stringify({
-        type: 'quiz',
-        answers: answers
-    }));
-  }
-
-  // Show actual mission modal.
+  // Show modal
 
   $rootScope.$on('ws:mission', function(event, msg) {
 
@@ -50,42 +30,15 @@ function Controller($scope, $rootScope, $uibModal, $sce, $timeout){
 
     $scope.missionID = msg.missionId;
 
-    $scope.missionContent = $sce.trustAsHtml(msg.text);
+    $scope.missionContent = msg.text;
 
-    var modalInstance = $uibModal.open({
-        animation: true,
-        scope:    $scope,
-        templateUrl: './missionModel.html',
-        controller: function($uibModalInstance) {
-            $ctrl = this;
-            $ctrl.showContent = true;
-            $ctrl.ok = function() {
-                $uibModalInstance.dismiss('ok');
-            };
+  //  console.log($scope.missionContent);
 
-            $ctrl.cancel = function() {
-                $uibModalInstance.dismiss('cancel');
-            };
+    $scope.customHtml = $sce.trustAsHtml($scope.missionContent);
 
-            $ctrl.close = function() {
-                $uibModalInstance.close('saved');
-            }
-
-        },
-        controllerAs: 'ctrl',
-        windowClass:  'mission-modal-window',
-        size:         'lg',
-        backdrop:      true
-    });
-
-    modalInstance.result.then(function(response) {}, function() {});
-    $scope.$applyAsync();
-    $timeout(function() {
-        $('.disable-answers-true input').prop('disabled', true);
-        $('.disable-answers-true textarea').prop('disabled', true);
-        $('.disable-answers-true button').prop('disabled', true);
-    }, 500);
+    $scope.$digest();
   });
+
 
 }
 
