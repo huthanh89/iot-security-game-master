@@ -42,15 +42,11 @@ function Controller($scope, $rootScope, $uibModal, $sce, $timeout){
   // Show modal
 
   $rootScope.$on('ws:mission', function(event, msg) {
-
     $scope.selectedMission = $rootScope.selectedMission;
-
-    $scope.missionID = msg.missionId;
-
-    $scope.missionContent = msg.text;
-
-    $scope.customHtml = $sce.trustAsHtml($scope.missionContent);
-
+    $scope.missionName     = $scope.selectedMission.name;
+    $scope.missionID       = msg.missionId;
+    $scope.missionContent  = msg.text;
+    $scope.customHtml      = $sce.trustAsHtml($scope.missionContent);
     $scope.$digest();
   });
 

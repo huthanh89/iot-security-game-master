@@ -5,7 +5,13 @@
     Mission
   </div>
   <div id="mission-container" class="card-body">
-    <div>{{mission.id}}</div>
+    <span id="mission-name">
+      {{missionName}}
+    </span>
+    <span id="mission-id">
+      {{missionID}}
+    </span>
+    <hr>
     <div bind-html-compile="customHtml"></div>
   </div>
 </div>
