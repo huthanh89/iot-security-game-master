@@ -5,12 +5,13 @@
 // ws://game-server.local:8080/player
 //-------------------------------------------------------------------------------//
 
-angular.module('gameApp').factory('WebSocketService', function($rootScope, $location){
+angular.module('gameApp').factory('WebSocketService', function($rootScope){
 
   let reconnect = true;
   let url       = 'ws://' + window.location.host + '/player'
   let ws        = new WebSocket(url);
-  let ip        = $location.search().ip
+  let urlParams = new URLSearchParams(window.location.search);
+  let ip        = urlParams.get('ip')
   $rootScope.ip = ip;
   $rootScope.ws = ws;
 
@@ -53,7 +54,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               var msg = JSON.parse(event.data);
               var type = msg['type'];
             
-              //console.log('ws:', msg);
+              console.log('ws:', msg);
 
               if (type == 'login') {
                   $rootScope.playerId = msg.id;
@@ -107,7 +108,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               
               else if (type == 'incorrectFlag') {
                   $rootScope.openModal("Error", 'Incorrect Flag');
-
               } 
               
               else if (type == 'error') {
@@ -117,7 +117,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               
               else if (type == 'levelsCompleted') {
                   $rootScope.openModal("Success", 'Congratulations! Your team has completed all levels.');
-
               } 
               
               else if (type == 'endgame') {
