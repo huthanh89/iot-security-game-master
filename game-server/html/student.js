@@ -33,6 +33,9 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
       $rootScope.grid = new Muuri('.grid', {
         items:     '.item',
         dragEnabled: true,
+        dragStartPredicate: {
+          handle: '.fa-grip-lines'
+        },
         dragSortPredicate: {
           action: 'swap'
         },
