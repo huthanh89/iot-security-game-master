@@ -112,7 +112,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
               
               else if (type == 'error') {
                   $rootScope.openModal("Error", msg.msg);
-
               } 
               
               else if (type == 'levelsCompleted') {

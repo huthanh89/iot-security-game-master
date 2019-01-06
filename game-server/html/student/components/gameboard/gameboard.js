@@ -153,7 +153,7 @@ function Controller($scope, $rootScope, $uibModal){
     
     var showContent = false;
     
-    // Send selected mission to websocket.
+    // Send selected mission to the server.
     
     if ($rootScope.selectedMission.playerId) {
       $rootScope.ws.send(JSON.stringify({
