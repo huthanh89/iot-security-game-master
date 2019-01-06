@@ -140,16 +140,14 @@ function Controller($scope, $rootScope, $uibModal){
     // Mission not available.
 
     if (!$rootScope.selectedMission) {
-      $rootScope.openModal("Warning", 'Mission not available.');
+      $rootScope.openUnavailableModal();
       return;
     }
 
     // Mission is locked.
 
     if (!$rootScope.selectedMission.unlocked) {
-      //$rootScope.openModal("Warning", 'Mission is locked.');
       $rootScope.openLockedModal();
-
       return;
     }
     
