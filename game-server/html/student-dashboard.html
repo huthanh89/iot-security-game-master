@@ -60,42 +60,50 @@
       <waiting></waiting>
     </div>
 
-    <div class="container" >
+    <!-- Components -->
 
-        <!-- Components -->
-        
-        <div ng-show="!waiting">
-          <mission></mission>
+    <div>
+      <div class="grid">
+        <div class="item">
+          <div ng-show="!waiting">
+            <mission></mission>
+          </div>
         </div>
-        
-        <div ng-show="!waiting">
-          <gameboard></gameboard>
+        <div class="item">
+          <div ng-show="!waiting">
+            <gameboard></gameboard>
+          </div>
         </div>
-
-        <div ng-show="!waiting">
-          <tools></tools>
+        <div class="item">
+          <div ng-show="!waiting">
+            <tools></tools>
+          </div>
         </div>
-
-        <player></player>
-
-        <chat></chat>
-
-        <notification></notification>
-        
-        <div ng-show="!waiting">
-          <scoreboard></scoreboard>
+        <div class="item">
+          <players></players>
         </div>
-        
-        <!-- Modal Components -->
-        
-        <modal></modal>
-        <locked></locked>
-        <unavailable></unavailable>
-        <error></error>
-        <wrong></wrong>
-        <completed></completed>
-
+        <div class="item">
+          <chat></chat>
+        </div>
+        <div class="item">
+          <notification></notification>
+        </div>
+        <div class="item">
+          <div ng-show="!waiting">
+            <scoreboard></scoreboard>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Modal Components -->
+    
+    <modal></modal>
+    <locked></locked>
+    <unavailable></unavailable>
+    <error></error>
+    <wrong></wrong>
+    <completed></completed>
 
   </body>
 

@@ -225,3 +225,45 @@ nav{
 }
 
 /* Prototype CSS code - END */
+
+/* Dashboard drag and drop - START */
+
+.grid {
+  position: relative;
+}
+
+.item {
+  display: block;
+  position: absolute;
+  min-width: 33%;
+}
+
+@media only screen and (min-width: 1200px) {
+  .item {
+    width: 33%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .item {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .item {
+    width: 100%;
+  }
+}
+
+.item.muuri-item-dragging {
+  z-index: 3;
+}
+.item.muuri-item-releasing {
+  z-index: 2;
+}
+.item.muuri-item-hidden {
+  z-index: 0;
+}
+
+/* Dashboard drag and drop - END */
