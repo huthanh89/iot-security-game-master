@@ -155,9 +155,19 @@ nav{
   overflow-x: auto;
 }
 
+#mission-header{
+  background: #6CC04A;;
+}
+
+#mission-container{
+  border-color: #6CC04A;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
 #mission-container img{
   max-width: 100%;
-  max-height: 250px;
+  max-height: 150px;
 }
 
 /* Prototype CSS code - Start */

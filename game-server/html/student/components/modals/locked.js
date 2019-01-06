@@ -4,16 +4,9 @@
 
 function Controller($scope, $rootScope){
   
-  $scope.enableInternet = $rootScope.internetEnabled;
-
-  $scope.ok = function() {
-    ws.send(JSON.stringify({
-      type: 'internet',
-      enable: $scope.enableInternet
-    }));
+  $rootScope.openLockedModal = function(title, content) {
+    $('#modal-locked').modal('show')
   }
-
-  console.log('------------------');
 
 }
 
@@ -22,7 +15,7 @@ function Controller($scope, $rootScope){
 //------------------------------------------------------------------------------//
 
 angular.module('gameApp').component('locked', {
-  templateUrl: 'student/components/modal/locked.html',
+  templateUrl: 'student/components/modals/locked.html',
   controller:   Controller
 });
 

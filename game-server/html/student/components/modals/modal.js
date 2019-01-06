@@ -3,10 +3,10 @@
 //-------------------------------------------------------------------------------//
 
 function Controller($scope, $rootScope, $uibModal){
-  
-  $rootScope.openModal = function(title, content) {
 
-    console.log('>>>> open modal');
+  // Open generic modal title and content passed in.
+
+  $rootScope.openModal = function(title, content) {
 
     var template = $('.modal-template').html();
     template = template.replace('[[name]]', title).replace('[[description]]', content);
@@ -51,7 +51,7 @@ function Controller($scope, $rootScope, $uibModal){
 //------------------------------------------------------------------------------//
 
 angular.module('gameApp').component('modal', {
-  templateUrl: 'student/components/modal/modal.html',
+  templateUrl: 'student/components/modals/modal.html',
   controller:   Controller
 });
 

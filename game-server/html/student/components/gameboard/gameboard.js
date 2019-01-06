@@ -147,7 +147,9 @@ function Controller($scope, $rootScope, $uibModal){
     // Mission is locked.
 
     if (!$rootScope.selectedMission.unlocked) {
-      $rootScope.openModal("Warning", 'Mission is locked.');
+      //$rootScope.openModal("Warning", 'Mission is locked.');
+      $rootScope.openLockedModal();
+
       return;
     }
     
