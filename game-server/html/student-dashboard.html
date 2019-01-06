@@ -6,7 +6,7 @@
 
       <title>Student Dashboard</title>
 
-      <!–– Vendor Scripts ––>
+      <!– Vendor Scripts –>
 
       <link rel="stylesheet" href="vendor/introjs.css">
       <link rel="stylesheet" type="text/css" href="vendor/src/css/fontawesome-5.6.1.css">
@@ -27,7 +27,7 @@
 
       <script src="vendor/angular-bind-html-compile.min.js"></script>
       
-      <!–– Application Scripts ––>
+      <!– Application Scripts –>
 
       <link rel="stylesheet" type="text/css" href="student.css">
       <script src="api.js"></script>
@@ -60,6 +60,8 @@
 
     <div class="container" >
 
+        <!-- Components -->
+        
         <div ng-show="!waiting">
           <mission></mission>
         </div>
@@ -81,9 +83,9 @@
         <div ng-show="!waiting">
           <scoreboard></scoreboard>
         </div>
-
-        <!–– Modals component ––>
-
+        
+        <!-- Modal Components -->
+        
         <modal></modal>
         <locked></locked>
         <unavailable></unavailable>
