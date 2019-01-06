@@ -155,13 +155,7 @@ nav{
   overflow-x: auto;
 }
 
-#mission-header{
-  background: #6CC04A;;
-}
-
 #mission-container{
-  border-color: #6CC04A;
-  max-height: 450px;
   overflow-y: auto;
 }
 

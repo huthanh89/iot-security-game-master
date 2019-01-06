@@ -239,8 +239,14 @@ function Controller($scope, $rootScope, $uibModal){
         $scope.gameboardView.data.levels[levelNum].extraStyle = 'strokeColor=' + IN_PROGRESS_COLOR;
 
     $scope.gameboardView.view.refresh();
-
+    
     $scope.$applyAsync();
+
+    // Wait a bit, then refresh grid.
+
+    setTimeout(function(){ 
+      $rootScope.refreshGrid();
+    }, 2000);
     
   });
 

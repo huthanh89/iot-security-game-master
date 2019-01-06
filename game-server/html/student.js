@@ -63,10 +63,9 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
       if($rootScope.grid){
         setTimeout(function(){ 
           $rootScope.refreshGrid();
-      }, 2000);
+        }, 2000);
       }
     });   
-
 
 });
 
