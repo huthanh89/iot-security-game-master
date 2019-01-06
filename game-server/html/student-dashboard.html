@@ -75,22 +75,24 @@
           </div>
         </div>
         <div class="item">
+          <chat></chat>
+        </div>
+        <div class="item">
+          <div ng-show="!waiting">
+            <scoreboard></scoreboard>
+          </div>
+        </div>
+        <div class="item">
           <div ng-show="!waiting">
             <tools></tools>
           </div>
         </div>
         <div class="item">
-          <player></player>
-        </div>
-        <div class="item">
-          <chat></chat>
-        </div>
-        <div class="item">
           <notification></notification>
         </div>
         <div class="item">
-          <div ng-show="!waiting">
-            <scoreboard></scoreboard>
+          <div ng-show="waiting">
+            <player></player>
           </div>
         </div>
       </div>

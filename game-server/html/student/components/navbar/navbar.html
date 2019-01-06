@@ -1,6 +1,9 @@
 <nav class="navbar navbar-dark">
   <a class="navbar-brand mr-auto" href="#">Student</a>
-  <button class='btn btn-outline-info text-light border-light' onclick="javascript:introJs().start();"  ng-show="waiting"> 
+  <button class='btn btn-outline-info text-light border-light mr-2' onclick="" ng-show="!$root.waiting"> 
+    <i class="fas fa-user"></i>
+  </button>
+  <button class='btn btn-outline-info text-light border-light' onclick="javascript:introJs().start();" ng-show="!$root.waiting"> 
     <i class="fas fa-question"></i>
   </button>
 </nav>
