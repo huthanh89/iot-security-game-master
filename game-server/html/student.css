@@ -157,11 +157,16 @@ nav{
 
 #mission-container{
   overflow-y: auto;
+  height:     400px;
 }
 
 #mission-container img{
   max-width: 100%;
   max-height: 150px;
+}
+
+#gameboard-container{
+  overflow-x: auto;
 }
 
 /* Prototype CSS code - Start */
