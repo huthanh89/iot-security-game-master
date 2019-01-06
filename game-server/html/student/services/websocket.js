@@ -65,7 +65,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
                 if (msg.to == '__notification__') {
                   $rootScope.$broadcast('ws:notification', msg); 
                 }
-                
                 else {
                   $rootScope.$broadcast('ws:chat', msg);
                 }          
@@ -107,7 +106,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
               } 
               
               else if (type == 'incorrectFlag') {
-                  $rootScope.openErrorModal("Error", 'Incorrect Flag');
+                  $rootScope.openWrongModal();
               } 
               
               else if (type == 'error') {
@@ -115,7 +114,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
               } 
               
               else if (type == 'levelsCompleted') {
-                  $rootScope.openModal("Success", 'Congratulations! Your team has completed all levels.');
+                  $rootScope.openCompletedModal();
               } 
               
               else if (type == 'endgame') {
