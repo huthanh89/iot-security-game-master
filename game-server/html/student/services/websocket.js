@@ -107,11 +107,11 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
               } 
               
               else if (type == 'incorrectFlag') {
-                  $rootScope.openModal("Error", 'Incorrect Flag');
+                  $rootScope.openErrorModal("Error", 'Incorrect Flag');
               } 
               
               else if (type == 'error') {
-                  $rootScope.openModal("Error", msg.msg);
+                  $rootScope.openErrorModal("Error", msg.msg);
               } 
               
               else if (type == 'levelsCompleted') {
