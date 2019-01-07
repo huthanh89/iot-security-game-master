@@ -265,3 +265,12 @@ nav{
 }
 
 /* Dashboard drag and drop - END */
+
+.info-steps textarea{
+  width: 100%;
+  height: 60px;
+}
+
+.info-steps input[type='checkbox'] { 
+  margin-right: 5px; 
+}

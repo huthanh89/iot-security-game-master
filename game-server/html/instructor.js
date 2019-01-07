@@ -25,6 +25,14 @@ app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) 
     
     WebSocketService.connectToWS();
     
+    // Refresh grid to recalculate grid item positions.
+
+    $rootScope.refreshGrid = function(){
+      if($rootScope.grid){
+        $rootScope.grid.refreshItems().layout();
+      }
+    }
+    
     // Initialize grid when angular has fully loaded.
 
     angular.element(function () {
@@ -48,13 +56,6 @@ app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) 
       $rootScope.grid.refreshItems().layout();
     });
 
-    // Refresh grid to recalculate grid item positions.
-
-    $rootScope.refreshGrid = function(){
-      if($rootScope.grid){
-        $rootScope.grid.refreshItems().layout();
-      }
-    }
 
     // When game starts, refresh grid system layout.
     // Since angular1 does not offer a callback for when all component are
