@@ -19,8 +19,7 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     //TODO: enable sound for production build.
 
     $rootScope.playSound = function() {
-      //var sound = document.getElementById('play');
-      //sound.play();
+      document.getElementById('play').play();
     }
 
     // Connect to Web Socket.
