@@ -42,7 +42,7 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
         items:     '.item',
         dragEnabled: true,
         dragStartPredicate: {
-          handle: '.fa-grip-lines'
+          handle: '.card-header'
         },
         dragSortPredicate: {
           action: 'swap'
@@ -55,7 +55,6 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
           rounding:    false
         }
       });
-      console.log('asdf');
       $rootScope.grid.refreshItems().layout();
     });
 

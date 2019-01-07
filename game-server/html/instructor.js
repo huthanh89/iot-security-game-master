@@ -32,7 +32,7 @@ app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) 
         $rootScope.grid.refreshItems().layout();
       }
     }
-    
+
     // Initialize grid when angular has fully loaded.
 
     angular.element(function () {
@@ -40,7 +40,7 @@ app.controller('instructorCtrl', function($scope, $rootScope, WebSocketService) 
         items: '.item',
         dragEnabled: true,
         dragStartPredicate: {
-          handle: '.fa-grip-lines'
+          handle: '.card-header'
         },
         dragSortPredicate: {
           action: 'swap'
