@@ -15,7 +15,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
   $rootScope.ip = ip;
   $rootScope.ws = ws;
 
-  return {
+  let service = {
 
     connectToWS: function () {
 
@@ -43,7 +43,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
 
       ws.onclose = function() {
           setTimeout(function() {
-              connectToWS();
+            service.connectToWS();
           }, 2000);
           $rootScope.$applyAsync();
       };
@@ -59,6 +59,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
               if (type == 'login') {
                   $rootScope.playerId = msg.id;
                   $rootScope.teamName = null;
+                  $rootScope.refreshGrid();
               } 
               
               else if (type == 'chat') {
@@ -136,6 +137,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
     }
 
   }
+  return service;
 });
 
 //-------------------------------------------------------------------------------//

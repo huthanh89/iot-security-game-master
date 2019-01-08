@@ -4,10 +4,24 @@
 
 function Controller($scope, $rootScope, $uibModal){
   
-  $rootScope.openErrorModal = function(title, content) {
 
-    var template = $('#modal-error-template').html();
-    template = template.replace('[[name]]', title).replace('[[description]]', content);
+  $rootScope.$watch('playerName', function(value){
+    $scope.playerName = value
+  });
+
+  $rootScope.$watch('ip', function(value){
+    $scope.ip = value
+  });
+
+  $rootScope.$watch('teamName', function(value){
+    $scope.teamName = value
+  });
+
+  $rootScope.openProfileModal = function() {
+
+    console.log($rootScope);
+
+    var template = $('#modal-profile-template').html();
 
     var modalInstance = $uibModal.open({
         animation: true,
@@ -29,9 +43,9 @@ function Controller($scope, $rootScope, $uibModal){
 
         },
         controllerAs: 'ctrl',
-        windowClass: 'alert-modal-window',
-        size: 'sm',
-        backdrop: 'static'
+        windowClass:  'alert-modal-window',
+        size:         'sm',
+        backdrop:     'static'
     });
 
     modalInstance.result.then(function(response) {
@@ -43,8 +57,8 @@ function Controller($scope, $rootScope, $uibModal){
 // Component
 //------------------------------------------------------------------------------//
 
-angular.module('gameApp').component('error', {
-  templateUrl: 'student/components/modals/error.html',
+angular.module('gameApp').component('profile', {
+  templateUrl: 'student/components/modals/profile.html',
   controller:   Controller
 });
 
