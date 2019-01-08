@@ -3,7 +3,6 @@
 //------------------------------------------------------------------------------//
 
 var app = angular.module('gameApp', ['ui.bootstrap' , 'angular-bind-html-compile']);
-//var app = angular.module('gameApp');
 
 //-------------------------------------------------------------------------------//
 // Main Controller
@@ -16,10 +15,9 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     $rootScope.waiting = true;
 
     // Function to play beep sound
-    //TODO: enable sound for production build.
 
     $rootScope.playSound = function() {
-      document.getElementById('play').play();
+      // document.getElementById('play').play();
     }
 
     // Connect to Web Socket.
@@ -32,6 +30,12 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
       if($rootScope.grid){
         $rootScope.grid.refreshItems().layout();
       }
+    }
+
+    $rootScope.delayedRefreshGrid = function(ms){
+      setTimeout(function(){ 
+        $rootScope.refreshGrid();
+      }, ms);
     }
 
     // Initialize grid when angular has fully loaded.
@@ -62,12 +66,10 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     // fully loaded, we make due with window's delay function.
 
     $rootScope.$on('ws:start', function() {
-      if($rootScope.grid){
-        setTimeout(function(){ 
-          $rootScope.refreshGrid();
-        }, 2000);
-      }
+      $rootScope.delayedRefreshGrid(2000);
     });   
+    
+    $rootScope.delayedRefreshGrid(2000);
 
   });
 

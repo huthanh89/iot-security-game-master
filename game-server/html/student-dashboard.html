@@ -6,17 +6,15 @@
 
       <title>Student Dashboard</title>
 
-      <!– Vendor Scripts –>
-
-      <link rel="stylesheet" href="vendor/introjs.css">
+      <!-- Vendor Scripts -->
+      
+      <link rel="stylesheet" type="text/css" href="vendor/bootstrap-4.2.1.min.css">
       <link rel="stylesheet" type="text/css" href="vendor/src/css/fontawesome-5.6.1.css">
-      <link rel="stylesheet" type="text/css" href="vendor/bootstrap-4.0.0.min.css">
 
-      <script src="vendor/jquery-3.2.1.min.js"></script>
+      <script src="vendor/jquery-3.3.1.min.js"></script>
       <script src="vendor/angular-1.7.5.min.js"></script>
-      <script src="vendor/intro.js"></script>
       <script src="vendor/popper-1.12.9.min.js"></script>
-      <script src="vendor/bootstrap-4.0.0.min.js"></script>
+      <script src="vendor/bootstrap.bundle-4.2.1.min.js"></script>
       <script src="vendor/ui-bootstrap-tpls-3.0.6.min.js"></script>
       <script src="vendor/lodash_core-4.17.11.js"></script>
       <script src="vendor/web-animations-2.3.1.min.js"></script>
@@ -24,11 +22,14 @@
       <script src="vendor/muuri-0.5.4.min.js"></script>
       <script type="text/javascript"> mxBasePath = 'vendor/src'; </script>
       <script src="vendor/mxClient.min.js"></script>
-
       <script src="vendor/angular-bind-html-compile.min.js"></script>
-      
-      <!– Application Scripts –>
 
+      <link rel="stylesheet" type="text/css" href="vendor/bootstrap-tour-standalone.css">
+      <script src="vendor/bootstrap-tour-standalone.min.js"></script>
+
+      <!-- Application Scripts -->
+      
+      <link rel="stylesheet" type="text/css" href="student.css">
       <link rel="stylesheet" type="text/css" href="student.css">
       <script src="api.js"></script>
       <script src="app.js"></script>
@@ -59,7 +60,13 @@
     <div id='waiting-component' ng-show="waiting">
       <waiting></waiting>
     </div>
+<button class="btn" id="tour-go">Start the tour!</button>
 
+<form>
+    <input id="one" value="one" />
+    <input id="two" value="two" />
+    <input id="three" value="three" />
+</form>
     <!-- Components -->
 
     <div>

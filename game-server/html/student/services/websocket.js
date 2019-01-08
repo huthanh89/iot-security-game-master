@@ -77,7 +77,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
 
                   // TODO: disable during development.
 
-                  //introJs().start()
+                  // introJs().start()
               } 
               
               else if (type == 'scores') {

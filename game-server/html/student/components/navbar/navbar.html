@@ -1,9 +1,9 @@
-<nav class="navbar navbar-dark">
-  <a class="navbar-brand mr-auto" href="#">Student</a>
-  <button class='btn btn-outline-info text-light border-light mr-2' onclick="" ng-show="!$root.waiting"> 
+<nav class="navbar navbar-dark" >
+  <a class="navbar-brand mr-auto" href="#" id="this-element">Student</a>
+  <button class='btn btn-outline-info text-light border-light mr-2' ng-click="test()" ng-show="!$root.waiting"> 
     <i class="fas fa-user"></i>
   </button>
-  <button class='btn btn-outline-info text-light border-light' onclick="javascript:introJs().start();" ng-show="!$root.waiting"> 
+  <button class='btn btn-outline-info text-light border-light' ng-click="tour()" ng-show="!$root.waiting"> 
     <i class="fas fa-question"></i>
   </button>
 </nav>
