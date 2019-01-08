@@ -32,12 +32,6 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
       }
     }
 
-    $rootScope.delayedRefreshGrid = function(ms){
-      setTimeout(function(){ 
-        $rootScope.refreshGrid();
-      }, ms);
-    }
-
     // Initialize grid when angular has fully loaded.
 
     angular.element(function () {
@@ -65,12 +59,13 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     // Since angular1 does not offer a callback for when all component are
     // fully loaded, we make due with window's delay function.
 
-    $rootScope.$on('ws:start', function() {
-      $rootScope.delayedRefreshGrid(2000);
+    $rootScope.$on('ws:started', function() {
+      setTimeout(function(){ 
+        $rootScope.refreshGrid();
+        $rootScope.startTour();
+      }, 2000);
     });   
     
-    $rootScope.delayedRefreshGrid(2000);
-
   });
 
 //-------------------------------------------------------------------------------//

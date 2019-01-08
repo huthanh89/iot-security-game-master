@@ -74,10 +74,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
                   $rootScope.waiting = false;
                   $rootScope.$applyAsync();
                   $rootScope.playSound();
-
-                  // TODO: disable during development.
-
-                  // introJs().start()
+                  $rootScope.$broadcast('ws:started', msg);
               } 
               
               else if (type == 'scores') {
