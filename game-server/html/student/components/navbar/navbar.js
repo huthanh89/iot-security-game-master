@@ -57,7 +57,7 @@ function Controller($scope, $rootScope){
   // Start initial tour.
 
   $rootScope.startTour = function(){
-    //tour.start();
+    tour.start();
   }
 
   // Open modal showing player info.

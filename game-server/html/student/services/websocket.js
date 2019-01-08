@@ -23,9 +23,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
 
         var name = $rootScope.playerName;
 
-        // TODO: remove debug
-        name = 'sally';
-
         while (name == null || name == "") {
             name = prompt("Name:");
         }
@@ -54,8 +51,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
               var msg = JSON.parse(event.data);
               var type = msg['type'];
             
-              console.log('ws:', msg);
-
               if (type == 'login') {
                   $rootScope.playerId = msg.id;
                   $rootScope.teamName = null;
@@ -74,7 +69,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope){
               else if (type == 'started') {
                   $rootScope.waiting = false;
                   $rootScope.$applyAsync();
-                  $rootScope.playSound();
                   $rootScope.$broadcast('ws:started', msg);
               } 
               

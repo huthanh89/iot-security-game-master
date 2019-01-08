@@ -21,11 +21,11 @@ function Controller($scope, $rootScope){
   }
 
   $rootScope.$on('ws:scores', function(event, msg) {
-    if (JSON.stringify(getScores($scope.scoreBoard)) != JSON.stringify(getScores(msg.scores))) {
-      $rootScope.playSound();
+    if (JSON.stringify(getScores($scope.scoreBoard)) != JSON.stringify(getScores(msg.scores))
+      && $rootScope.gameStarted) {
+        $rootScope.playSound();
     }
     $scope.scoreBoard = msg.scores;
-
   });
   
 }

@@ -17,7 +17,7 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     // Function to play beep sound
 
     $rootScope.playSound = function() {
-      // document.getElementById('play').play();
+      document.getElementById('play').play();
     }
 
     // Connect to Web Socket.
@@ -62,7 +62,9 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     $rootScope.$on('ws:started', function() {
       setTimeout(function(){ 
         $rootScope.refreshGrid();
+        $rootScope.playSound();
         $rootScope.startTour();
+        $rootScope.gameStarted = true;
       }, 2000);
     });   
     
