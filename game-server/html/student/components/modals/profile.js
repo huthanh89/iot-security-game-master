@@ -19,8 +19,6 @@ function Controller($scope, $rootScope, $uibModal){
 
   $rootScope.openProfileModal = function() {
 
-    console.log($rootScope);
-
     var template = $('#modal-profile-template').html();
 
     var modalInstance = $uibModal.open({

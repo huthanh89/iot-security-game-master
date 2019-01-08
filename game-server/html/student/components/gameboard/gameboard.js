@@ -167,8 +167,6 @@ function Controller($scope, $rootScope, $uibModal){
 
     else {
 
-      console.log('show confirm');
-  
       $scope.missionContentShown = true;
       var modalInstance = $uibModal.open({
           animation:   true,
@@ -176,8 +174,6 @@ function Controller($scope, $rootScope, $uibModal){
           templateUrl: './missionModel.html',
           backdrop: true,
           controller: function($uibModalInstance) {
-
-            console.log('this', this);
 
             $ctrl = this;
             $ctrl.showContent = showContent;
