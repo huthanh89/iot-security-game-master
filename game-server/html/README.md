@@ -1,4 +1,4 @@
-# Development startup process.
+# Development Game Server startup process.
 
 cd game-server
 
@@ -10,5 +10,28 @@ http://localhost:8080/instructor-dashboard.html?cheat
 
 Open student dashbaord:
 
-http://localhost:8080/student-dashboard.html?ip=10.1.101.11  
+http://localhost:8080/student-dashasdfboard.html?ip=10.1.101.11  
+
+# Web Development setup.
+
+1. Install node v10.15.0
+
+https://nodejs.org/en/
+
+2. Install chrome's livereload
+
+https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en
+
+3. Install node packages:
+
+npm install gulp
+npm install gulp-livereload
+npm install -g gulp
+
+# Web Development startup process.
+
+1. Enable livereload on chrome browser, then run command
+
+gulp
+
 
