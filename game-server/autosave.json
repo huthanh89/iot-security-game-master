@@ -3,28 +3,39 @@
         "cheat": true
     },
     "players": {
+        "10.1.101.11": {
+            "id": "10.1.101.11",
+            "ip": "10.1.101.11",
+            "kaliIp": "",
+            "kaliOnline": false,
+            "name": "asdfasd",
+            "pi": {},
+            "score": 0,
+            "team": "none",
+            "viewOnline": true
+        },
         "10.1.101.12": {
             "id": "10.1.101.12",
             "ip": "10.1.101.12",
             "kaliIp": "",
             "kaliOnline": false,
-            "name": "asdf",
+            "name": "afsd",
             "pi": {},
             "score": 0,
-            "team": "asdf",
-            "viewOnline": true
+            "team": "asdfasd",
+            "viewOnline": false
         }
     },
     "teamConfig": [
         {
-            "name": "asdf",
+            "name": "asdfasd",
             "players": [
                 "10.1.101.12"
             ]
         }
     ],
     "teamData": {
-        "asdf": {
+        "asdfasd": {
             "currentRing": 0,
             "done": false,
             "missions": {
@@ -171,23 +182,23 @@
             },
             "progress": 0,
             "score": 0,
-            "team": "asdf"
+            "team": "asdfasd"
         }
     },
     "teams": [
         {
-            "name": "asdf",
+            "name": "asdfasd",
             "players": [
                 {
                     "id": "10.1.101.12",
                     "ip": "10.1.101.12",
                     "kaliIp": "",
                     "kaliOnline": false,
-                    "name": "asdf",
+                    "name": "afsd",
                     "pi": {},
                     "score": 0,
-                    "team": "asdf",
-                    "viewOnline": true
+                    "team": "asdfasd",
+                    "viewOnline": false
                 }
             ],
             "score": 0
