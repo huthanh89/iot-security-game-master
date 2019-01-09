@@ -73,11 +73,20 @@ nav{
 }
 
 .teams-item{
-  display: block;
   margin:  0;
   padding: 0;
-  border: rgb(87, 80, 80) 1px solid;
+  border: rgb(197, 197, 197) 1px solid;
   border-radius: 5px;
+}
+
+@media only screen and (min-width: 1366px) {
+  .teams-list-container{
+    padding: 5px;
+  }
+  .teams-item{
+    padding: 0 10px;
+    text-align: left;
+  }
 }
 
 .selected {
