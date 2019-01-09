@@ -18,7 +18,7 @@ http://localhost:8080/student-dashasdfboard.html?ip=10.1.101.11
 
 https://nodejs.org/en/
 
-2. Install chrome's livereload
+2. Install Chrome extension livereload
 
 https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en
 
@@ -30,7 +30,7 @@ npm install -g gulp
 
 # Web Development startup process.
 
-1. Enable livereload on chrome browser, then run command
+1. Enable livereload extension on Chrome browser, then run command
 
 gulp
 
