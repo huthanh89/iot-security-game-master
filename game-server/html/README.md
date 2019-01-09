@@ -22,7 +22,7 @@ https://nodejs.org/en/
 
 https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en
 
-3. Install node packages:
+3. Install node packages with the following commands:
 
 npm install gulp
 npm install gulp-livereload
