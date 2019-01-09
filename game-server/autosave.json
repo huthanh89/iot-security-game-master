@@ -3,81 +3,28 @@
         "cheat": true
     },
     "players": {
-        "10.1.101.11": {
-            "id": "10.1.101.11",
-            "ip": "10.1.101.11",
-            "kaliIp": "",
-            "kaliOnline": false,
-            "name": "foobar123456",
-            "pi": {},
-            "score": 0,
-            "team": "asdfdfs",
-            "viewOnline": false
-        },
         "10.1.101.12": {
             "id": "10.1.101.12",
             "ip": "10.1.101.12",
             "kaliIp": "",
             "kaliOnline": false,
-            "name": "1234567891234",
+            "name": "asdfasdfasdf",
             "pi": {},
             "score": 0,
-            "team": "asdfdfs",
-            "viewOnline": true
-        },
-        "10.1.101.13": {
-            "id": "10.1.101.13",
-            "ip": "10.1.101.13",
-            "kaliIp": "",
-            "kaliOnline": false,
-            "name": "Bob",
-            "pi": {},
-            "score": 0,
-            "team": "asdfsda",
-            "viewOnline": true
-        },
-        "10.1.101.16": {
-            "id": "10.1.101.16",
-            "ip": "10.1.101.16",
-            "kaliIp": "",
-            "kaliOnline": false,
-            "name": "Stewey",
-            "pi": {},
-            "score": 0,
-            "team": "asdfsda",
-            "viewOnline": true
-        },
-        "10.1.101.20": {
-            "id": "10.1.101.20",
-            "ip": "10.1.101.20",
-            "kaliIp": "",
-            "kaliOnline": false,
-            "name": "Orange",
-            "pi": {},
-            "score": 0,
-            "team": "asdfdfs",
+            "team": "asfd",
             "viewOnline": true
         }
     },
     "teamConfig": [
         {
-            "name": "asdfsda",
+            "name": "asfd",
             "players": [
-                "10.1.101.13",
-                "10.1.101.16"
-            ]
-        },
-        {
-            "name": "asdfdfs",
-            "players": [
-                "10.1.101.11",
-                "10.1.101.12",
-                "10.1.101.20"
+                "10.1.101.12"
             ]
         }
     ],
     "teamData": {
-        "asdfdfs": {
+        "asfd": {
             "currentRing": 0,
             "done": false,
             "missions": {
@@ -86,13 +33,13 @@
                     "done": false,
                     "id": "0",
                     "name": "JTAG",
-                    "playerId": "10.1.101.12",
-                    "playerName": "1234567891234",
+                    "playerId": null,
+                    "playerName": null,
                     "pointsEarned": 0,
                     "progress": 0,
                     "quizCorrectCount": 0,
-                    "state": "start",
-                    "team": "asdfdfs",
+                    "state": null,
+                    "team": null,
                     "unlocked": true
                 },
                 "1a": {
@@ -224,221 +171,22 @@
             },
             "progress": 0,
             "score": 0,
-            "team": "asdfdfs"
-        },
-        "asdfsda": {
-            "currentRing": 0,
-            "done": false,
-            "missions": {
-                "0": {
-                    "description": "JTAG is a standardized interface for debugging integrated circuits which you can also use to debug a Raspberry Pi. In this mission, you will verify the serial connectivity using the UART GPIO pins, and exploit the debug interface on RPi that was left open by the developer.",
-                    "done": false,
-                    "id": "0",
-                    "name": "JTAG",
-                    "playerId": "10.1.101.13",
-                    "playerName": "Bob",
-                    "pointsEarned": 0,
-                    "progress": 0,
-                    "quizCorrectCount": 0,
-                    "state": "start",
-                    "team": "asdfsda",
-                    "unlocked": true
-                },
-                "1a": {
-                    "description": "Good job coming so far. In this mission, you will exploit the default credentials left open by the developer and look for valuable information in the user directory files.",
-                    "done": false,
-                    "id": "1a",
-                    "name": "Default credentials",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
-                    "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
-                },
-                "1b": {
-                    "description": "Well, that escalated quickly.",
-                    "done": false,
-                    "id": "1b",
-                    "name": "Privilege Escalation",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
-                    "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
-                },
-                "1c": {
-                    "description": "Time to explore the contents of the firmware.",
-                    "done": false,
-                    "id": "1c",
-                    "name": "Extract the Firmware",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
-                    "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
-                },
-                "1d": {
-                    "description": "Let's get crackin'.",
-                    "done": false,
-                    "id": "1d",
-                    "name": "Weak Passwords",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
-                    "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
-                },
-                "2a": {
-                    "description": "Gathering information is a basic, but extremely important step when conducting a cyberattack.",
-                    "done": false,
-                    "id": "2a",
-                    "name": "Port Scan",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
-                    "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
-                },
-                "2b": {
-                    "description": "Gain unauthorized access to a remote IoT device.",
-                    "done": false,
-                    "id": "2b",
-                    "name": "Remote Access",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
-                    "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
-                },
-                "2c": {
-                    "description": "Capture the data sent through an unsecured communication channel.",
-                    "done": false,
-                    "id": "2c",
-                    "name": "Unencrypted Protocols",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
-                    "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
-                },
-                "3a": {
-                    "description": "Good job coming so far. In this mission, you will perform SQL Injection on a vulnerable URL to obtain valuable information hidden in a table name in the database that holds the data records.",
-                    "done": false,
-                    "id": "3a",
-                    "name": "Play with the HTTP query parameters",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
-                    "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
-                },
-                "3b": {
-                    "description": "In this mission, you will exploit a vulnerable web API to get the personal data of users.",
-                    "done": false,
-                    "id": "3b",
-                    "name": "Insecure Web APIs",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
-                    "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
-                }
-            },
-            "progress": 0,
-            "score": 0,
-            "team": "asdfsda"
+            "team": "asfd"
         }
     },
     "teams": [
         {
-            "name": "asdfsda",
+            "name": "asfd",
             "players": [
-                {
-                    "id": "10.1.101.13",
-                    "ip": "10.1.101.13",
-                    "kaliIp": "",
-                    "kaliOnline": false,
-                    "name": "Bob",
-                    "pi": {},
-                    "score": 0,
-                    "team": "asdfsda",
-                    "viewOnline": true
-                },
-                {
-                    "id": "10.1.101.16",
-                    "ip": "10.1.101.16",
-                    "kaliIp": "",
-                    "kaliOnline": false,
-                    "name": "Stewey",
-                    "pi": {},
-                    "score": 0,
-                    "team": "asdfsda",
-                    "viewOnline": true
-                }
-            ],
-            "score": 0
-        },
-        {
-            "name": "asdfdfs",
-            "players": [
-                {
-                    "id": "10.1.101.11",
-                    "ip": "10.1.101.11",
-                    "kaliIp": "",
-                    "kaliOnline": false,
-                    "name": "foobar123456",
-                    "pi": {},
-                    "score": 0,
-                    "team": "asdfdfs",
-                    "viewOnline": false
-                },
                 {
                     "id": "10.1.101.12",
                     "ip": "10.1.101.12",
                     "kaliIp": "",
                     "kaliOnline": false,
-                    "name": "1234567891234",
+                    "name": "asdfasdfasdf",
                     "pi": {},
                     "score": 0,
-                    "team": "asdfdfs",
-                    "viewOnline": true
-                },
-                {
-                    "id": "10.1.101.20",
-                    "ip": "10.1.101.20",
-                    "kaliIp": "",
-                    "kaliOnline": false,
-                    "name": "Orange",
-                    "pi": {},
-                    "score": 0,
-                    "team": "asdfdfs",
+                    "team": "asfd",
                     "viewOnline": true
                 }
             ],
