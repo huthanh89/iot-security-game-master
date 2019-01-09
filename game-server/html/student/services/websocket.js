@@ -23,7 +23,7 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
         var name = $rootScope.playerName;
 
         while ((name == null) || (name == "") || (name.length > 12)) {
-            name = prompt("Enter Name (12 character limit)");
+          name = prompt("Enter Name (12 character limit)");
         }
 
         $rootScope.playerName = name;
@@ -50,6 +50,8 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               var msg = JSON.parse(event.data);
               var type = msg['type'];
             
+              console.log(msg);
+
               if (type == 'login') {
                   $rootScope.playerId = msg.id;
                   $rootScope.teamName = null;

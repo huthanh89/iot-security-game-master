@@ -8,23 +8,23 @@
             "ip": "10.1.101.12",
             "kaliIp": "",
             "kaliOnline": false,
-            "name": "asdfsdf",
+            "name": "asdf",
             "pi": {},
             "score": 0,
-            "team": "adfsdf",
+            "team": "asdff",
             "viewOnline": true
         }
     },
     "teamConfig": [
         {
-            "name": "adfsdf",
+            "name": "asdff",
             "players": [
                 "10.1.101.12"
             ]
         }
     ],
     "teamData": {
-        "adfsdf": {
+        "asdff": {
             "currentRing": 0,
             "done": false,
             "missions": {
@@ -33,13 +33,13 @@
                     "done": false,
                     "id": "0",
                     "name": "JTAG",
-                    "playerId": "10.1.101.12",
-                    "playerName": "asdfsdf",
+                    "playerId": null,
+                    "playerName": null,
                     "pointsEarned": 0,
                     "progress": 0,
                     "quizCorrectCount": 0,
-                    "state": "start",
-                    "team": "adfsdf",
+                    "state": null,
+                    "team": null,
                     "unlocked": true
                 },
                 "1a": {
@@ -171,22 +171,22 @@
             },
             "progress": 0,
             "score": 0,
-            "team": "adfsdf"
+            "team": "asdff"
         }
     },
     "teams": [
         {
-            "name": "adfsdf",
+            "name": "asdff",
             "players": [
                 {
                     "id": "10.1.101.12",
                     "ip": "10.1.101.12",
                     "kaliIp": "",
                     "kaliOnline": false,
-                    "name": "asdfsdf",
+                    "name": "asdf",
                     "pi": {},
                     "score": 0,
-                    "team": "adfsdf",
+                    "team": "asdff",
                     "viewOnline": true
                 }
             ],
