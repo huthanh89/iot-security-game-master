@@ -3,69 +3,70 @@
         "cheat": true
     },
     "players": {
-        "10.1.101.11": {
-            "id": "10.1.101.11",
-            "ip": "10.1.101.11",
+        "10.1.101.120": {
+            "id": "10.1.101.120",
+            "ip": "10.1.101.120",
             "kaliIp": "",
             "kaliOnline": false,
-            "name": "asdfasd",
+            "name": "asdf",
             "pi": {},
             "score": 0,
-            "team": "none",
+            "team": "ffff",
             "viewOnline": true
         },
-        "10.1.101.12": {
-            "id": "10.1.101.12",
-            "ip": "10.1.101.12",
+        "10.1.101.21": {
+            "id": "10.1.101.21",
+            "ip": "10.1.101.21",
             "kaliIp": "",
             "kaliOnline": false,
-            "name": "afsd",
+            "name": "ddddd",
             "pi": {},
-            "score": 0,
-            "team": "asdfasd",
-            "viewOnline": false
+            "score": 15.0,
+            "team": "ffff",
+            "viewOnline": true
         }
     },
     "teamConfig": [
         {
-            "name": "asdfasd",
+            "name": "ffff",
             "players": [
-                "10.1.101.12"
+                "10.1.101.120",
+                "10.1.101.21"
             ]
         }
     ],
     "teamData": {
-        "asdfasd": {
-            "currentRing": 0,
+        "ffff": {
+            "currentRing": 1,
             "done": false,
             "missions": {
                 "0": {
                     "description": "JTAG is a standardized interface for debugging integrated circuits which you can also use to debug a Raspberry Pi. In this mission, you will verify the serial connectivity using the UART GPIO pins, and exploit the debug interface on RPi that was left open by the developer.",
-                    "done": false,
+                    "done": true,
                     "id": "0",
                     "name": "JTAG",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
+                    "playerId": "10.1.101.21",
+                    "playerName": "ddddd",
+                    "pointsEarned": 5.0,
+                    "progress": 100,
                     "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
+                    "state": "end",
+                    "team": "ffff",
                     "unlocked": true
                 },
                 "1a": {
                     "description": "Good job coming so far. In this mission, you will exploit the default credentials left open by the developer and look for valuable information in the user directory files.",
-                    "done": false,
+                    "done": true,
                     "id": "1a",
                     "name": "Default credentials",
-                    "playerId": null,
-                    "playerName": null,
-                    "pointsEarned": 0,
-                    "progress": 0,
+                    "playerId": "10.1.101.21",
+                    "playerName": "ddddd",
+                    "pointsEarned": 10.0,
+                    "progress": 100,
                     "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
+                    "state": "end",
+                    "team": "ffff",
+                    "unlocked": true
                 },
                 "1b": {
                     "description": "Well, that escalated quickly.",
@@ -79,21 +80,21 @@
                     "quizCorrectCount": 0,
                     "state": null,
                     "team": null,
-                    "unlocked": false
+                    "unlocked": true
                 },
                 "1c": {
                     "description": "Time to explore the contents of the firmware.",
                     "done": false,
                     "id": "1c",
                     "name": "Extract the Firmware",
-                    "playerId": null,
-                    "playerName": null,
+                    "playerId": "10.1.101.21",
+                    "playerName": "ddddd",
                     "pointsEarned": 0,
                     "progress": 0,
                     "quizCorrectCount": 0,
-                    "state": null,
-                    "team": null,
-                    "unlocked": false
+                    "state": "start",
+                    "team": "ffff",
+                    "unlocked": true
                 },
                 "1d": {
                     "description": "Let's get crackin'.",
@@ -180,28 +181,39 @@
                     "unlocked": false
                 }
             },
-            "progress": 0,
-            "score": 0,
-            "team": "asdfasd"
+            "progress": 1.25,
+            "score": 15.0,
+            "team": "ffff"
         }
     },
     "teams": [
         {
-            "name": "asdfasd",
+            "name": "ffff",
             "players": [
                 {
-                    "id": "10.1.101.12",
-                    "ip": "10.1.101.12",
+                    "id": "10.1.101.120",
+                    "ip": "10.1.101.120",
                     "kaliIp": "",
                     "kaliOnline": false,
-                    "name": "afsd",
+                    "name": "asdf",
                     "pi": {},
                     "score": 0,
-                    "team": "asdfasd",
-                    "viewOnline": false
+                    "team": "ffff",
+                    "viewOnline": true
+                },
+                {
+                    "id": "10.1.101.21",
+                    "ip": "10.1.101.21",
+                    "kaliIp": "",
+                    "kaliOnline": false,
+                    "name": "ddddd",
+                    "pi": {},
+                    "score": 15.0,
+                    "team": "ffff",
+                    "viewOnline": true
                 }
             ],
-            "score": 0
+            "score": 15.0
         }
     ]
 }
