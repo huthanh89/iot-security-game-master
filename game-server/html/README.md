@@ -8,7 +8,7 @@ Open instructor dashboard:
 
 http://localhost:8080/instructor-dashboard.html?cheat
 
-Open student dashbaord:
+Open student dashboard:
 
 http://localhost:8080/student-dashasdfboard.html?ip=10.1.101.11  
 
