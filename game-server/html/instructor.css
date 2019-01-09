@@ -77,6 +77,8 @@ nav{
   padding: 0;
   border: rgb(197, 197, 197) 1px solid;
   border-radius: 5px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 1366px) {
