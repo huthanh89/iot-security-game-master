@@ -11,20 +11,20 @@
             "name": "asdf",
             "pi": {},
             "score": 0,
-            "team": "asdff",
+            "team": "asdf",
             "viewOnline": true
         }
     },
     "teamConfig": [
         {
-            "name": "asdff",
+            "name": "asdf",
             "players": [
                 "10.1.101.12"
             ]
         }
     ],
     "teamData": {
-        "asdff": {
+        "asdf": {
             "currentRing": 0,
             "done": false,
             "missions": {
@@ -171,12 +171,12 @@
             },
             "progress": 0,
             "score": 0,
-            "team": "asdff"
+            "team": "asdf"
         }
     },
     "teams": [
         {
-            "name": "asdff",
+            "name": "asdf",
             "players": [
                 {
                     "id": "10.1.101.12",
@@ -186,7 +186,7 @@
                     "name": "asdf",
                     "pi": {},
                     "score": 0,
-                    "team": "asdff",
+                    "team": "asdf",
                     "viewOnline": true
                 }
             ],
