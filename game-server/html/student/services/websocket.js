@@ -111,7 +111,6 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               
               else if (type == 'endgame') {
 
-                  console.log("end game");
                   $rootScope.openEndGameModal(msg);
 
                   /*
@@ -124,6 +123,10 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
                       $rootScope.$applyAsync();
                   }
                   */
+              }
+
+              else if (type == "resetGame"){
+                location.reload();
               }
 
           } 
