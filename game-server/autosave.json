@@ -3,70 +3,58 @@
         "cheat": true
     },
     "players": {
-        "10.1.101.120": {
-            "id": "10.1.101.120",
-            "ip": "10.1.101.120",
+        "10.1.101.11": {
+            "id": "10.1.101.11",
+            "ip": "10.1.101.11",
             "kaliIp": "",
             "kaliOnline": false,
             "name": "asdf",
             "pi": {},
             "score": 0,
-            "team": "ffff",
-            "viewOnline": true
-        },
-        "10.1.101.21": {
-            "id": "10.1.101.21",
-            "ip": "10.1.101.21",
-            "kaliIp": "",
-            "kaliOnline": false,
-            "name": "ddddd",
-            "pi": {},
-            "score": 15.0,
-            "team": "ffff",
-            "viewOnline": true
+            "team": "asdf",
+            "viewOnline": false
         }
     },
     "teamConfig": [
         {
-            "name": "ffff",
+            "name": "asdf",
             "players": [
-                "10.1.101.120",
-                "10.1.101.21"
+                "10.1.101.11"
             ]
         }
     ],
     "teamData": {
-        "ffff": {
-            "currentRing": 1,
+        "asdf": {
+            "currentRing": 0,
             "done": false,
             "missions": {
                 "0": {
                     "description": "JTAG is a standardized interface for debugging integrated circuits which you can also use to debug a Raspberry Pi. In this mission, you will verify the serial connectivity using the UART GPIO pins, and exploit the debug interface on RPi that was left open by the developer.",
-                    "done": true,
+                    "done": false,
                     "id": "0",
                     "name": "JTAG",
-                    "playerId": "10.1.101.21",
-                    "playerName": "ddddd",
-                    "pointsEarned": 5.0,
-                    "progress": 100,
+                    "playerId": null,
+                    "playerName": null,
+                    "pointsEarned": 0,
+                    "progress": 0,
                     "quizCorrectCount": 0,
-                    "state": "end",
-                    "team": "ffff",
+                    "state": null,
+                    "team": null,
                     "unlocked": true
                 },
                 "1a": {
                     "description": "Good job coming so far. In this mission, you will exploit the default credentials left open by the developer and look for valuable information in the user directory files.",
-                    "done": true,
+                    "done": false,
                     "id": "1a",
                     "name": "Default credentials",
-                    "playerId": "10.1.101.21",
-                    "playerName": "ddddd",
-                    "pointsEarned": 10.0,
-                    "progress": 100,
+                    "playerId": null,
+                    "playerName": null,
+                    "pointsEarned": 0,
+                    "progress": 0,
                     "quizCorrectCount": 0,
-                    "state": "end",
-                    "team": "ffff",
-                    "unlocked": true
+                    "state": null,
+                    "team": null,
+                    "unlocked": false
                 },
                 "1b": {
                     "description": "Well, that escalated quickly.",
@@ -80,21 +68,21 @@
                     "quizCorrectCount": 0,
                     "state": null,
                     "team": null,
-                    "unlocked": true
+                    "unlocked": false
                 },
                 "1c": {
                     "description": "Time to explore the contents of the firmware.",
                     "done": false,
                     "id": "1c",
                     "name": "Extract the Firmware",
-                    "playerId": "10.1.101.21",
-                    "playerName": "ddddd",
+                    "playerId": null,
+                    "playerName": null,
                     "pointsEarned": 0,
                     "progress": 0,
                     "quizCorrectCount": 0,
-                    "state": "start",
-                    "team": "ffff",
-                    "unlocked": true
+                    "state": null,
+                    "team": null,
+                    "unlocked": false
                 },
                 "1d": {
                     "description": "Let's get crackin'.",
@@ -181,39 +169,28 @@
                     "unlocked": false
                 }
             },
-            "progress": 1.25,
-            "score": 15.0,
-            "team": "ffff"
+            "progress": 0,
+            "score": 0,
+            "team": "asdf"
         }
     },
     "teams": [
         {
-            "name": "ffff",
+            "name": "asdf",
             "players": [
                 {
-                    "id": "10.1.101.120",
-                    "ip": "10.1.101.120",
+                    "id": "10.1.101.11",
+                    "ip": "10.1.101.11",
                     "kaliIp": "",
                     "kaliOnline": false,
                     "name": "asdf",
                     "pi": {},
                     "score": 0,
-                    "team": "ffff",
-                    "viewOnline": true
-                },
-                {
-                    "id": "10.1.101.21",
-                    "ip": "10.1.101.21",
-                    "kaliIp": "",
-                    "kaliOnline": false,
-                    "name": "ddddd",
-                    "pi": {},
-                    "score": 15.0,
-                    "team": "ffff",
-                    "viewOnline": true
+                    "team": "asdf",
+                    "viewOnline": false
                 }
             ],
-            "score": 15.0
+            "score": 0
         }
     ]
 }
