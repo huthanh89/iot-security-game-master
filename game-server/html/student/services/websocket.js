@@ -53,6 +53,8 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
               if (type == 'login') {
                 $rootScope.playerId = msg.id;
                 $rootScope.teamName = null;
+
+                $rootScope.ip = $rootScope.playerId;
                 $rootScope.refreshGrid();
               } 
               
