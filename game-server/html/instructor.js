@@ -2,7 +2,7 @@
 // Acquire application module
 //------------------------------------------------------------------------------//
 
-var app = angular.module('gameApp');
+var app = angular.module('gameApp', ['ui.bootstrap', 'ngSanitize']);
 
 //-------------------------------------------------------------------------------//
 // Main Controller
