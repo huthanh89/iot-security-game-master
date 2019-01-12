@@ -64,40 +64,55 @@
 
     <!-- Components -->
 
-    <div>
-      <div class="grid">
-        <div class="item">
-          <div ng-show="!waiting">
-            <mission></mission>
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-xl-4">
+          <div id="grid1" class="grid">
+            <div class="item">
+              <div ng-show="!waiting">
+                <mission></mission>
+              </div>
+            </div>
+            <div class="item">
+              <div ng-show="!waiting">
+                <tools></tools>
+              </div>
+            </div>
+            <div class="item">
+              <div ng-show="waiting">
+                <player></player>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="item">
-          <div ng-show="!waiting">
-            <gameboard></gameboard>
+        <div class="col-xl-4">
+          <div id="grid2" class="grid">
+            <div class="item">
+              <div ng-show="!waiting">
+                <gameboard></gameboard>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="item">
-          <chat></chat>
-        </div>
-        <div class="item">
-          <div ng-show="!waiting">
-            <scoreboard></scoreboard>
+        <div class="col-xl-4">
+          <div id="grid3"  class="grid">
+            <div class="item">
+              <chat></chat>
+            </div>
+            <div class="item">
+              <notification></notification>
+            </div>
+            <div class="item">
+              <div ng-show="!waiting">
+                <scoreboard></scoreboard>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="item">
-          <div ng-show="!waiting">
-            <tools></tools>
-          </div>
-        </div>
-        <div class="item">
-          <notification></notification>
-        </div>
-        <div class="item">
-          <div ng-show="waiting">
-            <player></player>
-          </div>
-        </div>
+
       </div>
+
     </div>
 
     <!-- Modal Components -->

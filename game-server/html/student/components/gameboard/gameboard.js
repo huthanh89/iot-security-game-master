@@ -238,11 +238,7 @@ function Controller($scope, $rootScope, $uibModal){
     
     $scope.$applyAsync();
 
-    // Wait a bit, then refresh grid.
-
-    setTimeout(function(){ 
-      $rootScope.refreshGrid();
-    }, 2000);
+    $rootScope.refreshGrid();
     
   });
 
