@@ -42,18 +42,31 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     // Refresh grid to recalculate grid item positions.
 
     $rootScope.refreshGrid = function(){
+
+      let refreshCount = 0;
+
+      let done = function(){
+        refreshCount++;
+
+        // Start tour when all column fully refreshed.
+
+        if(refreshCount==3){
+          $rootScope.startTour();
+        }
+      }
+
       setTimeout(function(){ 
-        $rootScope.column1.refreshItems().layout();
-        $rootScope.column2.refreshItems().layout();
-        $rootScope.column3.refreshItems().layout();
-      },2000);
+        $rootScope.column1.refreshItems().layout(done);
+        $rootScope.column2.refreshItems().layout(done);
+        $rootScope.column3.refreshItems().layout(done);
+      }, 1000);
     }
 
     let columnGrids = [];
 
     // Initialize grid when angular has fully loaded.
 
-    angular.element(function () {
+    angular.element(document).ready(function () {
 
       let createGrid = function(container){
 
@@ -66,7 +79,6 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
           dragSort: function () {
             return columnGrids;
           },
-
         })
         .on('dragStart', function (item) {
           item.getElement().style.width = item.getWidth() + 'px';
@@ -97,7 +109,8 @@ app.controller('studentCtrl', function($scope, $rootScope, WebSocketService) {
     $rootScope.$on('ws:started', function() {
       $rootScope.playSound();
       $rootScope.gameStarted = true;
-      $rootScope.startTour();
+      $rootScope.refreshGrid();
+ //     $rootScope.startTour();
     });   
     
   });

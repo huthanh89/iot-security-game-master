@@ -19,6 +19,18 @@ nav{
   letter-spacing: 2px;
 }
 
+@media only screen and (max-width: 1200px) {
+  .container-fluid{
+    padding: 0 20%;
+  }
+}
+
+@media only screen and (max-width: 865px) {
+  .container-fluid{
+    padding: 0 5%;
+  }
+}
+
 .card{
   margin: 10px;
 }
