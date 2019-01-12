@@ -22,6 +22,8 @@ angular.module('gameApp').factory('WebSocketService', function($rootScope, $loca
 
         let name = $rootScope.playerName;
 
+        name = 'sally';
+
         while ((name == null) || (name == "") || (name.length > 12)) {
           name = prompt("Enter Name (12 character limit)");
         }

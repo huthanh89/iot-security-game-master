@@ -255,3 +255,7 @@ nav{
   height:  35px;
   padding: 5px 10px;
 }
+
+#toast-container > div {
+  opacity:1;
+}
