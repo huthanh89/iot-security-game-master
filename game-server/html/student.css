@@ -257,9 +257,9 @@ nav{
 }
 
 #toast-container > div {
-  opacity:1;
+  opacity: 1;
 }
 
 .toast-info {
-  background-color: rgb(224, 204, 26);
+  background-color: #da9e1d;
 }
