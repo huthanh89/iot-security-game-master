@@ -2,12 +2,16 @@
 // Inject angular services to application.
 //-------------------------------------------------------------------------------//
 
-var app = angular.module('gameApp', ['ui.bootstrap', 'ngSanitize']);
+var app = angular.module('gameApp', [
+  'ui.bootstrap', 
+  'ngSanitize'
+]);
+
 //-------------------------------------------------------------------------------//
 // Configure application.
 //-------------------------------------------------------------------------------//
 
-// Enable Hammerjs to allow user text selections.
+// Enable Hammerjs to allow user text selection.
 
 delete Hammer.defaults.cssProps.userSelect;
 

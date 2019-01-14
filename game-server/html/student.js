@@ -19,7 +19,7 @@ app.config(function($locationProvider){
   });
 });
 
-// Enable Hammerjs to allow user text selections.
+// Enable Hammerjs to allow user text selection.
 
 delete Hammer.defaults.cssProps.userSelect;
 
