@@ -21,6 +21,8 @@ function Controller($scope, $rootScope, $sanitize){
   
   $scope.chatHistory = '';
   $scope.chatMsg     = '';
+  $scope.chatToList  = defaultList();
+  $scope.chatTo      = $scope.chatToList[0];
   
   // Function to update the chat to the list.
   
