@@ -42,6 +42,7 @@ function Controller($scope, $rootScope){
 
     // Play toast.
 
+    
     toastr.info(msg.msg, `${msg.from}`);
 
   });
