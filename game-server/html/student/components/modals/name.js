@@ -21,6 +21,7 @@ function Controller($scope, $rootScope, $uibModal){
         // Update new name in local storage and server.
 
         $ctrl.ok = function() {
+
           let name = this.name
 
           if((name.length) && (name.length < 13)){
